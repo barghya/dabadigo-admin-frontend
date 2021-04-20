@@ -1,0 +1,41 @@
+<div class="form-container">
+    <form [formGroup]="editPenaltyForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("descriptionText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field novalidate [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("descriptionText")}}'
+                            formControlName="descriptions" required autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("amountText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field novalidate [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("amountText")}} ((only +ve integer accepted)'
+                            formControlName="penalty_amount" required autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" type="button" (click)="cancel()" class="button-margin">
+                        {{languageService.getText("CancelText")}}</button>
+                    <button mat-raised-button [disabled]="editPenaltyForm.invalid" color="primary" type="button"
+                        (click)="save()" class="button-margin"> {{ languageService.getText("SaveText") }} </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

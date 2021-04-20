@@ -1,0 +1,402 @@
+<h3 class="primary-text">{{languageService.getText("AddUserManagementHeaderText")}}</h3>
+
+<div class="form-container">
+    <form [formGroup]="UserForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("userNametext")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("userNametext")}}'
+                            formControlName="username" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("passwordText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("passwordText")}}'
+                            formControlName="password" type="password" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("confirmpasswordText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("confirmpasswordText")}}'
+                            formControlName="confirmpassword" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div> -->
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("firstnameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("firstnameText")}}'
+                            formControlName="firstname" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("lastnameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("lastnameText")}}'
+                            formControlName="lastname" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("phoneNoText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("phoneNoText")}}'
+                            formControlName="contact_phone" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("emailIDText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("emailIDText")}}'
+                            formControlName="email_id" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("addressLine1Text")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("addressLine1Text")}}'
+                            formControlName="addressline1" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("addressLine2Text")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("addressLine2Text")}}'
+                            formControlName="addressline2" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("countryText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="country_id"
+                            placeholder='{{languageService.getText("countryText")}}'>
+                            <mat-option *ngFor="let countries of (countries$ | async)" [value]="countries.countries_id">{{countries.countries_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("tableHeaderStateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("tableHeaderStateText")}}'
+                            formControlName="state_id">
+                            <mat-option *ngFor="let statesName of (statesName$ | async)"
+                                [value]="statesName.states_id">
+                                {{statesName.states_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("cityNameHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="city_id"
+                            placeholder='{{languageService.getText("cityNameHeader")}}'>
+                            <mat-option *ngFor="let element of (cities$ | async)"
+                                [value]="element.city_id">
+                                {{element.city_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pintext")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pintext")}}'
+                            formControlName="pin" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("regionText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="region" placeholder='{{languageService.getText("regionText")}}'>
+                            <mat-option *ngFor="let Region of ( region$ | async)" [value]="Region.region_id">
+                                {{Region.region_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div> -->
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("regionText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='Choose {{languageService.getText("regionText")}}'
+                            [matAutocomplete]="autoRegion" formControlName="region">
+                        <mat-autocomplete #autoRegion="matAutocomplete" [displayWith]="displayFnRegions.bind(this)"
+                            (optionSelected)="showRegions($event)">
+                            <mat-option *ngFor="let region of filteredRegions$ | async" [value]="region.region_id">
+                                {{region.region_name}} - {{region.region_code}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("selectedregionText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline" novalidate>
+                        <mat-chip-list #chipList aria-label="Region List">
+                            <mat-chip *ngFor="let region of regionsList" [selectable]="selectable"
+                                [removable]="removable" (removed)="removeRegions(region)">
+                                {{showRegion(region.region_id).region_name}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rolenameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="role_name"
+                            placeholder='{{languageService.getText("rolenameText")}}'>
+                            <mat-option *ngFor="let Role of (adminRole$ | async)" [value]="Role.admn_role_id">
+                                {{Role.role_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("userTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="user_type"
+                            placeholder='{{languageService.getText("userTypeText")}}'
+                            (selectionChange)="OnChange($event.value)">
+                            <mat-option *ngFor="let usertype of (userType$ | async)" [value]="usertype.domain_code" (click)="userTypeSelected(usertype)">
+                                {{usertype.domain_text}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("userStatusNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="user_status"
+                            placeholder='{{languageService.getText("userStatusNameText")}}'>
+                            <mat-option *ngFor="let userstatus of (userStatus$ | async)"
+                                [value]="userstatus.domain_code">{{userstatus.domain_text}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="corporate">
+            <form [formGroup]="UserCorporateForm">
+
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("corporatefranchiseName")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <mat-select formControlName="corporate_id"
+                                    placeholder='{{languageService.getText("corporatefranchiseNamePlaceHolderText")}}'>
+                                    <mat-option *ngFor="let Corporate of (filteredCorporates$ | async)"
+                                        [value]="Corporate.admn_partner_id">{{Corporate.company_name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("pocNameText")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <input matInput placeholder='{{languageService.getText("pocNameText")}}'
+                                    formControlName="poc_name" autocomplete="off">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("pocEmailText")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <input matInput placeholder='{{languageService.getText("pocEmailText")}}'
+                                    formControlName="poc_email" autocomplete="off">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("pocPhoneText")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <input matInput placeholder='{{languageService.getText("pocPhoneText")}}'
+                                    formControlName="poc_phone" autocomplete="off">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("pocOfficeAddressText")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <input matInput placeholder='{{languageService.getText("pocOfficeAddressText")}}'
+                                    formControlName="poc_office_add" autocomplete="off">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("pocDesignationText")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <input matInput placeholder='{{languageService.getText("pocDesignationText")}}'
+                                    formControlName="poc_designation" autocomplete="off">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="center center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" (click)="cancelUser()"  class="button-margin"
+                        type="button">{{languageService.getText("cancelButtonText")}}</button>
+                    <!-- <button mat-raised-button color="primary" (click)="addAnotherUser()"
+                        [disabled]="UserForm.invalid || (corporate && UserCorporateForm.invalid) || (this.regionsList.length < 1 )"
+                        type="button">{{languageService.getText("addAnotherText")}}</button> -->
+                    <button mat-raised-button color="primary"
+                        [disabled]="UserForm.invalid || (corporate && UserCorporateForm.invalid) || (this.regionsList.length < 1 )"
+                        type="button"  class="button-margin" (click)="AddUser()">{{languageService.getText("addButtonText")}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

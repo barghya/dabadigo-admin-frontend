@@ -1,0 +1,73 @@
+import { adminMain } from './userManagement';
+import { assetInventoryAdmin } from './asset-inventoryModel';
+import { RentalPointMain } from './rentalPoint';
+// import { MapmyIndiaMain } from './mapMyIndiaModel';
+import { DomainDataState } from './domainModel';
+import { PricingManagementMain } from './pricingManagement';
+import { DeployVehicle } from './deployVehicleModel';
+import { RegionManagementMain } from './regionManagement';
+import { CorporateManagementMain } from './corporateManagement';
+import { CorporateCodeMain } from './corporateCodeManagementModel';
+import { CorporateRequestManagementMain } from './corporateRequestManagementModel';
+import { couponManagementMain } from './couponManagementModel';
+import { FSQMain } from './fsqManagement';
+import { UserDetails } from './userModel';
+import { customerManagementMain } from './customerManagementModel';
+import { TripMain } from './tripManagementModel';
+import { profileMain } from './profileManagement';
+import { ParameterManagementMain } from './parametermanagementModel';
+import { FSQhubMain } from './fsqhubModel';
+import { DashboardLoad } from './dashboard-model';
+import { IotControllerMain } from './iotControllereModel';
+import { StateTaxManagement } from './stateTaxModel';
+import { TransferPartsMain } from './transferpartsModel';
+import { MaintenanceJobsMain } from './maintenanceJobsModel';
+import { ProblemInventorytaggingMain } from './problem-inventory-taggingModel';
+import { CorporateBillingMain } from './corporateBillingModel';
+import { TermsandConditionsMain } from './termsandconditionsModel';
+import { roleMain } from './roleManagementModel';
+import { TransferDeviceBatteryMain } from './transferDeviceBatteryModel';
+import { FranchiseeMain } from './franchiseeBillingModel';
+import { FranchiseLoad } from './franchiseRentalPointModel';
+import { FranchiseVehicle } from './franchiseVehicleModel';
+import { customerKycManagementMain } from './customerKycVerificationModel';
+import { FranchisePricingMain } from './franchisePricingModel';
+
+export interface AppState {
+
+    readonly user?: UserDetails;
+    readonly user_management?: adminMain;
+    readonly asset_inventory?: assetInventoryAdmin;
+    readonly rental_point?: RentalPointMain;
+    readonly language?: string;
+    // readonly mapmyindia?: MapmyIndiaMain;
+    readonly domainData?: DomainDataState;
+    readonly pricing_management?: PricingManagementMain;
+    readonly deploy_vehicle?: DeployVehicle;
+    readonly region_management?: RegionManagementMain;
+    readonly corporate_management?: CorporateManagementMain;
+    readonly corporate_code_management?: CorporateCodeMain;
+    readonly corporate_request_management?: CorporateRequestManagementMain;
+    readonly coupon_management?: couponManagementMain;
+    readonly fsq_management?: FSQMain;
+    readonly customer_management?: customerManagementMain;
+    readonly customer_kyc_verification?: customerKycManagementMain;
+    readonly trip_management?: TripMain;
+    readonly profile_management?: profileMain;
+    readonly parameter_management?: ParameterManagementMain;
+    readonly fsq_hub?: FSQhubMain;
+    readonly dashboard?: DashboardLoad,
+    readonly iot_bypass?: IotControllerMain,
+    readonly role_management?: roleMain;
+    readonly stateTaxManagement?: StateTaxManagement;
+    readonly transferParts?: TransferPartsMain;
+    readonly maintenanceJobManagement?: MaintenanceJobsMain;
+    readonly problemInventoryTagging?: ProblemInventorytaggingMain;
+    readonly corporate_billing?: CorporateBillingMain;
+    readonly terms_and_conditions?: TermsandConditionsMain;
+    readonly transferDeviceBattery?: TransferDeviceBatteryMain;
+    readonly franchisee_billing?: FranchiseeMain;
+    readonly franchisee_rental_point?: FranchiseLoad;
+    readonly franchisee_vehicle?: FranchiseVehicle;
+    readonly franchise_pricing?: FranchisePricingMain;
+}

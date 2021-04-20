@@ -1,0 +1,86 @@
+<app-coupon-basic-details [couponData$]="singleCoupon$"></app-coupon-basic-details>
+<div class="section-title primary-text">{{languageService.getText("addCustomersText")}}</div>
+<div class="form-container mat-elevation-z5 rounded-div">
+    <form [formGroup]="CustomerForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="67.5" fxLayoutAlign="end center">
+                <mat-form-field [style.width.%]="89" appearance="outline">
+                    <input matInput placeholder='{{languageService.getText("customerText")}}'
+                        formControlName="customer_id" autocomplete="off">
+                    <!-- <mat-select placeholder='{{languageService.getText("storeNameText")}}'
+                        formControlName="destination_store_id">
+                        <mat-option *ngFor="let fsq of (fsqList$ | async)"
+                            [value]="fsq.admn_user_id">
+                            {{fsq.username}}
+                        </mat-option>
+                    </mat-select> -->
+                </mat-form-field>
+            </div>
+            <div fxFlex="7.5" fxLayoutAlign="start center">
+                <button type="button" mat-icon-button (click)="Search()">
+                    <mat-icon color="primary">search</mat-icon>
+                </button>
+            </div>
+            <div fxFlex="25" fxLayoutAlign="start center">
+                <button mat-raised-button color="primary" type="button" [disabled]="CustomerForm.invalid || !(selectedCustomer) || !validCustomer" class="button-margin" (click)="AddSubmit()">
+                    {{languageService.getText("addText")}}</button>
+            </div>
+        </div>
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="67.5" fxLayoutAlign="start center">
+                <span [style.width.%]="11"></span>
+                <mat-error [style.width.%]="89" [style.fontSize.%]="70" *ngIf="!validCustomer">
+                    {{languageService.getText("aleradyAssignedCustomer")}}
+                </mat-error>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="section-title primary-text">{{languageService.getText("customersText")}}</div>
+<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">   
+    <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("corporateCustomerfirstNameText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("corporateCustomerlastNameText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="phone_no">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("contactPhoneText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.phone_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("emailIDText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.email_id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("actionText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> 
+            <button matTooltip="Delete" mat-icon-button color="warn" type="button" (click)="deleteCustomer(element.customer_id)"> <mat-icon>delete</mat-icon> </button>
+        </td>
+    </ng-container>
+
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator class="mat-elevation-z5" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true"></mat-paginator>
+<div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+    <div fxFlex="100" fxLayoutAlign="end center">
+        <button mat-raised-button color="primary" type="button" class="button-margin" (click)="Assign()">
+            {{languageService.getText("SaveText")}}</button>
+        <button mat-raised-button color="accent" type="button" class="button-margin" (click)="Cancel()">
+            {{languageService.getText("cancelButtonText")}}</button>
+    </div>
+</div>

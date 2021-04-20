@@ -1,0 +1,286 @@
+<div class="section-title" fxLayoutAlign="center center" *ngIf="!!billDetails && !!billDetails.corporate_details"> <b>Bill Details for {{billDetails.corporate_details.billing_name}} between {{billDetails.bill_from_date |date}} to {{billDetails.bill_to_date |date}}</b> </div>
+<!-- Bill Basic Details -->
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("BasicBillDetailsHeaderText")}} </div>
+<div class="mat-elevation-z5 rounded-div sectionwise-margin-bottom" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="!!billDetails && !!billDetails.corporate_bill.invoice_number">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("InvoiceNoText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{billDetails.corporate_bill.invoice_number}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="!!billDetails && !!billDetails.corporate_bill.due_date">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("JobRunDateText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{billDetails.corporate_bill.job_run_date | date}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block" *ngIf="!!billDetails && !!billDetails.corporate_bill.next_bill_date">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("DueDateText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{billDetails.corporate_bill.due_date | date}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="!!billDetails && !!billDetails.corporate_bill.last_bill_amount">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("LastBillAmountText")}}{{languageService.getText("AmountText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{billDetails.corporate_bill.last_bill_amount | currency:"INR":"symbol"}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="!!billDetails && !!billDetails.corporate_bill.last_payment_received">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("LastPaymentReceivedText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{billDetails.corporate_bill.last_payment_received | currency:"INR":"symbol"}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="!!billDetails && !!billDetails.corporate_bill.amount_due">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("AmountDueText")}} (Trip)
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{billDetails.corporate_bill.amount_due | currency:"INR":"symbol"}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block" *ngIf="!!billDetails && !!billDetails.corporate_bill.status_name">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("StatusText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{billDetails.corporate_bill.status_name}} </div>
+    </div>
+</div>
+<!--Organization Details-->
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("OrganizationDetailsHeaderText")}} </div>
+<app-view-bill-corporate-legal-details *ngIf="!!billDetails" [corporateDetails]="billDetails.legal_entity_details"></app-view-bill-corporate-legal-details>
+
+<!--Corporate Details-->
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("CorporateDetailsHeaderText")}} </div>
+<app-view-bill-corporate-legal-details *ngIf="!!billDetails" [corporateDetails]="billDetails.corporate_details"></app-view-bill-corporate-legal-details>
+
+<!-- Trip Details -->
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("CorporateTripDetailsHeaderText")}} </div>
+
+<div class="sectionwise-margin-bottom">
+    <table mat-table matSort #tripSort="matSort" [hidden]="!dataSourceofTripDetails || !dataSourceofTripDetails.data.length" class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSourceofTripDetails">
+        <ng-container matColumnDef="ride_id">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> {{languageService.getText("tripReferanceNoText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.trip_ref_no}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="rider_name">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef > {{languageService.getText("RiderNameText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.customer_name}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="booking_time">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef > {{languageService.getText("BookingTimeText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.booking_time | date: 'medium'}} 
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="end_ride_time">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef > {{languageService.getText("RideEndTimeText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.ride_end_time | date: 'medium'}} 
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="basic">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef > {{languageService.getText("BasicText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{ element.basic |currency:'INR' }} 
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="cgst">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef > {{languageService.getText("CgstText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{ element.cgst |currency:'INR' }} 
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="sgst">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef > {{languageService.getText("SgstText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.sgst |currency:'INR'}} 
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="total_payable">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef > {{languageService.getText("TotalPayableText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.total_payable |currency:'INR'}}
+            </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="due_date">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef > {{languageService.getText("DueDateTExt")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                Due Date 
+            </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsofTripDetails"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsofTripDetails;"></tr>
+    </table >
+    <!-- <mat-paginator [pageSize]="10" #tripPaginator [hidden]="!dataSourceofTripDetails.data.length" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator> -->
+</div>
+
+<!-- ACCIDENT/ACCECORIES BILLING DETAILS/LATE PAYMENT FEE/DISCOUNT/ADJUSTMENTS -->
+
+<div class="section-title primary-text" fxLayoutAlign="start center"> 
+    {{languageService.getText("AdjustmenttableHeaderText")}}
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container" *ngIf="!!billDetails && (billDetails.corporate_bill.status == 1 || billDetails.corporate_bill.status == 6)">
+    <div fxFlex="20">
+        <button mat-raised-button type="button" color="primary" [disabled]="bill_payment_settled_flag == true" (click)="addAdjustment(billDetails)"> {{languageService.getText("addNewAdjustmentButtonText")}} </button>
+    </div>
+    <div fxFlex="60"></div>
+    <div fxFlex="20" fxLayoutAlign="end center">
+        <button mat-raised-button type="button" [disabled]="final_amount == undefined || bill_payment_settled_flag == true " color="primary" (click)="save()"> {{languageService.getText("SaveText")}} </button>
+    </div>
+</div>
+
+<div class="sectionwise-margin-bottom">
+    <table mat-table matSort [hidden]="!dataSourceofMiscellaneousDetails || !dataSourceofMiscellaneousDetails.data.length" #adjustmentSort="matSort" class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSourceofMiscellaneousDetails">
+        <ng-container matColumnDef="ride_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("tripReferanceNoText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.trip_ref_no}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="rider_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("riderName")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.rider_name}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="booking_time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("BookingTimeText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.booking_time | date:"medium"}} 
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("descriptionText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.descriptions}} 
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="total_payable">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("amountPayableText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.adjusted_amount |currency:'INR'}}
+            </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="due_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Due Date </th>
+            <td mat-cell *matCellDef="let element"> 
+                Due Date 
+            </td>
+        </ng-container> -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> {{languageService.getText("ActionText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button color="primary" [disabled]="bill_payment_settled_flag == true" *ngIf="billDetails.corporate_bill.status == 1 || billDetails.corporate_bill.status == 6" (click)="edit(element)"> <mat-icon>edit</mat-icon> </button>
+                <button matTooltip="Delete" mat-icon-button color="warn" [disabled]="bill_payment_settled_flag == true" *ngIf="billDetails.corporate_bill.status == 1 || billDetails.corporate_bill.status == 6" (click)="delete(element)"> <mat-icon>delete</mat-icon> </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsofMiscellaneousDetails"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsofMiscellaneousDetails;"></tr>
+    </table>
+    <!-- <div fxLayout="row" fxLayoutAlign="center center" class="button-filter-container">
+        <div fxFlex="20">
+            <mat-label class="primary-text"> Total Amount: {{final_amount}} </mat-label>
+        </div>
+    </div> -->
+    <!-- <mat-paginator [pageSize]="10" #adjustmentPaginator [hidden]="!dataSourceofMiscellaneousDetails.data.length" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator> -->
+</div>
+
+<!-- Dabadigo Bank Account Details -->
+
+<div class="section-title primary-text" fxLayoutAlign="start center"> 
+    {{languageService.getText("BankAccountDetailsHeaderText")}} 
+</div>
+
+<div class="mat-elevation-z5 rounded-div sectionwise-margin-bottom" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("AccountHeolderText")}} 
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center" *ngIf="billDetails"> {{billDetails.bank_details.account_holder_name}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BankNameText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center" *ngIf="billDetails"> {{billDetails.bank_details.bank_name}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BranchNameText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center" *ngIf="billDetails"> {{billDetails.bank_details.branch_name}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BranchAddressText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center" *ngIf="billDetails"> {{billDetails.bank_details.branch_address}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("AccountNoText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center" *ngIf="billDetails"> {{billDetails.bank_details.account_number}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("IfscCodeText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center" *ngIf="billDetails"> {{billDetails.bank_details.ifsc_code}} </div>
+    </div>
+</div>
+
+<div fxLayout="row" [style.width.%]="100" *ngIf="!!billDetails && (billDetails.corporate_bill.status == 1 || billDetails.corporate_bill.status == 6 || billDetails.corporate_bill.status == 2)">
+    <div fxFlex="100" fxLayoutAlign="end center">
+        <div fxFlex="80" fxLayoutAlign="end center">
+            <button mat-raised-button color="primary" [disabled]="bill_payment_settled_flag == true" type="button" (click)="billPaymentStatus(billDetails.corporate_bill.corporate_billing_id)" class="button-margin">
+                {{languageService.getText("BillPaidText")}}
+            </button>
+        </div>
+    </div>
+</div>

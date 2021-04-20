@@ -1,0 +1,39 @@
+<div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100">
+    <!-- <div fxFlex="100" fxLayoutAlign="end center">
+        <button mat-raised-button color="primary" class="button-margin" (click)="addConditions()"> + Add Terms and Conditions </button>
+    </div> -->
+</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px" *ngIf="!!termsandconditions">
+    <div fxFlex="100" fxLayout="row" class="text-block text-padding-bottom">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            Updated by 
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center" *ngIf="!!termsandconditions && termsandconditions.updated_by_id == 1"> Admin </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block" *ngIf="!!termsandconditions">
+        <div fxFlex="20" fxLayoutAlign="start start" class="accent-text">
+            Terms and Conditions
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center start" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        
+        <div fxFlex="78" fxLayoutAlign="center center" [style.width.%]="100">
+            <form [formGroup]="TandCForm">
+                <div fxFlex="90" fxLayoutAlign="center center" *ngIf="!!termsandconditions && !!termsandconditions.tandctext"> 
+                    <ckeditor [editor]="Editor" tagName="textarea" [formControl]="editorData"></ckeditor>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" [style.width.%]="100">
+        <div fxFLex="100" fxLayoutAlign="end center">
+            <div fxFlex="80" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" [disabled]="TandCForm.dirty" class="button-margin" (click)="edit()"> Save </button>
+            </div>
+        </div>
+    </div>
+</div>

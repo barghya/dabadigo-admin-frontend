@@ -1,0 +1,110 @@
+<div class="mat-elevation-z5 rounded-div sectionwise-margin-bottom" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="11" fxLayoutAlign="start center" class="accent-text" *ngIf="corporateDetails.partner_type == 3">
+            {{languageService.getText("billingHeaderText")}}
+        </div>
+        <div fxFlex="11" fxLayoutAlign="start center" class="accent-text" *ngIf="corporateDetails.partner_type != 3">
+            {{languageService.getText("billToText")}}
+        </div>
+        <div fxFlex="1" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex fxLayoutAlign="start center"> {{corporateDetails.billing_name}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="11" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("addressLine1Text")}}
+        </div>
+        <div fxFlex="1" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex fxLayoutAlign="start center"> {{corporateDetails.addressline1}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block bottom-margin">
+        <div fxFlex="11" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("addressLine2Text")}}
+        </div>
+        <div fxFlex="1" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex fxLayoutAlign="start center"> {{corporateDetails.addressline2}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("cityText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{corporateDetails.city_name}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("stateNameText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{corporateDetails.state_name}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("pintext")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{corporateDetails.pin}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("gstnumberText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{corporateDetails.gst_numbers}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("pannumberText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{corporateDetails.pan}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text" *ngIf="corporateDetails.partner_type == 3">
+            {{languageService.getText("phoneText")}}
+        </div>
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text" *ngIf="corporateDetails.partner_type != 3">
+            {{languageService.getText("contactPhoneText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{corporateDetails.contact_phone}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="corporateDetails.partner_type != 3">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("contactPersonText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{corporateDetails.contact_person}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text" *ngIf="corporateDetails.partner_type == 3">
+            {{languageService.getText("emailIDText")}}
+        </div>
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text" *ngIf="corporateDetails.partner_type != 3">
+            {{languageService.getText("contactEmailText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{corporateDetails.contact_email}} </div>
+    </div>
+</div>

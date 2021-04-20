@@ -1,0 +1,84 @@
+
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="primary" (click)="OpenAdd()">{{languageService.getText("addCouponText")}}</button>
+    </div>
+    <div fxFlex="60" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input" placeholder='{{languageService.getText("couponSearchPlaceHolderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20">
+        <mat-checkbox (change)="ShowUsedUnusedCoupon($event.source.checked)">{{languageService.getText("usedUnusedCouponText")}}</mat-checkbox>
+    </div>
+    <!-- <div fxFlex="8">{{languageService.getText("allCouponText")}}</div>
+    <div fxFlex="5"><span class="accent-text">
+            <mat-slide-toggle (change)="changed($event.checked)" [color]="color"></mat-slide-toggle>
+        </span></div>
+    <div fxFlex="8">{{languageService.getText("unusedCouponText")}}</div> -->
+</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="coupon_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("couponCodeText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.coupon_code}}</td>
+        </ng-container>
+        <ng-container matColumnDef="coupon_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("couponNameText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.coupon_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="coupon_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("couponTypeText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.coupon_type_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="usage_restriction">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("usageRestrictionText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.usage_restriction_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("timeText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.time}}</td>
+        </ng-container>
+        <ng-container matColumnDef="countries_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tableHeaderCountryText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.countries_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="states_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tableHeaderStateText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.states_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="city_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tableHeaderCity")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.city_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("valueText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.value}}</td>
+        </ng-container>
+        <ng-container matColumnDef="start_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("startDateText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.start_date | date}}</td>
+        </ng-container>
+        <ng-container matColumnDef="end_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("endDateText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.end_date | date}}</td>
+        </ng-container>
+        <ng-container matColumnDef="status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("StatusText")}}</th>
+            <td mat-cell *matCellDef="let element">{{element.status_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("ActionText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button color="accent" *ngIf="element.status == 1" (click)="editCoupon(element.coupon_id)"><mat-icon>edit</mat-icon></button>
+                <button matTooltip="Delete" mat-icon-button color="warn" (click)="deleteCoupon(element.coupon_id)"><mat-icon>delete</mat-icon></button>
+                <button matTooltip="Assign" mat-icon-button color="primary" *ngIf="element.coupon_type == 1" (click)="assignCoupon(element.coupon_id)"> <mat-icon>person_add</mat-icon> </button>  
+                <button matTooltip="Usage History" mat-icon-button color="accent" (click)="UsageHistory(element.coupon_id)"> <mat-icon>history</mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator class="mat-elevation-z5" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true"></mat-paginator>
+</div>

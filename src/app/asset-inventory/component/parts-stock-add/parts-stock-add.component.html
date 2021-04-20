@@ -1,0 +1,173 @@
+<div class="form-container">
+    <form [formGroup]="StockAddForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("partText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("partText")}}'
+                            formControlName="parts_master_id">
+                            <mat-option *ngFor="let partMaster of (partsMasters$ | async)"
+                                [value]="partMaster.parts_master_id">
+                                {{partMaster.part_name}}({{partMaster.part_short_code}})
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("cityNameHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("cityNameHeader")}}'
+                            formControlName="city_name" (selectionChange)="SelectedCity($event.value)">
+                            <mat-option *ngFor="let city of (city$ | async)"
+                                [value]="city.city_id">
+                                {{city.city_name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("regionText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("regionText")}}'
+                            formControlName="region_id" (selectionChange)="SelectedRegion($event.value)">
+                            <mat-option *ngFor="let region of (filteredRegion$ | async)"
+                                [value]="region.region_id">
+                                {{region.region_name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("storeTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("storeTypeText")}}'
+                            formControlName="store_type" (selectionChange)="StoreTypeChanged($event.value)">
+                            <mat-option *ngFor="let storeType of (storeTypes$ | async)"
+                                [value]="storeType.domain_code">
+                                {{storeType.domain_value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="StockAddForm.controls.store_type.value == 2">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("storeNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("storeNameText")}}'
+                            formControlName="store_id">
+                            <mat-option *ngFor="let rentalPoint of (rentalPoints$ | async)"
+                                [value]="rentalPoint.rentalpoint_id">
+                                {{rentalPoint.rentalpoint_name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="StockAddForm.controls.store_type.value == 4">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("storeNameText")}}</mat-label>
+                </div>
+                <div fxFlex="67.5" fxLayoutAlign="end center">
+                    <mat-form-field [style.width.%]="89" appearance="outline">
+                        <input matInput placeholder='Search FSQ' 
+                        formControlName="store_id" autocomplete="off">
+                        <!-- <mat-select placeholder='{{languageService.getText("storeNameText")}}'
+                            formControlName="store_id">
+                            <mat-option *ngFor="let fsq of (fsqList$ | async)"
+                                [value]="fsq.admn_user_id">
+                                {{fsq.username}}
+                            </mat-option>
+                        </mat-select> -->
+                    </mat-form-field>
+                </div>
+                <div fxFlex="7.5" fxLayoutAlign="start center">
+                    <button type="button" mat-icon-button (click)="Search()">
+                        <mat-icon color="primary">search</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("quantityText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("quantityText")}}'
+                            formControlName="quantity" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("StatusText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("StatusText")}}'
+                            formControlName="status">
+                            <mat-option *ngFor="let partStatus of (partsStatuses$ | async)"
+                                [value]="partStatus.domain_code">
+                                {{partStatus.domain_value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("transactionReferenceText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("transactionReferenceText")}}'
+                            formControlName="txn_reference" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" [style.width.%]="100">
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="primary" type="button" class="button-margin" (click)="AddStock()"
+                        [disabled]="StockAddForm.invalid || (fsqRequired && !selectedFsq)">{{languageService.getText("AddText")}}</button>
+                    <button mat-raised-button color="accent" type="button" class="button-margin"
+                        (click)="Cancel()">{{languageService.getText("CancelText")}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

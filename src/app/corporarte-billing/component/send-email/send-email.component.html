@@ -1,0 +1,86 @@
+<div fxLayout="row" class="header-container" fxLayoutAlign="center center" [style.width.%]="100">
+    <div fxFlex="100">
+        <mat-label class="primary-text"> {{languageService.getText("SendemailHeaderText")}} </mat-label>
+    </div>
+</div>
+<div class="mat-elevation-z5 rounded-div form-container sectionwise-margin-bottom">
+    <form [formGroup]="EmailForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="15" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("SubjectText")}}</mat-label>
+                </div>
+                <div fxFlex="80" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("SubjectText")}}'
+                            formControlName="email_subject" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100" class="text-block">
+                <div fxFlex="15" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("BodyText")}}</mat-label>
+                </div>
+                <div fxFlex="80" fxLayoutAlign="center center">
+                    <!-- <mat-form-field [style.width.%]="80" appearance="outline">
+                        <textarea matInput placeholder='{{languageService.getText("BodyText")}}'
+                            formControlName="email_body" autocomplete="off"></textarea>
+                    </mat-form-field> -->
+                    <div fxFlex="80" fxLayoutAlign="center center">
+                        <ckeditor [editor]="Editor" tagName="textarea" [formControl]="editorData"></ckeditor>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100" class="text-block">
+                <div fxFlex="15" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("NotesText")}}</mat-label>
+                </div>
+                <div fxFlex="80" fxLayoutAlign="center center">
+                    <!-- <mat-form-field [style.width.%]="80" appearance="outline">
+                        <textarea matInput placeholder='{{languageService.getText("NotesText")}}'
+                            formControlName="notes" autocomplete="off"></textarea>
+                    </mat-form-field> -->
+                    <div fxFlex="80" fxLayoutAlign="center center">
+                        <ckeditor [editor]="Editor1" tagName="textarea" [formControl]="editorData1"></ckeditor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div fxLayout="row" fxLayoutAlign="end center" [style.width.%]="100">
+        <div fxFlex="90" fxLayoutAlign="end center">
+            <button mat-raised-button color="accent" type="button" class="button-margin" (click)="cancel()">
+                {{languageService.getText("cancelButtonText")}}</button>
+            <button mat-raised-button color="primary" type="button" class="button-margin" (click)="sendEmail()">
+                {{languageService.getText("saveandSendButtonText")}} </button>
+        </div>
+    </div>
+</div>
+<div fxLayout="row" class="header-container sectionwise-margin-bottom" fxLayoutAlign="center center" [style.width.%]="100">
+    <div fxFlex="100">
+        <mat-label class="primary-text"> {{languageService.getText("reminderTableHeaderText")}} </mat-label>
+    </div>
+</div>
+<div>
+    <table mat-table matSort class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSource">
+        <ng-container matColumnDef="reminder_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("reminderDateColumnHeaderText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.corp_communication_date | date: 'short'}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="reminder_notes">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("reminderNotesColumnHeaderText")}} </th>
+            <td mat-cell *matCellDef="let element" [innerHTML]="element.corp_communication_notes">
+                <!-- {{element.corp_communication_notes}} -->
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

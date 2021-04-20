@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+}
+.search-bar-container {
+    display: inline-flex;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    height: 30px;
+    width: 21%;
+    text-align: left;
+    margin-left: 20%;
+    .search-icon {
+        padding-top: 4px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+}
+
+button {
+    background: orangered;
+    border-radius: 30px;
+}

@@ -1,0 +1,454 @@
+<h3 class="primary-text">{{languageService.getText("addRentalPointText")}}</h3>
+<div class="form-container">
+    <form [formGroup]="addrentalpointForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("placeholderRentalPointType")}}'
+                            formControlName="rentalpoint_type">
+                            <mat-option *ngFor="let rentalpointtype of (rentalPointType$ | async)"
+                                [value]="rentalpointtype.domain_code">
+                                {{rentalpointtype.domain_text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpOwnershipCodeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("placeholderRentalPointOwnershipCode")}}'
+                            formControlName="ownership_code" (selectionChange)="OnChange($event.value)">
+                            <mat-option *ngFor="let ownershipcode of (ownerShipcode$ | async)"
+                                [value]="ownershipcode.domain_code">
+                                {{ownershipcode.domain_text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="Franchise">
+        <form [formGroup]="rentalpointFranchiseForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpFranchiseName")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("placeholderrpFranchiseName")}}'
+                            formControlName="franchise_id">
+                            <mat-option  *ngFor="let franchise of (franchise$ | async)"
+                            [value]="franchise.admn_partner_id">
+                            {{franchise.franchise_name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        </form>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("addRentalPointNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("addRentalpointNamePlaceholder")}}'
+                            formControlName="rentalpoint_name" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rentalPointShortCodeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rentalPointShortcodePlaceholder")}}'
+                            formControlName="rentalpoint_shortcode" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("latText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("latText")}}'
+                            formControlName="rp_latitude" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("lngText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("lngText")}}'
+                            formControlName="rp_longitude" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div fxLayout="row" [style.width.%]="100" fxLayoutAlign="center center">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" [style.height.px]="300" fxLayoutAlign="center center">
+                <div id="map" [style.height.%]="100" [style.width.%]="80" class="mat-elevation-z8"></div>
+            </div>
+        </div> -->
+
+
+
+        <!-- <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="60" fxLayoutAlign="center center" [style.width.%]="80">
+                <div fxLayout="row" fxLayoutAlign="end center" fxFlex="45">
+                    <div fxFlex="40" fxLayoutAlign="end end">
+                        <mat-label>{{languageService.getText("latText")}}</mat-label>
+                    </div>
+                    <div fxFlex="60" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="70" appearance="outline">
+                            <input matInput placeholder='{{languageService.getText("latText")}}' formControlName="rp_latitude" autocomplete="off" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end center" fxFlex="45">
+                    <div fxFlex="40" fxLayoutAlign="start center">
+                        <mat-label>{{languageService.getText("lngText")}}</mat-label>
+                    </div>
+                    <div fxFlex="60" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="70" appearance="outline">
+                            <input matInput placeholder='{{languageService.getText("lngText")}}' formControlName="rp_longitude" autocomplete="off" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="10">
+                    <button mat-raised-button color="primary" type="button" (click)="addmarker()">{{languageService.getText("addrentalpointButtonText")}}</button>
+                </div>
+            </div>
+        </div> -->
+
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpAddressLine1Text")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpAddressLine1Placeholder")}}'
+                            formControlName="addressline1" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpAddressLine2Text")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpAddressLine2Placeholder")}}'
+                            formControlName="addressline2" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpCuntryCodeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("rpCuntryCodePlaceHolderText")}}'
+                            formControlName="country_id">
+                            <mat-option *ngFor="let countries of (countries$ | async)"
+                                [value]="countries.countries_id">
+                                {{countries.countries_name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("StateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("StatePlaceHolderText")}}'
+                            formControlName="state_id">
+                            <mat-option *ngFor="let statesName of (statesName$ | async)"
+                                [value]="statesName.states_id">
+                                {{statesName.states_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+  
+  
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("cityNameHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="city_id"
+                            placeholder='{{languageService.getText("cityNameHeader")}}'>
+                            <mat-option *ngFor="let element of (cities$ | async)"
+                                [value]="element.city_id">
+                                {{element.city_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpPostalCode")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpPostalCodePlaceHolsderText")}}'
+                            formControlName="pin" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpMaxCapacity")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpMaxCapacityPlaceHolderText")}}'
+                            formControlName="max_capacity" autocomplete="off" (keyup)="availableCapacityValidation()">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpAvailableCapacity")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpAvailableCapacityPlaceHolderText")}}'
+                            formControlName="available_capacity" autocomplete="off" (keyup)="maxCapacityValidation()">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpStatusText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("rpStatusPlaceholderText")}}'
+                            formControlName="status">
+                            <mat-option *ngFor="let rentalpointstatus of (rentalPointStatus$ | async)"
+                                [value]="rentalpointstatus.domain_code">
+                                {{rentalpointstatus.domain_text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpOpeningTimeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="25" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpHoursText")}}'
+                            formControlName="rp_open_hh" autocomplete="off" maxlength="2">
+                    </mat-form-field>
+                    <span fxFlex="2.5" fxLayoutAlign="center center">:</span>
+                    <mat-form-field [style.width.%]="25" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpMinutesText")}}'
+                            formControlName="rp_open_mm" autocomplete="off" maxlength="2">
+                    </mat-form-field>
+                    <span fxFlex="2.5" fxLayoutAlign="center center">:</span>
+                    <mat-form-field [style.width.%]="25" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpSecondText")}}'
+                            formControlName="rp_open_ss" autocomplete="off" maxlength="2">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpCloseTimeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="25" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpHoursText")}}'
+                            formControlName="rp_close_hh" autocomplete="off" maxlength="2">
+                    </mat-form-field>
+                    <span fxFlex="2.5" fxLayoutAlign="center center">:</span>
+                    <mat-form-field [style.width.%]="25" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpMinutesText")}}'
+                            formControlName="rp_close_mm" autocomplete="off" maxlength="2">
+                    </mat-form-field>
+                    <span fxFlex="2.5" fxLayoutAlign="center center">:</span>
+                    <mat-form-field [style.width.%]="25" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rpSecondText")}}'
+                            formControlName="rp_close_ss" autocomplete="off" maxlength="2">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingRegionNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="region_id"
+                            placeholder='{{languageService.getText("pricingRegionNameText")}}'>
+                            <mat-option *ngFor="let region of (regions$ | async)" [value]="region.region_id">
+                                {{region.region_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpCommissioningDate")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="picker"
+                            placeholder='{{languageService.getText("rpCommissioningDatePlaceHolder")}}'
+                            formControlName="commissioning_date" autocomplete="off" (dateChange)="StartDateChange()">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpTerminationDate")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="picker1"
+                            placeholder='{{languageService.getText("rpTerminationDatePlaceHolder")}}'
+                            formControlName="termination_date" autocomplete="off" [min]="minDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rentalpointmanager")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="admn_user_id"
+                            placeholder='{{languageService.getText("rentalpointmanager")}}'>
+                            <mat-option>{{languageService.getText("clearText")}}</mat-option>
+                            <mat-option *ngFor="let availableManagers of (availableManagers$ | async)"
+                                [value]="availableManagers.admn_user_id">
+                                {{availableManagers.manager_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("batteryswappingpoint")}}</mat-label>
+                </div>
+                <div fxFlex="17" fxLayoutAlign="center center">
+                    <mat-checkbox formControlName="battery_swapping_point"></mat-checkbox>
+                </div>
+                <div fxFlex="58" fxLayoutAlign="center center">
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" (click)="cancelRentalPoint()" class="button-margin"
+                        type="button">{{languageService.getText("cancelButtonText")}}</button>
+                    <!-- <button mat-raised-button color="primary" (click)="addAnotherRentalpoint()" class="button-margin"
+                        [disabled]="addrentalpointForm.invalid"
+                        type="button">{{languageService.getText("addAnotherText")}}</button> -->
+                    <button mat-raised-button color="primary" [disabled]="addrentalpointForm.invalid" type="button"
+                        class="button-margin"
+                        (click)="addRentalPoint()">{{languageService.getText("addButtonText")}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="m_result0"></div>

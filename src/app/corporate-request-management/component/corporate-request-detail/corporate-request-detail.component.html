@@ -1,0 +1,58 @@
+<div class="section-title primary-text">{{languageService.getText("basicDetailsText")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("corporateCustomerfirstNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(requestDetail$ | async)"><b>{{(requestDetail$ | async).first_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("corporateCustomerlastNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(requestDetail$ | async)"><b>{{(requestDetail$ | async).last_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("contactPhoneText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(requestDetail$ | async)"><b>{{(requestDetail$ | async).phone_no}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("emailIDText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(requestDetail$ | async)"><b>{{(requestDetail$ | async).email_id}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("emailVerficationText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(requestDetail$ | async)"><b>{{(requestDetail$ | async).email_verify_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("dpinStatusText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(requestDetail$ | async)"><b>{{(requestDetail$ | async).dpin_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("kycStatusText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(requestDetail$ | async)"><b>{{(requestDetail$ | async).kyc_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("statusNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(requestDetail$ | async)"><b>{{(requestDetail$ | async).status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("requestedOnText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(requestDetail$ | async)"><b>{{(requestDetail$ | async).requested_on | date:"dd/MM/yyyy HH:mm:ss"}}</b></div>
+    </div>
+</div>
+<div fxLayout="row" [style.width.%]="100">
+    <div fxFlex="100" fxLayoutAlign="end center">
+        <button mat-raised-button color="primary" [disabled]="(requestDetail$ | async).status != 1"
+            type="button" class="button-margin" *ngIf="!!(requestDetail$ | async)" (click)="Approve()">{{languageService.getText("approveButtonText")}}</button>
+        <button mat-raised-button color="warn" [disabled]="(requestDetail$ | async).status != 1"
+            type="button" class="button-margin" *ngIf="!!(requestDetail$ | async)" (click)="Reject()">{{languageService.getText("rejectButtonText")}}</button>
+        <button mat-raised-button color="accent" (click)="Cancel()" class="button-margin"
+            type="button">{{languageService.getText("cancelButtonText")}}</button>
+    </div>
+</div>

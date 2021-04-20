@@ -1,0 +1,14 @@
+<div class="view-container">
+    <app-header></app-header>
+    <div class="main-content">
+        <div class="main-flex" fxLayout="row" fxLayoutAlign="flex-start">
+            <div class="sidenav-flex" *ngIf="(userdetail$ | async).admn_user_id > 0 && (userdetail$ | async).login_flag == 1">
+                <app-sidenav></app-sidenav>
+            </div>
+            <div fxFlex class="main-content-flex">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    <app-footer class="footer"></app-footer>
+</div>

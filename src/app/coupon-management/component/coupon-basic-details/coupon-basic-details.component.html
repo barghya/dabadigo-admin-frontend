@@ -1,0 +1,20 @@
+<div class="section-title primary-text">{{languageService.getText("basicDetailsText")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("couponCodeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(couponData$ | async)">
+            <b>{{(couponData$ | async).coupon_code}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("couponNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(couponData$ | async)">
+            <b>{{(couponData$ | async).coupon_name}}</b></div>
+    </div>
+</div>
+

@@ -1,0 +1,78 @@
+<div fxLayout="row wrap" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="primary" (click)="AddTransfer()">{{languageService.getText("addTransferRequestText")}}</button>
+    </div>
+    <div fxFlex="60" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input"
+                placeholder='{{languageService.getText("searchTrasnferRequestsText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20">
+        <mat-checkbox (change)="ShowHidePastData($event.source.checked)">{{languageService.getText("includePastText")}}</mat-checkbox>
+    </div>
+</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="transfer_ref_no">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("Transferrefno")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.transfer_ref_no }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="region_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("destRegionText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.region_name }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="store_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("destStoreTypeText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.store_type_name }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="destination_store_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("destStoreText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.destination_store_name }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="item_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("ItemtypeText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.item_type_name }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="updated_on">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("UpdatedOnText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.updated_on |date : "medium" }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="transfer_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("statusHeaderText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.transfer_status_name }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("ActionText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <button *ngIf="element.transfer_status == 1" matTooltip="Approve" mat-icon-button color="primary" 
+                (click)="Approve(element.transfer_id)"> <mat-icon> done </mat-icon> </button>
+                <button *ngIf="element.transfer_status == 1" matTooltip="Reject" mat-icon-button color="warn" 
+                (click)="Reject(element.transfer_id)"> <mat-icon>cancel</mat-icon> </button>
+                <button *ngIf="element.transfer_status == 1" matTooltip="Delete" mat-icon-button color="warn" 
+                (click)="Delete(element.transfer_id)"> <mat-icon>delete</mat-icon> </button>
+                <button matTooltip="View" mat-icon-button color="accent" 
+                (click)="view(element)"> <mat-icon>visibility</mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>

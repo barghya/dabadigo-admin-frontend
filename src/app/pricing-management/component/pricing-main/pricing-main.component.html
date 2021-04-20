@@ -1,0 +1,229 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+    <button mat-raised-button color="primary" (click)="AddPricing()">{{languageService.getText("pricingAddButtonText")}}</button>
+    </div>
+    <div fxFlex="80" fxLayoutGap="5px" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)" placeholder='{{languageService.getText("pricingSearchPlaceholderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+        <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+            <mat-select placeholder='{{languageService.getText("pricingVehicleTypeText")}}' (selectionChange)="vehicleTypeChange($event.value)">
+                <mat-option value=0>{{languageService.getText("pricingAllVehicleTypesText")}}</mat-option>
+                <mat-option *ngFor="let type of (vehicleTypes$ | async)" [value]="type.domain_code">
+                    {{type.domain_value}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+            <mat-select placeholder='{{languageService.getText("pricingRegionNameText")}}' (selectionChange)="regionChange($event.value)">
+                <mat-option value=0>All Regions</mat-option>
+                <mat-option *ngFor="let region of (regions$ | async)" [value]="region.region_id">
+                    {{region.region_name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<div>
+    <table mat-table matSort #priceSort="matSort" [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">   
+        <ng-container matColumnDef="tier">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingTierHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.tier}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="display_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingNameHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.display_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tier_min_value">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingTierMinHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.tier_min_value}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tier_max_value">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingTierMaxHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.tier_max_value}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="per_minute_unit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingUnitHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.per_minute_unit}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cost">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingCostHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.cost | currency:'INR':'symbol' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="temp_cost">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingTempCostText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.temp_cost | currency:'INR':'symbol' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="min_amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingMinAmountHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.min_amount | currency:'INR':'symbol' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicle_unlocked_cost">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingUnlockCostHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.vehicle_unlocked_cost | currency:'INR':'symbol' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicle_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingVehicleTypeHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.vehicle_type_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="region_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingRegionNameHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.region_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price_table_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingTabletypeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.price_table_type_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="admn_partner_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("priceTablePartnerName")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.admn_partner_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("pricingActionHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button color="accent" (click)="EditPricing(element.price_table_id)" type="button"><mat-icon> edit </mat-icon></button>
+                <button matTooltip="Delete" mat-icon-button color="warn" (click)="DeletePricing(element.price_table_id)" type="button"><mat-icon> delete </mat-icon></button> 
+            </td>
+        </ng-container>
+
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" #pricePaginator [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator>
+</div>
+
+<!-- Battery Swap Pricing -->
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+    <button mat-raised-button color="primary" (click)="AddBatterySwapPricing()">{{languageService.getText("BatterySwapPricingAddButtonText")}}</button>
+    </div>
+    <div fxFlex="80" fxLayoutGap="5px" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)" placeholder='{{languageService.getText("BatterySwappricingSearchPlaceholderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+        <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+            <mat-select placeholder='{{languageService.getText("pricingVehicleTypeText")}}' (selectionChange)="batteryswapvehicleTypeChange($event.value)">
+                <mat-option value=0>{{languageService.getText("pricingAllVehicleTypesText")}}</mat-option>
+                <mat-option *ngFor="let type of (vehicleTypes$ | async)" [value]="type.domain_code">
+                    {{type.domain_value}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+            <mat-select placeholder='{{languageService.getText("pricingRegionNameText")}}' (selectionChange)="batteryswapregionChange($event.value)">
+                <mat-option value=0>All Regions</mat-option>
+                <mat-option *ngFor="let region of (regions$ | async)" [value]="region.region_id">
+                    {{region.region_name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<div>
+    <table mat-table matSort #batSwapSort="matSort" [dataSource]="datasourcebatteryswap" class="mat-elevation-z5 rounded-table">   
+
+        <ng-container matColumnDef="display_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingNameHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.display_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="no_of_initial_swap">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("noofinitialswapText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.no_of_initial_swap}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="initial_swap_price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("rateforinitialswapText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.initial_swap_price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="consecutive_swap_price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("rateforconsicutiveswapText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.consecutive_swap_price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicle_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingVehicleTypeHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.vehicle_type_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="region_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingRegionNameHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.region_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price_table_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("pricingTabletypeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.price_table_type_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("pricingActionHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button color="accent" (click)="EditBatterySwapPricing(element.batteryswap_price_table_id)" type="button"><mat-icon> edit </mat-icon></button>
+                <button matTooltip="Delete" mat-icon-button color="warn" (click)="DeleteBatterySwapPricing(element.batteryswap_price_table_id)" type="button"><mat-icon> delete </mat-icon></button> 
+            </td>
+        </ng-container>
+
+        
+        <tr mat-header-row *matHeaderRowDef="BatterySwapdisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: BatterySwapdisplayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" #batSwapPaginator [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator>
+</div>

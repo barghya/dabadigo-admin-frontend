@@ -1,0 +1,47 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="button-filter-container">
+    <div fxFlex="50" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input"
+                placeholder='{{languageService.getText("SearchIotPlaceholderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="device_imei">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("DeviceImeiText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.device_imei}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicle_number">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("VehiclenumberText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.vehicle_number}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vehicle_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("vehicleTypeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.vehicle_type_name}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> 
+                {{languageService.getText("Actiontext")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Configure" mat-icon-button color="primary"
+                    (click)="addIot(element.vehicle_id)"> <mat-icon> settings </mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator>
+</div>

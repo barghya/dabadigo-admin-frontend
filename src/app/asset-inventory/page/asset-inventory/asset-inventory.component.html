@@ -1,0 +1,10 @@
+<div fxLayout="row" class="header-container" fxLayoutAlign="center start">
+    <div fxFlex="100"><span class="primary-text">{{languageService.getText("assetInventoryHeaderText")}}</span></div>
+</div>
+<nav mat-tab-nav-bar backgroundColor="accent" class="mat-elevation-z5">
+    <a mat-tab-link *ngFor="let link of navLinks; let i = index" [routerLink]="link.link" (click)="ActiveTab = i" [active]="ActiveTab === i">
+        {{link.label}}
+    </a>
+</nav>
+<router-outlet></router-outlet>
+  

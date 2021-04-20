@@ -1,0 +1,45 @@
+<h4 class="primary-text">  </h4>
+<div class="form-container">
+    <form [formGroup]="setupFranchiseeBillingForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("selectFranchiseeText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="franchisee_name" placeholder='{{languageService.getText("selectFranchiseeText")}}'>
+                        <mat-option *ngFor="let franchisees of(franchisee$ |async)" [value]="franchisees.admn_partner_id">
+                            {{franchisees.partner_name}} - {{franchisees.partner_code}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLasyout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("paymentStartDate")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline"> 
+                    <input matInput [matDatepicker]="Picker" placeholder='{{languageService.getText("paymentStartDate")}}'
+                    formControlName="payment_start_date" autocomplete="off"  [min]="minDate">
+                    <mat-datepicker-toggle matSuffix [for]="Picker"></mat-datepicker-toggle>
+                    <mat-datepicker #Picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" type="button" (click)="cancel()" class="button-margin">
+                        {{languageService.getText("cancelButtonText")}}
+                    </button>
+                    <button mat-raised-button color="primary" type="button" [disabled]="setupFranchiseeBillingForm.invalid" class="button-margin" (click)="add()">
+                        {{languageService.getText("AddButtonText")}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

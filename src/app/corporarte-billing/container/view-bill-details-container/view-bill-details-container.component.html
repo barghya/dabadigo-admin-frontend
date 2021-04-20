@@ -1,0 +1,7 @@
+<app-view-bill-details 
+
+[billDetails$]="billDetails$"
+(saveAdjustmentEvent)="saveAdjustments($event)"
+(billpaidEvent)="billPaymentStatus($event)"
+[final_amount]="final_amount"
+></app-view-bill-details>

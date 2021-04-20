@@ -1,0 +1,142 @@
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("BatteryTransactionDetailsHeaderText")}} </div>
+<div class="mat-elevation-z5 rounded-div sectionwise-margin-bottom" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BatteryTagText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.battery_tag}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BatteryModelNameText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.battery_model}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BatteryManufacturerText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.battery_make}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BatteryManufacturingDateText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.battery_manufacturing_date | date}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BatteryCommissioningDateText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.commissioning_date | date}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("WarrantyPeriodText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.warranty_period}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BatteryOriginBatteryText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.country_of_origin_name}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CityText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.city_name}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("regionText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.region_name}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("batterystatusText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.battery_state}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="40" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("AssigneStatus")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="57" fxLayoutAlign="start center"> {{singleBattery.assignment_name}} </div>
+    </div>
+</div>
+
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("BatteryTraverseHistoryText")}} </div>
+
+<div>
+    <table mat-table matSort class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSource">
+        <ng-container matColumnDef="assignemnt_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("AssigneeTypeText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.store_type_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="assignee">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("AssignedToText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.store_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="effective_start_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("FromDateText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.effective_start_date | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="effective_end_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("ToDateText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.effective_end_date | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="stock_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("stockStatusText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.stock_status_name}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<div fxLayout="row" [style.width.%]="100">
+    <div fxFlex="25" fxLayoutAlign="end center"></div>
+    <div fxFlex="75" fxLayoutAlign="center center">
+        <div fxFlex="100" fxLayoutAlign="end center">
+            <button mat-raised-button color="accent" type="button" (click)="cancel()" class="button-margin">
+                {{languageService.getText("backButton")}}
+            </button>
+        </div>
+    </div>
+</div>

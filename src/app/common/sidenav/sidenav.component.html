@@ -1,0 +1,25 @@
+<mat-nav-list class="sidenav-container">
+    <mat-list-item  [routerLink]="['/dashboard']">
+        <div [style.height.px]="24" [style.width.px]="24" class="dashboard-icon"></div>
+        <mat-label>Dashboard</mat-label>
+    </mat-list-item>
+    <mat-expansion-panel *ngFor="let sidenavItem of SidenavItems" (opened)="sidenavItem.open = true"
+        (closed)="sidenavItem.open = false" hideToggle>
+        <mat-expansion-panel-header [class.mat-elevation-z6]="sidenavItem.open">
+            <mat-panel-title>
+                <div [style.height.px]="24" [style.width.px]="24" class="{{sidenavItem.headerIcon}}"></div>
+                {{sidenavItem.headerText}}
+            </mat-panel-title>
+            <mat-panel-description>
+                <mat-icon *ngIf="!sidenavItem.open">add</mat-icon>
+                <mat-icon *ngIf="sidenavItem.open">remove</mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngFor="let sidenavMenu of sidenavItem.menuItems">
+            <mat-list-item *ngIf="sidenavMenu.permission == 1" [routerLink]="sidenavMenu.menuLink">
+                <mat-label>{{sidenavMenu.menuText}}</mat-label>
+                <mat-icon color="primary">chevron_right</mat-icon>
+            </mat-list-item>
+        </div>
+    </mat-expansion-panel>
+</mat-nav-list>

@@ -1,0 +1,415 @@
+<div class="section-title primary-text">{{languageService.getText("TripDetails")}}</div>
+<div *ngIf= "!!(singletripdetails$ | async)">
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <!--1st row-->
+    <!--Trip ref no-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("tripRefNoText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).trip_ref_no}}</b></div>
+    </div>
+    <!--Vehicle No.-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("vehiclenumber")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).vehicle_idnumber}}</b></div>
+    </div>
+    <!--1st row ends-->
+    <!--2nd Row-->
+    <!--Booking time-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("bookingTime")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).booking_time | date : 'medium'}}</b></div>
+    </div>
+    <!--Trip start Time-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row"  class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("ontripstarttime")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).ontrip_start_time  | date : 'medium'}}</b></div>
+    </div>
+    <!--End time-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("endTimeName")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).end_time | date : 'medium'}}</b></div>
+    </div>
+    <!--2nd row ends-->
+    <!--3rd row-->
+    <!--Riding time-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("ridingTime")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).riding_time | dayHourMinute}}</b></div>
+    </div>
+    <!--Pause Time-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("pauseTime")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).pause_time | dayHourMinute}}</b></div>
+    </div>
+    <!--Total Trip Time-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("totalTripTime")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).total_trip_time | dayHourMinute}}</b></div>
+    </div>
+    <!--3rd row ends-->
+    <!--4th row-->
+    <!--Trip start location-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("tripStartLocationName")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).start_location_name}}</b></div>
+    </div>
+     <!--End Location-->
+     <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("TripEndLocationName")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+        <b>{{(singletripdetails$ | async).end_location_name}}</b></div>
+    </div>
+    <!--Distance Travelled-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("distanceTravelled")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).distance_travelled}}</b></div>
+    </div>
+    <!--4th row ends-->
+    <!--5th row-->
+    <!--Total Payable-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("totalPayable")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).total_payable | currency:'INR':'symbol' }}</b></div>
+    </div>
+    <!--Coupon Code-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("couponcode")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).coupon_code}}</b></div>
+    </div>
+    <!-- Pricing tier name -->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("pricingPlan")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).rental_plan_name}} {{(singletripdetails$ | async).cost | currency:'INR':'symbol' }}</b></div>
+    </div>
+    <!--Paid Amount-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("paidAmount")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).paid_amount | currency:'INR':'symbol' }}</b></div>
+    </div>
+    <!--5th row ends-->
+    <!--6th row-->
+    <!--State Name-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("stateName")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).state_name}}</b></div>
+    </div>
+    <!--Trip Status-->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("tripStatusName")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).trip_status_name}}</b></div>
+    </div>
+      <!--Customer Name-->
+      <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" *ngIf="(singletripdetails$ | async).ownership_type != 3">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("customername")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).customer_name}}</b></div>
+    </div>
+    <!-- Cortporate enabled -->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="(singletripdetails$ | async).ownership_type != 3">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("corporateEnabled")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).corporate_enabled ? "Yes": "No"}}</b></div>  
+    </div>
+    <!--6th row ends-->
+    <!-- <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf= "(singletripdetails$ | async).trip_status == 5">
+            <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("triprating")}}
+            </div>
+            <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+            </div>
+            <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+                <b>{{(singletripdetails$ | async).trip_rating}}</b></div>   -->
+    <!-- Corporate name -->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="(singletripdetails$ | async).corporate_enabled == 1 && (singletripdetails$ | async).ownership_type != 3">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("corporateNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).company_name}}</b></div>  
+    </div>
+    <!-- Trip rating -->
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="(singletripdetails$ | async).trip_status == 5">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("triprating")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singletripdetails$ | async)">
+            <b>{{(singletripdetails$ | async).trip_rating}}</b></div>  
+    </div>
+</div>
+</div>
+<div class="section-title primary-text">{{languageService.getText("priceBreakupDetails")}}</div>
+<table mat-table  matSort #trippricebreakupsort="matSort" *ngIf="!!(singletripdetails$ | async)" [dataSource]="(singletripdetails$ | async).price_breakup"
+    class="mat-elevation-z5 rounded-table">
+
+    <ng-container matColumnDef="breakup_item_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("breakupCostIemName")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.breakup_item_name}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="breakup_amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("amount")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span> {{element.breakup_amount | currency:'INR':'symbol' }}</span>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tripPriceBreakupColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: tripPriceBreakupColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="5" #trippricebreakuppaginator [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5"
+    [showFirstLastButtons]=true>
+</mat-paginator>
+<div class="section-title primary-text">{{languageService.getText("tripEvent")}}</div>
+<table mat-table matSort #tripEventsort="matSort" *ngIf="!!(singletripdetails$ | async)" [dataSource]="(singletripdetails$ | async).trip_main"
+    class="mat-elevation-z5 rounded-table">
+
+    <ng-container matColumnDef="event_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("eventName")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.event_name}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lat">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("latText")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.lat}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="long">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("lngText")}}
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.long}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("eventCreated")}}
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.created_at | date : 'medium'}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="detail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("rentalpointdetails")}}
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.event_details}}</span>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tripEventDisplayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: tripEventDisplayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="5" #tripEventpaginator [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5"
+[showFirstLastButtons]=true>
+</mat-paginator>
+<div class="section-title primary-text">{{languageService.getText("tripLocation")}}</div>
+<mat-card class="mapcard">
+    <mat-card-content [style.height.%]="100">
+        <aol-map #map [width]="'100%'" [height]="'100%'">
+            <aol-interaction-default></aol-interaction-default>
+            <aol-control-defaults></aol-control-defaults>
+            <aol-view [zoom]="zoom">
+                <aol-coordinate [x]="88.4386" [y]="22.6250" [srid]="'EPSG:4326'"></aol-coordinate>
+            </aol-view>
+            <aol-layer-tile>
+                <aol-source-osm></aol-source-osm>
+            </aol-layer-tile>
+            <aol-layer-vector>
+                <aol-source-vector #pastMarkersSource [wrapX]="false">
+                    <!-- <aol-style>
+                        <aol-style-stroke [color]="'green'" [width]="1"></aol-style-stroke>
+                        <aol-style-fill [color]="'rgba(0, 255, 0, 0.05)'"></aol-style-fill>
+                    </aol-style> -->
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector #markersLayer>
+                <aol-source-vector #availableMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/AtRentalPoint.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #onTripMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/OnTrip.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #accidentMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/Accident_op1.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #geofenceMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/GeoFenceViolation.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #problemLowMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/Problem_Low.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #problemMediumMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/Problem_Medium.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #problemHighMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/Problem_High.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+        </aol-map>
+    </mat-card-content>
+</mat-card>
+<!-- <div fxLayout="row" [style.width.%]="100">
+    <div fxFlex="25" fxLayoutAlign="center center"></div>
+    <div fxFlex="75" fxLayoutAlign="center center">
+        <div fxFlex="100" fxLayoutAlign="end center">
+            <button *ngIf="!!(singletripdetails$ | async)" mat-raised-button color="accent" class="button-margin"
+                type="button" (click)="previous(singletripdetails$.flag)" [disabled]="(singletripdetails$ | async).locations == 002">{{languageService.getText("previousButtonText")}}</button>
+            <button *ngIf="!!(singletripdetails$ | async)" mat-raised-button color="primary" type="button"  class="button-margin" (click)="next(singletripdetails$.flag)" [disabled]="(singletripdetails$ | async).flag == 0">{{languageService.getText("nextButtonText")}}</button>
+        </div>
+    </div>
+</div> -->
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <form [formGroup]="TripDataForm"  [style.width.%]="100">
+        <div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100">
+            <div fxFlex="33.33" fxLayoutGap="5px">
+                <div fxFlex="40" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("tripLocatinStartTime")}}</mat-label>
+                </div>
+                <div fxFlex="60" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input [min]="start_min" matInput [owlDateTimeTrigger]="startDate" [owlDateTime]="startDate" placeholder='{{languageService.getText("tripLocatinStartTime")}}'
+                            formControlName="start_date" autocomplete="off" (ngModelChange)="DateAdjustment()">
+                            <owl-date-time #startDate></owl-date-time>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex="33.33" fxLayoutGap="5px">
+                <div fxFlex="40" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("tripLocationEndTime")}}</mat-label>
+                </div>
+                <div fxFlex="60" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input [min]="end_min" matInput [owlDateTimeTrigger]="EndDate" [owlDateTime]="EndDate" placeholder='{{languageService.getText("tripLocationEndTime")}}' formControlName="end_date"
+                            autocomplete="off" (ngModelChange)="DateAdjustment()" [min]="start_min">
+                            <owl-date-time #EndDate></owl-date-time>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex="33.33" fxLayoutGap="5px">
+                <div fxFlex="60" fxLayoutAlign="center center">
+                <button mat-raised-button color="primary" type="button"  class="button-margin" [disabled]="TripDataForm.invalid" (click)="showData()" >{{languageService.getText("showButtonText")}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

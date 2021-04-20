@@ -1,0 +1,443 @@
+<div class="form-container">
+    <form [formGroup]="editfsqHubForm">
+        <div class="section-title primary-text">{{languageService.getText("HubdetailText")}}</div>
+
+        <div class="mat-elevation-z5 rounded-div" fxLayout="column wrap" fxLayoutGap="10px">
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("hubShortcodeText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <input matInput placeholder='{{languageService.getText("hubShortcodeText")}}'
+                                autocomplete="off" formControlName="hub_short_code">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("HubnameText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <input matInput placeholder='{{languageService.getText("HubnameText")}}' autocomplete="off"
+                                formControlName="hub_name">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("AddressLine1Text")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <input matInput placeholder='{{languageService.getText("AddressLine1Placeholder")}}'
+                                formControlName="addressline1" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("AddressLine2Text")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <input matInput placeholder='{{languageService.getText("AddressLine2Placeholder")}}'
+                                formControlName="addressline2" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("CountryText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select formControlName="country"
+                                [placeholder]="languageService.getText('CountryPlaceHolderText')">
+                                <mat-option *ngFor="let countriesName of (countriesName$ | async)"
+                                    [value]="countriesName.countries_id">
+                                    {{countriesName.countries_name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("StateText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select placeholder='{{languageService.getText("StatePlaceHolderText")}}'
+                                formControlName="state">
+                                <mat-option *ngFor="let statesName of (statesName$ | async)"
+                                    [value]="statesName.states_id">
+                                    {{statesName.states_name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("cityNameHeader")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select formControlName="city"
+                                placeholder='{{languageService.getText("cityNameHeader")}}'>
+                                <mat-option *ngFor="let element of (cities$ | async)"
+                                    [value]="element.city_id">
+                                    {{element.city_name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+    
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("PostalCode")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <input matInput placeholder='{{languageService.getText("PostalCodePlaceHolsderText")}}'
+                                formControlName="pin" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("FSQHubstatusText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select formControlName="hub_status"
+                                placeholder='{{languageService.getText("FSQHubstatusText")}}'>
+                                <mat-option *ngFor="let statusName of (HubstatusName$ | async)"
+                                    [value]="statusName.domain_code">
+                                    {{statusName.domain_value}}</mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+<div class="form-container">
+    <form [formGroup]="fsqHubRegionEditForm">
+
+        <div class="section-title primary-text">{{languageService.getText("RegiondetailText")}}</div>
+
+        <div class="mat-elevation-z5 rounded-div" fxLayout="column wrap" fxLayoutGap="10px">
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+                <div fxFlex="20">
+
+                </div>
+                <div fxFlex="60" class="search-bar-container">
+                    <mat-form-field appearance="outline" novalidate>
+                        <input matInput (keyup)="applyFilterRegion($event.target.value)" class="search-input"
+                            placeholder='{{languageService.getText("SearchRegionPlaceholderText")}}' autocomplete="off">
+                        <mat-icon matPrefix color="primary">search</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                    <mat-checkbox (change)="ShowHideInactiveRegion($event.source.checked)">
+                        {{languageService.getText("ShowInactiveRegionText")}}</mat-checkbox>
+                </div>
+            </div>
+
+            <div>
+                <table mat-table matSort [dataSource]="hub_region" class="mat-elevation-z5 rounded-table">
+
+                    <ng-container matColumnDef="region_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{languageService.getText("hubregionNameText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.region_name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="start_date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{languageService.getText("hubStartDateText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.start_date| date}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="end_date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{languageService.getText("hubendDateText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.end_date| date}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="hub_region_status_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{languageService.getText("hubRegionstatusText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.hub_region_status_name}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>
+                            {{languageService.getText("ActionText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button matTooltip="Remove region" mat-icon-button
+                                (click)="removeRegion(element)" *ngIf="element.hub_region_status != 0"> <mat-icon>remove_circle_outline</mat-icon> </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsRegion"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsRegion;"></tr>
+                </table>
+                <!-- <mat-paginator [pageSize]="5" #hubRegionpaginator [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true
+                    class="mat-elevation-z5"></mat-paginator> -->
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="20" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("regionText")}}</mat-label>
+                    </div>
+                    <div fxFlex="60" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select formControlName="hub_region" 
+                                placeholder='{{languageService.getText("regionText")}}'>
+                                <mat-option *ngFor="let availableRegions of (FilterRegion )"
+                                    [value]="availableRegions.region_id">
+                                    {{availableRegions.region_name}}</mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="20" fxLayoutAlign="center center">
+                        <button mat-raised-button color="primary" type="button" class="button-margin"
+                            (click)="addFSQHubRegion()">{{languageService.getText("AddText")}}</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+<div class="form-container">
+    <form [formGroup]="fsqHubManagerEditForm">
+
+        <div class="section-title primary-text">{{languageService.getText("HubuserText")}}</div>
+
+        <div class="mat-elevation-z5 rounded-div" fxLayout="column wrap" fxLayoutGap="10px">
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+                <div fxFlex="20">
+
+                </div>
+                <div fxFlex="60" class="search-bar-container">
+                    <mat-form-field appearance="outline" novalidate>
+                        <input matInput (keyup)="applyFilterManager($event.target.value)" class="search-input"
+                            placeholder='{{languageService.getText("SearchManagerPlaceholderText")}}'
+                            autocomplete="off">
+                        <mat-icon matPrefix color="primary">search</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                    <mat-checkbox (change)="ShowHideInactiveManager($event.source.checked)">
+                        {{languageService.getText("ShowInactiveManagerText")}}</mat-checkbox>
+                </div>
+            </div>
+
+            <div>
+                <table mat-table matSort   [dataSource]="hub_manager" class="mat-elevation-z5 rounded-table">
+
+                    <ng-container matColumnDef="manager_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{languageService.getText("hubmanagerNameText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.manager_name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="start_date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{languageService.getText("hubStartDateText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.start_date| date}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="end_date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{languageService.getText("hubendDateText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.end_date| date}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="hub_manager_status_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{languageService.getText("hubManagerstatusText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.hub_manager_status_name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>
+                            {{languageService.getText("ActionText")}}
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button matTooltip="Remove Manager" mat-icon-button
+                                (click)="removeManager(element)" *ngIf="(element.hub_manager_status != 0) && (element.hub_manager_status != 1)"> <mat-icon>person_remove_alt_1</mat-icon> </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsmanager"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsmanager;"></tr>
+                </table>
+                <!-- <mat-paginator [pageSize]="5" #hubManagerpaginator [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true
+                    class="mat-elevation-z5"></mat-paginator> -->
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="20" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("managerText")}}</mat-label>
+                    </div>
+                    <div fxFlex="60" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select formControlName="hub_manager"
+                                placeholder='{{languageService.getText("managerText")}}'>
+                                <mat-option *ngFor="let availableManagers of (FilterManager)"
+                                    [value]="availableManagers.admn_user_id">
+                                    {{availableManagers.manager_name}}</mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="20" fxLayoutAlign="center center">
+                        <button mat-raised-button color="primary" type="button" class="button-margin"
+                            (click)="addFSQHubManager()">{{languageService.getText("AddText")}}</button>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </form>
+
+</div>
+
+<div class="section-title primary-text">{{languageService.getText("FSQdetailText")}}</div>
+
+<div class="mat-elevation-z5 rounded-div" fxLayout="column wrap" fxLayoutGap="10px">
+
+
+    <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+        <div fxFlex="20">
+
+        </div>
+        <div fxFlex="60" class="search-bar-container">
+            <mat-form-field appearance="outline" novalidate>
+                <input matInput (keyup)="applyFilterFSQ($event.target.value)" class="search-input"
+                    placeholder='{{languageService.getText("SearchFSQPlaceholderText")}}' autocomplete="off">
+                <mat-icon matPrefix color="primary">search</mat-icon>
+            </mat-form-field>
+        </div>
+        <div fxFlex="20">
+            <mat-checkbox (change)="ShowHideInactiveFSQ($event.source.checked)">
+                {{languageService.getText("ShowInactiveFSQText")}}</mat-checkbox>
+        </div>
+    </div>
+
+    <div>
+        <table mat-table matSort [dataSource]="hub_fsq" class="mat-elevation-z5 rounded-table">
+
+            <ng-container matColumnDef="fsq_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("FSQNameText")}}
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.fsq_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="start_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("hubStartDateText")}}
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.start_date| date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="end_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("hubendDateText")}}
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.end_date| date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fsq_status_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("FSQtatusText")}}
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.fsq_status_name}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsFSQ"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsFSQ;"></tr>
+        </table>
+        <!-- <mat-paginator [pageSize]="5" #hubFSQpaginator [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true
+        class="mat-elevation-z5"></mat-paginator> -->
+    </div>
+
+
+    <div fxLayout="row" [style.width.%]="100">
+        <div fxFlex="25" fxLayoutAlign="end center"></div>
+        <div fxFlex="75" fxLayoutAlign="end center">
+            <div fxFlex="80" fxLayoutAlign="end center">
+                <button mat-raised-button color="accent" type="button" class="button-margin"
+                    (click)="cancelAddFSQHub()">{{languageService.getText("CancelText")}}</button>
+
+                <button mat-raised-button color="primary" type="button" [disabled]="editfsqHubForm.invalid"
+                    [class.blank-panel]="this.editfsqHubForm.invalid " class="button-margin"
+                    (click)="saveFSQHub()">{{languageService.getText("SaveText")}}</button>
+
+            </div>
+        </div>
+    </div>

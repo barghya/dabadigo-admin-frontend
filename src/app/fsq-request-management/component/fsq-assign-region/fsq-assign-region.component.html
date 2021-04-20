@@ -1,0 +1,57 @@
+<h3 class="primary-text">{{languageService.getText("fsqAssignRegion")}}</h3>
+
+<div class="form-container">
+    <form [formGroup]="FSQassignRegionForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("regionNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="region_id"
+                            placeholder='{{languageService.getText("regionNameText")}}'>
+                    <mat-option *ngFor="let Region of (fsqassignRegion$ | async)" [value]="Region.region_id">
+                        {{Region.region_name}}
+                    </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("startDateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline"> 
+                        <input matInput [matDatepicker]="startPicker" placeholder='{{languageService.getText("startDateText")}}' formControlName="assigned_start" autocomplete="off" (dateChange)="StartDateChanged()">
+                            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("endDateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="endPicker" placeholder='{{languageService.getText("endDateText")}}' formControlName="assigned_end" autocomplete="off" [min]="minDate">
+                            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly end" class="button-row">
+            <button mat-raised-button color="primary" [disabled]="fsqAssignRegionForm.invalid" type="button"
+                (click)="SaveRegion()">{{languageService.getText("SaveText")}}</button>
+            <button mat-raised-button color="accent" (click)="cancelRegion()"
+                type="button">{{languageService.getText("cancelButtonText")}}</button>
+        </div>
+        </form>
+        </div>

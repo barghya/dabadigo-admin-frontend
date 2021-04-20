@@ -1,0 +1,28 @@
+<div class="form-container">
+    <form [formGroup]="VehicleForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("vehicleText")}}</mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center" class="div-right-border">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select placeholder='{{languageService.getText("vehicleText")}}' formControlName="vehicle_id">
+                        <mat-option>{{languageService.getText("allText")}}</mat-option>
+                        <mat-option *ngFor="let element of (vehicles$ | async)" [value]="element.vehicle_id">
+                            {{element.vehicle_idnumber}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" [style.width.%]="100">
+            <div fxFlex="30" fxLayoutAlign="end center">
+                <button mat-raised-button color="accent" type="button" class="button-margin" (click)="Cancel()">
+                    {{languageService.getText("cancelButtonText")}}</button>
+                <button mat-raised-button color="primary" type="button" [disabled]="VehicleForm.invalid"
+                    class="button-margin" (click)="Create()">
+                    {{languageService.getText("addButtonText")}}</button>
+            </div>
+        </div>
+    </form>
+</div>

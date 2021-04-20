@@ -1,0 +1,101 @@
+<div class="section-title primary-text">{{languageService.getText("partsDefinitionText")}}</div>
+<div class="form-container mat-elevation-z5 rounded-div">
+    <form [formGroup]="VehicleTypeForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("vehicletypeText")}}</mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="vehicle_type_id"
+                        placeholder='{{languageService.getText("vehicletypeText")}}'
+                        (selectionChange)="VehicleTypeChange($event.value)">
+                        <mat-option *ngFor="let vehicle_type of (Vehicle_Types$ | async)"
+                            [value]="vehicle_type.domain_code">
+                            {{vehicle_type.domain_value}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    <table mat-table matSort [dataSource]="dataSource" [style.marginTop.px]="10"
+        class="mat-elevation-z5 rounded-table">
+
+        <ng-container matColumnDef="part_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partNameText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.part_name}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="part_short_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partCodeText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.part_short_code}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="count">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("quantityText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{ element.count }}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Delete" mat-icon-button color="warn"
+                    (click)="Delete(element.parts_master_id)"><mat-icon> delete </mat-icon></button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+        <div fxFlex="100" fxLayoutAlign="end center">
+            <button mat-raised-button color="accent" type="button" class="button-margin" (click)="Cancel()">
+                {{languageService.getText("CancelText")}}</button>
+            <button mat-raised-button color="primary" [disabled]="VehicleTypeForm.invalid" type="button" class="button-margin" (click)="Save()">
+                {{languageService.getText("SaveText")}}</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="VehicleTypeForm.controls.vehicle_type_id.value > 0" class="section-title primary-text">
+    {{languageService.getText("addPartsDefinitionText")}}</div>
+<div *ngIf="VehicleTypeForm.controls.vehicle_type_id.value > 0" class="form-container mat-elevation-z5 rounded-div">
+    <form [formGroup]="PartsDefinitionForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("partText")}}</mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="parts_master_id" placeholder='{{languageService.getText("partText")}}'>
+                        <mat-option *ngFor="let part of (filteredPartsMasterList$ | async)" [value]="part.parts_master_id">
+                            {{part.part_name}} - {{part.part_short_code}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("quantityText")}}</mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <input matInput placeholder='{{languageService.getText("quantityText")}}' formControlName="count"
+                        autocomplete="off">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="100" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" type="button" class="button-margin" (click)="AddPart()"
+                    [disabled]="PartsDefinitionForm.invalid">{{languageService.getText("AddText")}}</button>
+            </div>
+        </div>
+    </form>
+</div>

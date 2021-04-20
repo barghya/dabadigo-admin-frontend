@@ -1,0 +1,139 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="95" class="section-title primary-text">
+    <!-- <span> {{string}}</span> -->
+    </div>
+    <div fxFlex="5">
+        <button mat-icon-button type="button"  (click)="CancelOperation()" color="primary">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div class="form-container">
+    <form [formGroup]="calculateForm">
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("DeviceImeiText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder="" autocomplete="off"
+                            formControlName="device_imei">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("latText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder="" (input)="inputChange()" autocomplete="off"
+                            formControlName="latitude">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("lngText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder="" (input)="inputChange()" autocomplete="off"
+                            formControlName="longitude">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("speedText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder="" (input)="inputChange()" autocomplete="off"
+                            formControlName="speed">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("batterystatusText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input  matInput placeholder="" (input)="inputChange()"  autocomplete="off"
+                            formControlName="battery_status">
+                            
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("OutputText")}}</mat-label>
+                </div>
+                
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <!-- <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder="" (input)="inputChange()" autocomplete="off"
+                            formControlName="longitude">
+                    </mat-form-field> -->
+                    <div [style.width.%]="80" appearance="outline">
+                    <span> {{string}}</span>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="center center" class="button-filter-container">
+            <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+            <div fxFlex="75">
+                <button mat-raised-button color="accent"
+                    (click)="vehicleLock()">{{lockStatus == 1 ? 'Lock' : 'Unlock'}}</button>
+            </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+            <div fxFlex="75">
+                <button mat-raised-button color="accent" 
+                    (click)="vehicleCharge()">{{chargeStatus == 1 ? 'ChargeIn' : 'ChargeOut'}}</button>
+            </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+            <div fxFlex="75">
+                <button mat-raised-button color="accent" 
+                    (click)="plugstatus()">{{plugStatus == 1 ? 'PlugIn' : 'PlugOut'}}</button>
+            </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" type="button" class="button-margin"
+                    (click)="save()" [disabled]="calculateForm.invalid">{{languageService.getText("SaveText")}}</button>
+                    
+                </div>
+            </div>
+        </div>
+
+</form>
+</div>

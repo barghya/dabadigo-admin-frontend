@@ -1,0 +1,92 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="primary" (click)="OpenAdd()">{{languageService.getText("addbutton")}}</button>
+    </div>
+    <div fxFlex="60" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input" placeholder='{{languageService.getText("placeHolderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20">
+        <mat-checkbox (change)="ShowHideInactive($event.source.checked)">{{languageService.getText("ShowInactiveUsersText")}}</mat-checkbox>
+    </div>
+</div>
+
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("userNameText")}}</th>
+            <td mat-cell *matCellDef="let userList">
+                <span>{{userList.username}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("firstNameText")}}</th>
+            <td mat-cell *matCellDef="let userList">
+                <span>{{userList.firstname}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("lastNameText")}}</th>
+            <td mat-cell *matCellDef="let userList">
+                <span>{{userList.lastname}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="contact_phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("phoneNumberText")}}</th>
+            <td mat-cell *matCellDef="let userList">
+                <span>{{userList.contact_phone}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="email_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("emailIDText")}}</th>
+            <td mat-cell *matCellDef="let userList">
+                <span>{{userList.email_id}}</span>
+            </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="region_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("regionText")}}</th>
+            <td mat-cell *matCellDef="let userList">
+                <span>{{userList.region_name}}</span>
+            </td>
+        </ng-container> -->
+        <ng-container matColumnDef="role_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("roleNameText")}}</th>
+            <td mat-cell *matCellDef="let userList">
+                <span>{{userList.role_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="corporate_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("corporatefranchiseName")}}</th>
+            <td mat-cell *matCellDef = "let userList">
+                <span> {{userList.corporate_name}} </span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="user_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("userTypeNameText")}}</th>
+            <td mat-cell *matCellDef="let userList">
+                <span>{{userList.user_type_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="user_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("userStatusNameText")}}</th>
+            <td mat-cell *matCellDef="let userList">
+                <span>{{userList.user_status_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let userList">
+                <button matTooltip="Edit" mat-icon-button color="accent" (click)="editUser(userList.admn_user_id)"><mat-icon> edit </mat-icon></button>
+                <button matTooltip="Reset Password" mat-icon-button color="warn" (click)="resetpassword(userList.admn_user_id)"> <mat-icon>security</mat-icon> </button>
+                <button matTooltip="Delete" mat-icon-button color="warn" (click)="deleteUser(userList.admn_user_id)" *ngIf="userList.user_status==1"><mat-icon> delete </mat-icon></button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true></mat-paginator>
+</div>

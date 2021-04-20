@@ -1,0 +1,177 @@
+<div fxLayout="row"
+ class="button-filter-container">
+    <div fxFlex="5"></div>
+    <div fxFlex="90"  class="section-title primary-text title-align"><b>Incident details</b></div>
+    <div fxFlex="5">
+        <button mat-icon-button type="button" (click)="CancelOperation()" color="primary">
+            <mat-icon>clear</mat-icon>
+          </button>
+    </div>
+</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100" class="text-margin">
+        <div fxFlex="50" fxLayoutGap="5px">
+            <div fxFlex="20" fxLayoutAlign="start center">
+                {{languageService.getText("IncidenttypeText")}}
+            </div>
+            <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">
+                {{languageService.getText("colonText")}}
+            </div>
+            <div fxFlex="70" fxLayoutAlign="start center"  *ngIf="!!(workItem$ | async)">
+                <b>{{(workItem$ | async).work_item_type_name}}</b>
+            </div>
+        </div>
+        <div fxFlex="50" fxLayoutGap="5px">
+            <div fxFlex="20" fxLayoutAlign="start center">
+                <mat-label>{{languageService.getText("CustomerTypeText")}}</mat-label>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">
+                {{languageService.getText("colonText")}}
+            </div>
+            <div fxFlex="70" fxLayoutAlign="start center" *ngIf="!!(workItem$ | async)">
+                <b>{{(workItem$ | async).raised_by_role}}</b>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100" class="text-margin">
+        <div fxFlex="50" fxLayoutGap="5px">
+            <div fxFlex="20" fxLayoutAlign="start center">
+                <mat-label>{{languageService.getText("CustomerNameText")}}</mat-label>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">
+                {{languageService.getText("colonText")}}
+            </div>
+            <div fxFlex="70" fxLayoutAlign="start center" *ngIf="!!(workItem$ | async)">
+                <b>{{(workItem$ | async).customer}}</b>
+            </div>
+        </div>
+        <div fxFlex="50" fxLayoutGap="5px">
+            <div fxFlex="20" fxLayoutAlign="start center">
+                <mat-label>{{languageService.getText("VehicletypeText")}}</mat-label>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">
+                {{languageService.getText("colonText")}}
+            </div>
+            <div fxFlex="70" fxLayoutAlign="start center" *ngIf="!!(workItem$ | async)">
+                <b>{{(workItem$ | async).vehicle_currentstate_name}}</b>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100" class="text-margin">
+        <div fxFlex="50" fxLayoutGap="5px">
+            <div fxFlex="20" fxLayoutAlign="start center">
+                <mat-label>{{languageService.getText("ReportedTimeText")}}</mat-label>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">
+                {{languageService.getText("colonText")}}
+            </div>
+            <div fxFlex="70" fxLayoutAlign="start center" *ngIf="!!(workItem$ | async)">
+                <b>{{(workItem$ | async).reported_timestamp | date : 'medium'}}</b>
+            </div>
+        </div>
+        <div fxFlex="50" fxLayoutGap="5px">
+            <div fxFlex="20" fxLayoutAlign="start center">
+                <mat-label>{{languageService.getText("statusHeaderText")}}</mat-label>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">
+                {{languageService.getText("colonText")}}
+            </div>
+            <div fxFlex="70" fxLayoutAlign="start center"  *ngIf="!!(workItem$ | async)">
+                <b>{{(workItem$ | async).problem_status_name}}</b>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section-title primary-text">{{languageService.getText("ProblemText")}}</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+
+        <ng-container matColumnDef="select_task">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("SelecttaskText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-checkbox (change)="AddTask(element.work_item_task_id, $event)" [value]="element.work_item_task_id"></mat-checkbox>
+            </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="task_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("TasknameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.task_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="task_severity_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("TasksevertyText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.task_severity_name}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="task_description">
+             <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                 {{languageService.getText("TaskdescriptionText")}}
+             </th>
+             <td mat-cell *matCellDef="let element"> {{element.task_description}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="create_at">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("TaskcreateatText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.create_at | date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="task_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("TaskstatusText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.task_status_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="task_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("TaskcodeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.task_code}} </td>
+        </ng-container>
+
+       
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <!-- <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true"
+        class="mat-elevation-z5">
+    </mat-paginator> -->
+</div>
+
+<div class="form-container">
+    <form [formGroup]="PopoverForm">
+
+        <div fxLayout="row" fxLayoutAlign="center center sample-margin">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("AssignFSQText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="admn_user_id"
+                            placeholder='{{languageService.getText("AssignFSQText")}}'>
+                            <mat-option *ngFor="let assignFSQ of (activeFsqList$ | async)" [value]="assignFSQ.admn_user_id">
+                                {{assignFSQ.username}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end end" class="button-filter-container">
+            <div fxFlex="20" class="button-float-right">
+            <button mat-raised-button color="primary" [disabled]="PopoverForm.invalid || Tasks.length!= workItemInDetail.workitem_task.length" type="button"
+                (click)="Submit()">{{languageService.getText("submitText")}}</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="5">
+    </div>
+    <div fxFlex="90">
+        <h3 class="primary-text">{{languageService.getText("endTripText")}}</h3>
+    </div>
+    <div fxFlex="5">
+        <button mat-icon-button type="button" (click)="CancelOperation()" color="primary">
+            <mat-icon>clear</mat-icon>
+          </button>
+    </div>
+</div>
+
+<div class="form-container">
+    <form [formGroup]="endtripForm">
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("RentalpointText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="rentalpoint_id"
+                            placeholder='{{languageService.getText("RentalpointText")}}'>
+                            <mat-option *ngFor="let rentalPoint of (rentalPoint$ | async)" [value]="rentalPoint.rentalpoint_id">
+                                {{rentalPoint.rentalpoint_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end end" class="button-filter-container">
+            <div fxFlex="20" class="button-float-right">
+            <button mat-raised-button color="primary" [disabled]="endtripForm.invalid" type="button"
+                (click)="Submit()">{{languageService.getText("endtripButtonText")}}</button>
+            </div>
+        </div>
+
+    </form>
+</div>

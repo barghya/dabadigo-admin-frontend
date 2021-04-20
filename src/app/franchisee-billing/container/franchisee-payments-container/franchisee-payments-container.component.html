@@ -1,0 +1,10 @@
+<app-franchisee-payments
+(viewPaymentInfoEvent)="viewBillsDetails($event)"
+[payments$]="payments$"
+[franchiseeSetups$]="franchiseeSetups$"
+[countries$]="countries$"
+[states$]="states$"
+[cities$]="cities$"
+[paymentStatusList$]="paymentStatusList$"
+(filterPayments)="filterBills($event)"
+></app-franchisee-payments>

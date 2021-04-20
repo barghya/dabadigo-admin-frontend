@@ -1,0 +1,130 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <div class="section-title primary-text">{{languageService.getText("TransferDetailText")}}</div> 
+    </div>
+    <div fxFlex="75" class="search-bar-container">
+    </div>
+    <div fxFlex="5">
+        <button mat-icon-button type="button" (click)="CancelOperations()" color="primary">
+            <mat-icon>clear</mat-icon>
+          </button>
+    </div>
+</div>
+<div class="section-title primary-text">{{languageService.getText("destinationDetailsText")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("Transferrefno")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!data">
+            <b>{{data.transfer_ref_no}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("destRegionText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!data">
+            <b>{{data.region_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("destStoreTypeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!data">
+            <b>{{data.store_type_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("destStoreText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!data">
+            <b>{{data.destination_store_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("ItemtypeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!data">
+            <b>{{data.item_type_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("statusHeaderText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!data">
+            <b>{{data.transfer_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("UpdatedOnText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!data">
+            <b>{{data.updated_on | date: 'medium'}}</b></div>
+    </div>
+</div>
+<div class="section-title primary-text">{{languageService.getText("sourceDetailsText")}}</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="source_region_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("destRegionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.source_region_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="item_model">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("ItemModel")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.item_model}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="item_make">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partManufacturerText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.item_make}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="source_store_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("sourceStoreTypeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.source_store_type_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="source_store_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("sourceStoreText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.source_store_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="commissioning_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryCommissioningDateText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.commissioning_date | date: 'medium'}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="item_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryStatusText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.item_status_name}}</span>
+            </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>

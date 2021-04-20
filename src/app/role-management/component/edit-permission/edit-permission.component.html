@@ -1,0 +1,85 @@
+
+    
+    <table mat-table matSort [dataSource]="dataSource" [style.marginTop.px]="10" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="control_element_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("controlelementNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.control_element_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="permission">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("permissionNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.permission}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("ActionText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="warn"
+                    (click)="Delete(element.control_element_id)">{{languageService.getText("DeleteText")}}</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true
+        class="mat-elevation-z5"></mat-paginator>
+
+    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+        <div fxFlex="100" fxLayoutAlign="end center">
+            <button mat-raised-button color="primary" type="button" class="button-margin"
+                (click)="Save()">{{languageService.getText("SaveText")}}</button>
+            <button mat-raised-button color="accent" type="button" class="button-margin" (click)="Cancel()">
+                {{languageService.getText("CancelText")}}</button>
+            
+        </div>
+    </div>
+
+
+
+<div class="form-container mat-elevation-z5 rounded-div">
+    <form [formGroup]="AddPermissionForm">
+        <div *ngIf= "!!(ActivePermission$ | async)">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("unusedControlText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="unused_control"
+                        placeholder='{{languageService.getText("serlectunusedControlText")}}'>
+                        <mat-option *ngFor="let unused_control_elements of unusedpermissionDetailList" 
+                        [value]="unused_control_elements.control_element_id"> {{unused_control_elements.control_element_name}}  </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("permissionTypeText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="permission_type"
+                        placeholder='{{languageService.getText("selectpermissionTypeText")}}'>
+                     <mat-option *ngFor="let permission of (Permissions$ | async)"
+                      [value]="permission.domain_code">{{permission.domain_text}}  </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="100" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" type="button" class="button-margin"
+                    [disabled]="AddPermissionForm.invalid" (click)="Add()"> 
+                    {{languageService.getText("AddText")}} </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

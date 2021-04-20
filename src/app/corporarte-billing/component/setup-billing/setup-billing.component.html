@@ -1,0 +1,59 @@
+<h4 class="primary-text"> {{languageService.getText("SetupBillHeaderText")}} </h4>
+<div class="form-container">
+    <form [formGroup]="setupBillingForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("SelectLegalEntityText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="legal_entities" placeholder='{{languageService.getText("SelectLegalEntityText")}}'>
+                        <mat-option *ngFor="let legalEntity of (legalEntities$ | async)" [value]="legalEntity.admn_partner_id">
+                            {{legalEntity.billing_name}} - {{legalEntity.partner_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("SelectCorporateText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="corporate_name" placeholder='{{languageService.getText("SelectCorporateText")}}'>
+                        <mat-option *ngFor="let corporate of (Corporates$ | async)" [value]="corporate.admn_partner_id">
+                            {{corporate.billing_name}} - {{corporate.partner_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLasyout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("BillingStartDateTableHeaderText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline"> 
+                    <input matInput [matDatepicker]="Picker" placeholder='{{languageService.getText("BillingStartDateTableHeaderText")}}'
+                    formControlName="billing_start_date" autocomplete="off"  [min]="minDate">
+                    <mat-datepicker-toggle matSuffix [for]="Picker"></mat-datepicker-toggle>
+                    <mat-datepicker #Picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" type="button" (click)="cancel()" class="button-margin">
+                        {{languageService.getText("cancelButtonText")}}
+                    </button>
+                    <button mat-raised-button color="primary" type="button" [disabled]="setupBillingForm.invalid" class="button-margin" (click)="add()">
+                        {{languageService.getText("AddButtonText")}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

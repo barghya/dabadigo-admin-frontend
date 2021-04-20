@@ -1,0 +1,189 @@
+<div class="form-container">
+    <form [formGroup]="CouponForm">        
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("couponCodeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("couponCodeText")}}'
+                            formControlName="coupon_code" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("couponDescriptionText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("couponDescriptionText")}}'
+                            formControlName="coupon_description" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("discountTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="discount_type" placeholder='{{languageService.getText("discountTypeText")}}' (selectionChange)="onSelectValueChange($event.value)" >
+                            <mat-option *ngFor="let discountType of (discountType$ | async)" [value]="discountType.domain_code">{{discountType.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("couponTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="coupon_type" placeholder='{{languageService.getText("couponTypeText")}}'>
+                            <mat-option *ngFor="let couponType of (couponType$ | async)" [value]="couponType.domain_code">{{couponType.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("usageRestrictionText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="usage_restriction" placeholder='{{languageService.getText("usageRestrictionText")}}'>
+                            <mat-option *ngFor="let usageRestriction of (usageRestriction$ | async)" [value]="usageRestriction.domain_code"> {{usageRestriction.domain_value}} </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("valueText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("valueText")}}'
+                            formControlName="value" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("timeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("timeText")}}'
+                            formControlName="time" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("startDateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="start_picker"
+                            placeholder='{{languageService.getText("startDateText")}}'
+                            formControlName="start_date" autocomplete="off" (dateChange)="StartDateChanged()">
+                        <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
+                        <mat-datepicker #start_picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("endDateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="end_picker"
+                            placeholder='{{languageService.getText("endDateText")}}'
+                            formControlName="end_date" autocomplete="off" [min]="minDate">
+                        <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
+                        <mat-datepicker #end_picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("countryNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="countries_id"
+                            placeholder='{{languageService.getText("countryNameText")}}'>
+                            <mat-option *ngFor="let countriesName of (countries$ | async)"
+                                [value]="countriesName.countries_id">
+                                {{countriesName.countries_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("stateNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="states_id"
+                            placeholder='{{languageService.getText("stateNameText")}}'>
+                            <mat-option *ngFor="let statesName of (states$ | async)"
+                                [value]="statesName.states_id">
+                                {{statesName.states_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("cityNameHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="city_id"
+                            placeholder='{{languageService.getText("cityNameHeader")}}'>
+                            <mat-option *ngFor="let element of (cities$ | async)"
+                                [value]="element.city_id">
+                                {{element.city_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly end" class="button-row">
+            <button mat-raised-button color="primary" [disabled]="CouponForm.invalid" type="button"
+                (click)="editCoupon()">{{languageService.getText("SaveText")}}</button>
+            <button mat-raised-button color="accent" (click)="CancelCoupon()"
+                type="button">{{languageService.getText("cancelButtonText")}}</button>
+        </div>
+    </form>
+</div>

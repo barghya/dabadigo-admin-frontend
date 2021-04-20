@@ -1,0 +1,235 @@
+<div class="mat-elevation-z5 rounded-div">
+    <div class="form-container">
+        <form [formGroup]="FilterForm">
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("partText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select placeholder='{{languageService.getText("partText")}}'
+                                formControlName="parts_master_id">
+                                <mat-option >{{languageService.getText("allText")}}</mat-option>
+                                <mat-option *ngFor="let partMaster of (partsMasters$ | async)"
+                                    [value]="partMaster.parts_master_id">
+                                    {{partMaster.part_name}}({{partMaster.part_short_code}})
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("cityNameHeader")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select placeholder='{{languageService.getText("cityNameHeader")}}'
+                                formControlName="city_id" (selectionChange)="SelectedCity($event.value)">
+                                <mat-option *ngFor="let city of (city$ | async)"
+                                    [value]="city.city_id">
+                                    {{city.city_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("regionText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select placeholder='{{languageService.getText("regionText")}}'
+                                formControlName="region_id">
+                                <mat-option >{{languageService.getText("allText")}}</mat-option>
+                                <mat-option *ngFor="let region of (regions$ | async)"
+                                    [value]="region.region_id">
+                                    {{region.region_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("storeTypeText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select placeholder='{{languageService.getText("storeTypeText")}}'
+                                formControlName="store_type" (selectionChange)="StoreTypeChanged($event.value)">
+                                <mat-option >{{languageService.getText("allText")}}</mat-option>
+                                <mat-option *ngFor="let storeType of (storeTypes$ | async)"
+                                    [value]="storeType.domain_code">
+                                    {{storeType.domain_value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" *ngIf="FilterForm.controls.store_type.value == 2">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("storeNameText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select placeholder='{{languageService.getText("storeNameText")}}'
+                                formControlName="store_id">
+                                <mat-option >{{languageService.getText("allText")}}</mat-option>
+                                <mat-option *ngFor="let rentalPoint of (rentalPoints$ | async)"
+                                    [value]="rentalPoint.rentalpoint_id">
+                                    {{rentalPoint.rentalpoint_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" *ngIf="FilterForm.controls.store_type.value == 4">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("storeNameText")}}</mat-label>
+                    </div>
+                    <div fxFlex="67.5" fxLayoutAlign="end center">
+                        <mat-form-field [style.width.%]="89" appearance="outline">
+                            <input matInput placeholder='Search FSQ' 
+                            formControlName="store_id" autocomplete="off">
+                            <!-- <mat-select placeholder='{{languageService.getText("storeNameText")}}'
+                                formControlName="store_id">
+                                <mat-option *ngFor="let fsq of (fsqList$ | async)"
+                                    [value]="fsq.admn_user_id">
+                                    {{fsq.username}}
+                                </mat-option>
+                            </mat-select> -->
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="7.5" fxLayoutAlign="start center">
+                        <button type="button" mat-icon-button (click)="Search()">
+                            <mat-icon color="primary">search</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("StatusText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select placeholder='{{languageService.getText("StatusText")}}'
+                                formControlName="status">
+                                <mat-option >{{languageService.getText("allText")}}</mat-option>
+                                <mat-option *ngFor="let partStatus of (partsStatuses$ | async)"
+                                    [value]="partStatus.domain_code">
+                                    {{partStatus.domain_value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center" [style.width.%]="100">
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <div fxFlex="80" fxLayoutAlign="end center">
+                        <button mat-raised-button color="primary" type="button" class="button-margin" (click)="Filter()">
+                            {{languageService.getText("filterText")}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div fxLayout="row wrap" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20"></div>
+    <div fxFlex="80" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input"
+                placeholder='{{languageService.getText("searchPartsTranasactionsText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+        
+        <ng-container matColumnDef="part_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partNameText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.part_name}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="part_short_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partCodeText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.part_short_code}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="region_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("regionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.region_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="store_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("storeTypeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.store_type_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="store_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("storeNameText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.store_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("quantityText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.quantity }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="txn_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("txnDateText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.txn_date | date:"dd/MM/yyyy HH:mm:ss"}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="txn_reference">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("txnReferenceText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.txn_reference}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="created_by">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("createdBytext")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.created_by_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("StatusText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.status_name }}</span>
+            </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>

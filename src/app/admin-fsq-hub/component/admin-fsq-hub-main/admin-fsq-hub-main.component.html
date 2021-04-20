@@ -1,0 +1,92 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <div class="section-title primary-text">{{languageService.getText("fsqDetails")}}</div>
+    </div>
+    <div fxFlex="60" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input"
+                placeholder='{{languageService.getText("SearchFsqHubPlaceholderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20">
+        <mat-checkbox (change)="ShowHideInactive($event.source.checked)">{{languageService.getText("includeinactivehub")}}</mat-checkbox>
+    </div>
+</div>
+
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+
+        <ng-container matColumnDef="hub_short_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("hubShortcodeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.hub_short_code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="hub_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("HubnameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.hub_name}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="Address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("addressText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tableHeaderAddress")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.addressline1}}, {{element.addressline2}}, {{element.pin}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="states_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tableHeaderStateText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.states_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="countries_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tableHeaderCountryText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.countries_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="city_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("CityText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.city_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="active_hub_managers">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("activeManager")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.active_hub_managers}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQHubstatusText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.status_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button color="accent"
+                    (click)="editFSQHub(element.hub_id)"> <mat-icon>edit</mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator>
+</div>
+

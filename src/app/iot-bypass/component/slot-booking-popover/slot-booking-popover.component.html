@@ -1,0 +1,49 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="95" class="section-title primary-text">Slot Booking</div>
+    <div fxFlex="5">
+        <button matTooltip="Cancel" mat-icon-button type="button" (click)="CancelOperation()" color="primary">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div class="form-container">
+    <form [formGroup]="bookingslotForm">
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("ListofRentalPointText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="rentalpoint_id"
+                            placeholder='{{languageService.getText("SelectRentalPointText")}}'>
+                            <span *ngFor="let rentalPoint of (rentalPoint$ | async)">
+                                <mat-option *ngIf="rentalPoint.available_slot>0" [value]="rentalPoint.rentalpoint_id">
+                                    {{rentalPoint.rentalpoint_name}}</mat-option>
+                                </span>
+                            <!-- <mat-option *ngIf="rentalPoint.available_slot!=0" 
+                            *ngFor="let rentalPoint of (rentalPoint$ | async)" [value]="rentalPoint.rentalpoint_id">
+                                {{rentalPoint.rentalpoint_name}}</mat-option> -->
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+
+                    <button mat-raised-button color="primary" type="button" [disabled]="bookingslotForm.invalid"
+                        [class.blank-panel]="bookingslotForm.invalid" class="button-margin"
+                        (click)="bookSlot()">{{languageService.getText("BookSlotText")}}</button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+<h3>Accessories</h3>
+<div>
+    <button mat-raised-button color="primary" (click)="addAccessories()">+ Add New Accessory</button>
+    <div class="search-bar-container">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input matInput placehholder="search">
+    </div>
+</div>
+
+<table mat-table mat-sort class="main-content mat-elevation-z5" *ngIf="accessories$" [dataSource]="accessories$ | async">
+    <ng-container matColumnDef="accessories_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Accessory</th>
+        <td mat-cell *matCellDef="let element">
+           <span> {{element.Accessories.accessories_type}} </span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="asset_unique_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+        <td mat-cell *matCellDef="let element">
+            <span> {{element.Accessories.asset_unique_id}} </span>
+        </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+        <td mat-cell *matCellDef="let element">
+            <span> {{element.location}} </span>
+        </td>
+    </ng-container> -->
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element">
+            <span> {{element.Accessories.status}} </span>
+        </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+        <td mat-cell *matCellDef>
+            
+        </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+    

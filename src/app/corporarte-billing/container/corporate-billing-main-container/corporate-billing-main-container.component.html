@@ -1,0 +1,12 @@
+<app-corporate-billing-main 
+[bills$]="bills$" 
+[countries$]="countries$" 
+[states$]="states$" 
+[corporatesSetup$]="corporatesSetup$" 
+[cities$]="cities$"
+[billStatusList$]="billStatusList$"
+(viewBillEvent)="viewBill($event)"
+(filterBills)="FilterBills($event)"
+(sendEmail)="SendEmail($event)"
+(generatePDF)="GeneratePDF($event)"
+></app-corporate-billing-main>

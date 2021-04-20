@@ -1,0 +1,212 @@
+<div class="form-container">
+    <form [formGroup]="PricingForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pricingNameText")}}'
+                            formControlName="display_name" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingTierText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pricingTierText")}}'
+                            formControlName="tier" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingTierMinText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pricingTierMinText")}}'
+                            formControlName="tier_min_value" autocomplete="off" (keyup)="pricingTierMaxValidation()"
+                            required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingTierMaxText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pricingTierMaxText")}}'
+                            formControlName="tier_max_value" autocomplete="off" (keyup)="pricingTierMinValidation()"
+                            required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingUnitText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pricingUnitText")}}'
+                            formControlName="per_minute_unit" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingCostText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pricingCostText")}}'
+                            formControlName="cost" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingTempCostText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pricingTempCostText")}}'
+                            formControlName="temp_cost" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingMinAmountText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pricingMinAmountText")}}'
+                            formControlName="min_amount" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingUnlockCostText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("pricingUnlockCostText")}}'
+                            formControlName="vehicle_unlocked_cost" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingVehicleTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="vehicle_type"
+                            placeholder='{{languageService.getText("pricingVehicleTypeText")}}'>
+                            <mat-option *ngFor="let type of (vehicleTypes$ | async)" [value]="type.domain_code">
+                                {{type.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingRegionNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="region"
+                            placeholder='{{languageService.getText("pricingRegionNameText")}}'>
+                            <mat-option>{{languageService.getText("clearText")}}</mat-option>
+                            <mat-option *ngFor="let region of (regions$ | async)" [value]="region.region_id">
+                                {{region.region_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingtypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="price_table_type"
+                            placeholder='{{languageService.getText("pricingtypeText")}}'
+                            (selectionChange)="OnChange($event.value)">
+                            <mat-option *ngFor="let priceTabletype of (priceTabletype$ | async)"
+                                [value]="priceTabletype.domain_code">
+                                {{priceTabletype.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="adminPartner">
+            <form [formGroup]="UserCorporateForm">
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("priceTablePartnerName")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <mat-select formControlName="admn_partner_id"
+                                    placeholder='{{languageService.getText("selectPartnerText")}}'>
+                                    <mat-option *ngFor="let Corporate of (corporate$ | async)"
+                                        [value]="Corporate.admn_partner_id">{{Corporate.company_name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" (click)="CancelAdd()"
+                        class="button-margin" type="button">{{languageService.getText("cancelButtonText")}}</button>
+                    <!-- <button mat-raised-button color="primary" (click)="AddAnotherPricing()" [disabled]="PricingForm.invalid  || (adminPartner && UserCorporateForm.invalid)"
+                        class="button-margin" type="button">{{languageService.getText("addAnotherText")}}</button> -->
+                    <button mat-raised-button color="primary" [disabled]="PricingForm.invalid  || (adminPartner && UserCorporateForm.invalid)" type="button"
+                        class="button-margin" (click)="AddPricing()">{{languageService.getText("addButtonText")}}</button>
+                    </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,10 @@
+<app-corporate-bills-main 
+[bills$]="bills$" 
+[countries$]="countries$" 
+[states$]="states$"
+[cities$]="cities$"
+[billStatusList$]="billStatusList$"
+(viewBillEvent)="viewBill($event)"
+(filterBills)="FilterBills($event)"
+(generatePDF)="GeneratePDF($event)"
+></app-corporate-bills-main>

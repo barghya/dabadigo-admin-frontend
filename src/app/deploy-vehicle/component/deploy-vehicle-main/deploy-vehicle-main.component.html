@@ -1,0 +1,135 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="primary" type="button"
+            (click)="addRequest()">{{languageService.getText("AddRequest")}}</button>
+    </div>
+    <div fxFlex="80" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input"
+                placeholder='{{languageService.getText("DeployVehiclePlaceHolderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+        <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+            <mat-select placeholder='State Name' (selectionChange)="stateChange($event.value)">
+                <mat-option value=0>All State</mat-option>
+                <mat-option *ngFor="let state of (state$ | async)" [value]="state.states_id">
+                    {{state.states_name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+            <mat-select placeholder='City Name' (selectionChange)="cityChange($event.value)">
+                <mat-option value=0>All City</mat-option>
+                <mat-option *ngFor="let city of (city$ | async)" [value]="city.city_id">
+                    {{city.city_name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+            <mat-select placeholder='{{languageService.getText("pricingRegionNameText")}}' (selectionChange)="regionChange($event.value)">
+                <mat-option value=0>All Region</mat-option>
+                <mat-option *ngFor="let region of (filteredRegions$ | async)" [value]="region.region_id">
+                    {{region.region_name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    
+</div>
+
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="assigned_user_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("assignedUserNameText")}}</th>
+            <td mat-cell *matCellDef="let vehicleRequsetList">
+                <span>{{vehicleRequsetList.assigned_user_name}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="created_on">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("createOnText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.created_on | date : 'medium'}} </span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="state_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+               State Name
+            </th>
+            <td mat-cell *matCellDef="let vehicleRequsetList">
+                <span>{{vehicleRequsetList.state_name}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="city_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+               City Name
+            </th>
+            <td mat-cell *matCellDef="let vehicleRequsetList">
+                <span>{{vehicleRequsetList.city_name}}</span>
+            </td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="rentalpoint_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("rentalPointNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let vehicleRequsetList">
+                <span>{{vehicleRequsetList.rentalpoint_name}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="region_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("regionNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let vehicleRequsetList">
+                <span>{{vehicleRequsetList.region_name}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="updated_on">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("updateOnText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.updated_on | date : 'medium'}} </span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="deployment_request_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("deploymentRequestStatusNameText")}}</th>
+            <td mat-cell *matCellDef="let vehicleRequsetList">
+                <span>{{vehicleRequsetList.deployment_request_status_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let vehicleRequsetList">
+                <button matTooltip="Deploy Vehicle" mat-icon-button color="primary" type="button"
+                    (click)="deployVehicle(vehicleRequsetList.deployment_request_id)"
+                    *ngIf="vehicleRequsetList.deployment_request_status == 1">
+                    <mat-icon> electric_scooter </mat-icon> </button>
+
+                    <button matTooltip="Cancel" mat-icon-button color="warn" type="button"
+                    (click)="cancelRequest(vehicleRequsetList.deployment_request_id)"
+                    *ngIf="vehicleRequsetList.deployment_request_status == 1">
+                    <mat-icon>cancel</mat-icon> </button>
+
+                <button matTooltip="View" mat-icon-button color="accent" type="button"
+                    *ngIf="vehicleRequsetList.deployment_request_status == 2 || vehicleRequsetList.deployment_request_status == 3"
+                    (click)="View(vehicleRequsetList.deployment_request_id)">
+                    <mat-icon>visibility</mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5"
+        [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>

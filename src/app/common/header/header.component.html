@@ -1,0 +1,36 @@
+<mat-toolbar class="header-toolbar">
+    <mat-toolbar-row [style.height.%]="100">
+        <a [style.height.%]="100" [style.width.px]="265" class="header-link">
+            <div [style.height.px]="30" [style.width.px]="263.14" class="title-icon"></div>
+        </a>
+        <span class="example-spacer"></span>
+        <span class="primary-text" *ngIf="(user | async).admn_user_id > 0 
+                && (user | async).user_type == 2
+                && (user | async).login_flag == 1
+                && !!(userProfile$ | async) 
+                && !!(userProfile$ | async).corporate_name" [style.fontSize.%]="80">
+            <b>{{(userProfile$ | async).corporate_name}}</b>({{(userProfile$ | async).corporate_code}})
+        </span>
+        <span class="primary-text" *ngIf="(user | async).admn_user_id > 0 
+            && (user | async).user_type == 3
+            && (user | async).login_flag == 1
+            && !!(userProfile$ | async) 
+            && !!(userProfile$ | async).corporate_name" [style.fontSize.%]="80">
+            <b>{{(userProfile$ | async).corporate_name}}</b>({{(userProfile$ | async).firstname}} {{(userProfile$ | async).lastname}})
+    </span>
+        <span class="primary-text" *ngIf="(user | async).admn_user_id > 0 
+            && (user | async).user_type == 1
+            && (user | async).login_flag == 1
+            && !!(userProfile$ | async) 
+            && !!(userProfile$ | async).username" [style.fontSize.%]="80">
+        <b>{{(userProfile$ | async).firstname}}</b> {{(userProfile$ | async).lastname}}
+    </span>
+        <button mat-icon-button type="button" [matMenuTriggerFor]="appMenu" *ngIf="(user | async).admn_user_id > 0 && (user | async).login_flag == 1">
+            <mat-icon color="primary" [style.fontSize.px]="24">account_box</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-menu #appMenu="matMenu">
+    <button mat-menu-item type="button" (click)="Profile()">{{languageService.getText("profileButtonText")}}</button>
+    <button mat-menu-item type="button" (click)="Logout()">{{languageService.getText("logoutButtonText")}}</button>
+</mat-menu>

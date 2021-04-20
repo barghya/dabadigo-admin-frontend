@@ -1,0 +1,11 @@
+.main-content-flex {
+    padding: 10px;
+    background-color: #F6F6F6;
+    max-height: calc(100vh - 70px);
+    overflow-y: scroll;
+}
+
+.sidenav-flex {
+    flex: calc(0% + 270px);
+    flex-grow: 0;
+}

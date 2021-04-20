@@ -1,0 +1,6 @@
+<app-view-payment-details
+*ngIf="!!paymentDetails$"
+[paymentDetails$]="paymentDetails$"
+(savePenaltiesEvent)="save($event)"
+(paymentDoneEvent)="paymentStatus($event)"
+></app-view-payment-details>

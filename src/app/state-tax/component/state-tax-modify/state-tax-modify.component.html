@@ -1,0 +1,67 @@
+<div class="form-container rounded-div mat-elevation-z5">
+    <form [formGroup]="StateTaxForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("stateNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="state_id"
+                            placeholder='{{languageService.getText("stateNameText")}}'>
+                            <mat-option *ngFor="let state of (states$ | async)"
+                                [value]="state.states_id">
+                                {{state.states_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("taxTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="tax_type"
+                            placeholder='{{languageService.getText("taxTypeText")}}'>
+                            <mat-option *ngFor="let taxtype of (taxTypes$ | async)"
+                                [value]="taxtype.domain_code">
+                                {{taxtype.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("taxRateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("taxRateText")}}'
+                            formControlName="tax_rate" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" (click)="Cancel()"
+                    class="button-margin" type="button">{{languageService.getText("cancelButtonText")}}</button>
+                    <button mat-raised-button color="primary" *ngIf="!(singleStateTax$ | async)" [disabled]="StateTaxForm.invalid" type="button"
+                    class="button-margin" (click)="AddStateTax()">{{languageService.getText("addButtonText")}}</button>
+                    <button mat-raised-button color="primary" *ngIf="!!(singleStateTax$ | async)" [disabled]="StateTaxForm.invalid" type="button"
+                    class="button-margin" (click)="EditStateTax()">{{languageService.getText("SaveText")}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

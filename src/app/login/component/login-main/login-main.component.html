@@ -1,0 +1,41 @@
+<div class="login-container" [style.height.%]="100" fxLayout="row">
+  <div fxFlex="50" class="login-background">
+    <div class="dabadigo-background-rider"></div>
+  </div>
+  <div fxFlex="50">
+    <div fxLayout="column" class="login-container">
+      <div fxFlex="25" fxLayout="row">
+        <div fxFlex="20"></div>
+        <div fxFlex="60" class="dabadigo-logo"></div>
+        <div fxFlex="20"></div>
+      </div>
+      <div fxFlex="35" fxLayout="column" class="padding">
+        <div fxFlex="35"></div>
+        <div fxFlex class="login-form">
+          <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+            <div fxLayout="column" fxLayoutGap="20px">
+              <div fxFlex="25">
+                <mat-form-field>
+                  <mat-label>User ID</mat-label>
+                  <input matInput placeholder="Type Your User ID" formControlName="user_name" autocomplete="off">
+                </mat-form-field>
+              </div>
+              <div fxFlex="25">
+                <mat-form-field>
+                  <mat-label>Password</mat-label>
+                  <input type="password" matInput placeholder="Type Your Pasword" formControlName="password" autocomplete="off">
+                </mat-form-field>
+              </div>
+              <div fxFlex="25">
+                <button mat-raised-button color="primary" type="sumbit" [class.blank-panel]="LoginForm.invalid" [disabled]="LoginForm.invalid">Login</button>
+              </div>
+              <div fxFlex="25" class="signup-link">
+                <a [routerLink]="['../forget-password']">Forgot Password?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

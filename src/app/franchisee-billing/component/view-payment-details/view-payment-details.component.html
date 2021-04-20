@@ -1,0 +1,314 @@
+<div class="section-title" fxLayoutAlign="center center" *ngIf="!!paymentDetails"> <b>{{languageService.getText("viewPaymentDetailsHeaderText")}} {{paymentDetails.company_name}} from {{paymentDetails.from_date | date}} to {{paymentDetails.to_date | date}}</b> </div>
+
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("paymentDetailsText")}} </div>
+
+<div class="mat-elevation-z5 rounded-div sectionwise-margin-bottom" fxLayout="row wrap" fxLayoutGap="10px" *ngIf="!!paymentDetails">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("paymentRefNoText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center" [style.fontSize.%]="90"> {{paymentDetails.payment_reference_number}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("currentBillDateText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.job_run_date | date}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("nextBillDate")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.next_payment_date | date}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("amountPayable")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.amount_to_pay | currency: 'INR'}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("StatusText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.payment_status_name}} </div>
+    </div>
+</div>
+
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("franchiseDtailsSectionHeaderText")}} </div>
+
+<div class="mat-elevation-z5 rounded-div sectionwise-margin-bottom" fxLayout="row wrap" fxLayoutGap="10px" *ngIf="!!paymentDetails">
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="16" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("franchiseNameText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="81" fxLayoutAlign="start center"> {{paymentDetails.company_name}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="16" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("addresLine1Text")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="81" fxLayoutAlign="start center"> {{paymentDetails.addressline1}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="16" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("addresLine2Text")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="81" fxLayoutAlign="start center"> {{paymentDetails.addressline2}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("stateText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.states_name}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CityText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{ paymentDetails.city_name }} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("pinText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.pin}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("gstText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.gst_numbers}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("panText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.pan}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("contactPersonNameText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.contact_person_firstname}} {{paymentDetails.contact_person_lastname}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("designationText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.contact_person_designation}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("phoneNoText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.contact_phone}} </div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="33" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("emailText")}}
+        </div>
+        <div fxFlex="3" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="64" fxLayoutAlign="start center"> {{paymentDetails.contact_email}} </div>
+    </div>
+</div>
+
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("franchisePaymentsSectionHeader")}} </div>
+
+<div class="sectionwise-margin-bottom">
+    <table mat-table matSort #paymentSort="matSort" class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSourceofPayments">
+        <ng-container matColumnDef="entry_date">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> {{languageService.getText("tripdatetext")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.trip_date | date: 'medium'}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="rentalpoint_name">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> {{languageService.getText("rentalPointText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.rentalpoint_name}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="vehicle_number">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> {{languageService.getText("vehicleNoText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.vehicle_number}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="rent_type_name">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> {{languageService.getText("rentalType")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.rent_type_name}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="payable_amount">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> {{languageService.getText("amountPayabletext")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.payable_amount | currency:'INR'}}
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsofPaymentsDetails"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsofPaymentsDetails;"></tr>
+    </table>
+</div>
+
+<div class="section-title primary-text" fxLayoutAlign="start center"> {{languageService.getText("penaltiesText")}} </div>
+
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container" *ngIf="!!paymentDetails && paymentDetails.status != 2">
+    <div fxFlex="20">
+        <button mat-raised-button type="button" color="primary" [disabled]="payment_done_flag == true" (click)="addPenalty()"> {{languageService.getText("addNewPenaltyButtonText")}} </button>
+    </div>
+    <div fxFlex="60"></div>
+    <div fxFlex="20" fxLayoutAlign="end center">
+        <button mat-raised-button type="button" color="primary" [disabled]="payment_done_flag == true || save_button_enable_flag == false && penalties.length == 0" (click)="save()"> {{languageService.getText("SaveText")}} </button>
+    </div>
+</div>
+
+<div class="sectionwise-margin-bottom">
+    <table mat-table matSort #penaltySort="matSort" class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSourceofPenalties">
+        <ng-container matColumnDef="descriptions">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> {{languageService.getText("descriptionsText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.descriptions}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="penalty_amount">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> {{languageService.getText("amountText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.penalty_amount}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> {{languageService.getText("actionsText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button color="primary" *ngIf="paymentDetails.status != 2 && paymentDetails.status != 3 && paymentDetails.status != 4 && paymentDetails.status != 5" [disabled]="payment_done_flag == true && paymentDetails.status != 2" (click)="edit(element)"> <mat-icon> edit </mat-icon> </button>
+                <button matTooltip="Delete" mat-icon-button color="warn" *ngIf="paymentDetails.status != 2 && paymentDetails.status != 3 && paymentDetails.status != 4 && paymentDetails.status != 5" [disabled]="payment_done_flag == true" (click)="delete(element)"> <mat-icon> delete </mat-icon> </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsofPenaltyDetails"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsofPenaltyDetails;"></tr>
+    </table>
+</div>
+
+<div class="section-title primary-text" fxLayoutAlign="start center"> 
+    {{languageService.getText("BankAccountDetailsHeaderText")}} 
+</div>
+
+<div class="mat-elevation-z5 rounded-div sectionwise-margin-bottom" fxLayout="row wrap" fxLayoutGap="10px" *ngIf="!!paymentDetails">
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("AccountHeolderText")}} 
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center"> {{paymentDetails.account_holder_name}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BankNameText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center"> {{paymentDetails.bank_name}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BranchNameText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center"> {{paymentDetails.branch_name}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("BranchAddressText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center"> {{paymentDetails.bank_address}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("AccountNoText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center"> {{paymentDetails.account_no}} </div>
+    </div>
+    <div fxFlex="100" fxLayout="row" class="text-block">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("IfscCodeText")}}
+        </div>
+        <div fxFlex="2" fxLayoutAlign="center center" class="accent-text">
+            {{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="78" fxLayoutAlign="start center"> {{paymentDetails.ifsc_code}} </div>
+    </div>
+</div>
+
+<div fxLayout="row" [style.width.%]="100" *ngIf="!!paymentDetails && paymentDetails.status != 2 && paymentDetails.status != 3 && paymentDetails.status != 4 && paymentDetails.status != 5">
+    <div fxFlex="100" fxLayoutAlign="end center">
+        <div fxFlex="80" fxLayoutAlign="end center">
+            <button mat-raised-button color="primary" type="button" [disabled]="payment_done_flag == true" (click)="paymentStatus(paymentDetails.franchise_payment_id)" class="button-margin">
+                {{languageService.getText("BillPaidText")}}
+            </button>
+        </div>
+    </div>
+</div>

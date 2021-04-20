@@ -1,0 +1,55 @@
+<app-coupon-basic-details [couponData$]="usageDetail$"></app-coupon-basic-details>
+<div class="section-title primary-text">{{languageService.getText("customersText")}}</div>
+<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">   
+    <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("corporateCustomerfirstNameText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("corporateCustomerlastNameText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="phone_no">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("contactPhoneText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.phone_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("emailIDText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.email_id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="trip_ref_no">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("tripRefNo")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.trip_ref_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="total_payable">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("totalPayable")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.total_payable | currency:"INR":"symbol"}} </td>
+    </ng-container>
+    <ng-container matColumnDef="discount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("discountText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.discount | currency:"INR":"symbol"}} </td>
+    </ng-container>
+    <ng-container matColumnDef="paid_amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{languageService.getText("paidAmount")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.paid_amount | currency:"INR":"symbol"}} </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

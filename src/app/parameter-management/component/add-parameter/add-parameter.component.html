@@ -1,0 +1,45 @@
+<div class="form-container">
+    <form [formGroup]="ParameterForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("parameterKeyHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("parameterKeyHeader")}}'
+                            formControlName="parameter_key" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("prarameterValueHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("prarameterValueHeader")}}'
+                            formControlName="parameter_value" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" (click)="Cancel()"
+                        class="button-margin" type="button">{{languageService.getText("cancelButtonText")}}</button>
+                    <!-- <button mat-raised-button color="primary" (click)="AddAnotherParameter()" [disabled]="ParameterForm.invalid"
+                    [class.blank-panel]="ParameterForm.invalid"  class="button-margin" type="button">{{languageService.getText("addAnotherText")}}</button> -->
+                    <button mat-raised-button color="primary" [disabled]="ParameterForm.invalid" type="button"
+                    [class.blank-panel]="ParameterForm.invalid"  class="button-margin" (click)="AddParameter()">{{languageService.getText("addButtonText")}}</button>
+                    </div>
+            </div>
+        </div>
+    </form>
+</div>

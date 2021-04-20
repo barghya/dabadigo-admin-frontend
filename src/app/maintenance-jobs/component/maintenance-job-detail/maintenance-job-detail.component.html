@@ -1,0 +1,301 @@
+<div class="section-title primary-text">{{languageService.getText("workItemDetailsText")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("workItemText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).work_item_ref_no}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("VehicleidText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).vehicle_idnumber}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("underMaintenanceText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).days_under_maintenance}}{{languageService.getText("daysText")}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("reportTimeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).reported_timestamp | date:"dd/MM/yyyy HH:mm:ss"}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("StatusText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).problem_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("lastMaintenanceText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).additional_details.days_since_last_maintenance != null">
+            <b>{{(maintenanceJobDetail$ | async).additional_details.days_since_last_maintenance}}{{languageService.getText("daysAgoText")}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("maintenanceCountText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).additional_details.total_no_of_maintenance != null">
+            <b>{{(maintenanceJobDetail$ | async).additional_details.total_no_of_maintenance}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("DistancetravelledText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).total_distance != null">
+            <b>{{(maintenanceJobDetail$ | async).total_distance | number:"1.2-2"}}{{languageService.getText("kmText")}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("travelSinceMaintenanceText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" 
+            *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).additional_details.distance_since_maintenance != null">
+            <b>
+                {{(maintenanceJobDetail$ | async).additional_details.distance_since_maintenance | number:"1.2-2"}}{{languageService.getText("kmText")}}
+            </b>
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).total_distance == null && (maintenanceJobDetail$ | async).additional_details.distance_since_maintenance != null">
+            <b>
+                {{(maintenanceJobDetail$ | async).total_distance | number:"1.2-2"}}{{languageService.getText("kmText")}}
+            </b>
+        </div>
+    </div>
+</div>
+<div class="section-title primary-text">{{languageService.getText("locationDetailsText")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("countryNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).countries_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("stateNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).states_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("regionText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).region_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("RentalpointText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).rentalpoint_name}}</b></div>
+    </div>
+</div>
+<div class="section-title primary-text" *ngIf="!!(maintenanceJobDetail$ | async) && !!(maintenanceJobDetail$ | async).assigned_to_id">{{languageService.getText("assignmentDetailsText")}}</div>
+<div class="mat-elevation-z5 rounded-div" *ngIf="!!(maintenanceJobDetail$ | async) && !!(maintenanceJobDetail$ | async).assigned_to_id" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("assignedFsqText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).assigned_fsq}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("assignedOnText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).assigned_on | date:"dd/MM/yyyy HH:mm:ss"}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("daysAssignedText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).days_assigned}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("fsqLevelText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).fsq_skill_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("fsqPhoneText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(maintenanceJobDetail$ | async)">
+            <b>{{(maintenanceJobDetail$ | async).fsq_phone}}</b></div>
+    </div>
+</div>
+<div class="section-title primary-text" *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).parts_changed.length > 0">{{languageService.getText("partsChangedText")}}</div>
+<table mat-table matSort *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).parts_changed.length > 0" [dataSource]="(maintenanceJobDetail$ | async).parts_changed" class="mat-elevation-z5 rounded-table">
+    <ng-container matColumnDef="task_name">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("taskText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.task_name}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="part_name">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("partNameText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.part_name}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="part_short_code">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("partCodeText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.part_short_code}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="parts_quantity">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("quantityText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.parts_quantity}}</span>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="DisplayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: DisplayedColumns;"></tr>
+</table>
+<div class="section-title primary-text" *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).beu_data.length > 0">{{languageService.getText("managingBeuText")}}</div>
+<table mat-table matSort *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).beu_data.length > 0" [dataSource]="(maintenanceJobDetail$ | async).beu_data" class="mat-elevation-z5 rounded-table">
+    <ng-container matColumnDef="beu_name">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("beuNameText")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.beu_name}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="beu_phone">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("beuPhoneText")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.beu_phone}}</span>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="ManagingBEUColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: ManagingBEUColumns;"></tr>
+</table>
+<div class="section-title primary-text" *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).resolutions.length > 0 && !showResolutionForm">{{languageService.getText("commentsText")}}</div>
+<table mat-table matSort *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).resolutions.length > 0 && !showResolutionForm" [dataSource]="(maintenanceJobDetail$ | async).resolutions" class="mat-elevation-z5 rounded-table">
+    <ng-container matColumnDef="task_name">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("taskText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.task_name}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="comments">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("commentText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.comments}}</span>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="ResolutionColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: ResolutionColumns;"></tr>
+</table>
+<div fxLayout="row" fxLayoutAlign="end center" [style.width.%]="100" *ngIf="!showAssignForm && !showResolutionForm">
+    <button mat-raised-button color="accent" type="button" class="button-margin" (click)="Resolve()" 
+        *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).problem_status != 5 && (maintenanceJobDetail$ | async).problem_status != 6">
+        {{languageService.getText("resolveText")}}</button>
+    <button mat-raised-button color="primary" type="button" class="button-margin" (click)="Assign()"
+        *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).problem_status != 5 && (maintenanceJobDetail$ | async).problem_status != 6">
+        {{languageService.getText("assignText")}}</button>
+</div>
+<div class="section-title primary-text" *ngIf="showAssignForm">
+    {{languageService.getText("assignmentFormText")}}
+</div>
+<div class="mat-elevation-z5 rounded-div" *ngIf="showAssignForm">
+    <form [formGroup]="AssignForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="20" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("FSQText")}}</mat-label>
+            </div>
+            <div fxFlex="46" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <!-- <mat-select placeholder='{{languageService.getText("FSQText")}}' formControlName="fsq_id">
+                        <mat-option *ngFor="let element of (fsqList$ | async)" [value]="element.admn_user_id">
+                            {{element.username}}
+                        </mat-option>
+                    </mat-select> -->
+                    <input matInput placeholder='{{languageService.getText("FSQText")}}' formControlName="fsq_id" autocomplete="off">
+                </mat-form-field>
+            </div>
+            <div fxFlex="4" fxLayoutAlign="start center">
+                <button type="button" mat-icon-button (click)="Search()">
+                    <mat-icon color="primary">search</mat-icon>
+                </button>
+            </div>
+            <div fxFlex="30" fxLayoutAlign="end center">
+                <button mat-raised-button color="accent" type="button" class="button-margin" (click)="Cancel()">
+                    {{languageService.getText("cancelButtonText")}}</button>
+                <button mat-raised-button color="primary" type="button" [disabled]="AssignForm.invalid || !selectedFsq" class="button-margin" (click)="AssignSubmit()">
+                    {{languageService.getText("assignText")}}</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="section-title primary-text" *ngIf="showResolutionForm">
+    {{languageService.getText("commentsText")}}
+</div>
+<div class="mat-elevation-z5 rounded-div" *ngIf="showResolutionForm">
+    <form [formGroup]="ResolutionForm">
+        <div formArrayName="resolutions" *ngFor="let resolution of resolutions.controls; let i=index">
+            <div [formGroupName]="i" fxLayout="row wrap" [style.width.%]="100">
+                <div fxFlex="30" fxLayoutAlign="center center">
+                    <mat-label>{{resolutions.controls[i].get('task_name').value}}</mat-label>
+                </div>
+                <div fxFlex="70" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="90" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("commentText")}}' formControlName="comments"
+                            autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex fxLayoutAlign="end center">
+                <button mat-raised-button color="accent" type="button" class="button-margin" (click)="CancelResolution()">
+                    {{languageService.getText("cancelButtonText")}}</button>
+                <button mat-raised-button color="primary" type="button" class="button-margin" (click)="ResolveSubmit()" 
+                *ngIf="!!(maintenanceJobDetail$ | async) && (maintenanceJobDetail$ | async).problem_status != 5 && (maintenanceJobDetail$ | async).problem_status != 6">
+                {{languageService.getText("resolveText")}}</button>
+            </div>
+        </div>
+    </form>
+</div>

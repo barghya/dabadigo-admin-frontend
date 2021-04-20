@@ -1,0 +1,56 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="35">
+        <button mat-raised-button color="primary" (click)="AddStateTax()">{{languageService.getText("addNewStateTaxButtonText")}}</button>
+    </div>
+    <div fxFlex="55" fxLayoutGap="5px" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)" placeholder='{{languageService.getText("searchStateTaxText")}}'>
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    
+    </div>
+</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+
+        <ng-container matColumnDef="state_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("stateNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.states_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tax_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("taxTypeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.tax_type_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tax_rate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("taxRateText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.tax_rate}} %</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button color="accent" (click)="EditStateTax(element.admn_state_tax_id)"
+                    type="button"> <mat-icon> edit </mat-icon> </button>
+                <button matTooltip="Delete" mat-icon-button color="warn" (click)="DeleteStateTax(element.admn_state_tax_id)"
+                    type="button"> <mat-icon> delete </mat-icon> </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true
+        class="mat-elevation-z5"></mat-paginator>
+</div>
+<app-state-tax-modify *ngIf="CreateMode" [singleStateTax$]="singleStateTax$" [states$]="states$" [taxTypes$]="taxTypes$"
+(cancel)="CancelModify()" (addStateTax)="AddStateTaxSubmit($event)" (editStateTax)="EditStateTaxSubmit($event)"></app-state-tax-modify>

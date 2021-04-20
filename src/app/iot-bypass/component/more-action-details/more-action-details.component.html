@@ -1,0 +1,254 @@
+<div class="section-title primary-text">Customer Details</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CustomerNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$  | async).customer_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CustomerStateText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).customer_state}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block ">
+        <div fxFlex="20" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CustomerEmailText")}}
+        </div>
+        <div fxFlex="5" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="75" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).customer_email}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CustomerPhoneText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).customer_phone}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CustomerBookingPinText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div>
+            <span>{{showPin? (moreActionDetails$ | async).customer_booking_pin : '*****' }}</span>
+            <button mat-button (click)="ShowHideButton()">show</button>
+        </div>
+    </div>
+</div>
+<div class="section-title primary-text">Trip Details</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("TripRefNoText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).trip_ref_no}}</b></div>
+    </div>
+    
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("TripBookingTimeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).booking_time | date:"dd/MM/yyyy HH:mm:ss"}}</b></div>
+    </div>
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("TripStartTimeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).ontrip_start_time | date:"dd/MM/yyyy HH:mm:ss"}}</b></div>
+    </div>
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block  div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("TripStatusNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).trip_status_name}}</b></div>
+    </div>
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("TripStartLocationText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).start_location_name}}</b></div>
+    </div>
+
+    
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("TripEndLocationText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).end_location_name}}</b></div>
+    </div>
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("TripTypeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).trip_type}}</b></div>
+    </div>
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("corporatecodeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).corporate_code}}</b></div>
+    </div>
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row"  class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("TripuuidNoText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <mat-label>
+                <b>{{(moreActionDetails$ | async).trip_uuid}}</b>
+            </mat-label>
+        </div>
+    </div>
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block"></div>
+   
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("TokenidText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).token_id}}</b></div>
+    </div>
+
+    
+</div>
+<div class="section-title primary-text">Vehicle Details</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("VehicleNoText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).vehicle_number}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("VehicleTypeNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).vehicle_type_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("DeviceImeiText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).device_imei}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("VehicleCurrentStatusNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(moreActionDetails$ | async)">
+            <b>{{(moreActionDetails$ | async).vehicle_current_status_name}}</b></div>
+    </div>
+
+</div>
+
+<div class="section-title primary-text">Action</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="accent"  [disabled]="(!!this.Details && this.Details.trip_status == 6) || (!!this.Details && this.Details.trip_status == 2) || (!!this.Details && this.Details.trip_status == 3) || (!!this.Details && this.Details.trip_status == 9) || (!!this.Details && this.Details.trip_status == 4)  "
+            (click)="Tripcancel()">{{languageService.getText("TripCancelText")}}</button>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="accent"   [disabled]="(!!this.Details && this.Details.trip_status == 6) || (!!this.Details && this.Details.trip_status == 2) || (!!this.Details && this.Details.trip_status == 3) || (!!this.Details && this.Details.trip_status == 9)|| (!!this.Details && this.Details.trip_status == 4)"
+            (click)="TripStart()">{{languageService.getText("TripStartText")}}</button>
+            <!-- <mat-progress-spinner mode="indeterminate" diameter='30' strokeWidth='10'></mat-progress-spinner>
+            <br /> -->
+            <div class="loading-spinner" *ngIf="loading"></div>
+            <!-- <div class="loading-spinner" *ngIf="loading$ | async"></div> -->
+            <!-- <div [class.loader-hidden]="!show">
+                <div class="loader-overlay">
+                        <div>
+                            <md-progress-bar mode="indeterminate" *ngIf="show"></md-progress-bar>
+                        </div>
+                </div>
+            </div> -->
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="accent" [disabled]="(!!this.Details && this.Details.trip_status == 6) || (!!this.Details && this.Details.trip_status == 1) || (!!this.Details && this.Details.trip_status == 3) || (!!this.Details && this.Details.token_id != null) || (!!this.Details && this.Details.trip_status == 9)|| (!!this.Details && this.Details.trip_status == 4)"
+            (click)="TripPause()">{{languageService.getText("TripPauseText")}}</button>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="accent" [disabled]="(!!this.Details && this.Details.trip_status == 6) || (!!this.Details && this.Details.trip_status == 1) || (!!this.Details && this.Details.trip_status == 2) || (!!this.Details && this.Details.token_id != null) || (!!this.Details && this.Details.trip_status == 9)|| (!!this.Details && this.Details.trip_status == 4)"
+            (click)="TripResume()">{{languageService.getText("TripResumeText")}}</button>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="accent" [disabled]="(!!this.Details && this.Details.trip_status == 6) || (!!this.Details && this.Details.trip_status == 1) || (!!this.Details && this.Details.token_id != null) || (!!this.Details && this.Details.trip_status == 9)|| (!!this.Details && this.Details.trip_status == 4)"
+            (click)="BookSlot()">{{languageService.getText("BookSlotText")}}</button>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="accent" [disabled]="(!!this.Details && this.Details.trip_status == 6) || (!!this.Details && this.Details.token_id == null) || (!!this.Details && this.Details.trip_status == 9)|| (!!this.Details && this.Details.trip_status == 4)"
+            (click)="CancelSlot()">{{languageService.getText("CancelSlotText")}}</button>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="accent" [disabled]="(!!this.Details && this.Details.trip_status == 6) || (!!this.Details && this.Details.token_id == null) || (!!this.Details && this.Details.trip_status == 9)|| (!!this.Details && this.Details.trip_status == 4)"  
+         (click)="EndTrip()">{{languageService.getText("EndTripText")}}</button>
+    </div>
+    </div>
+</div>

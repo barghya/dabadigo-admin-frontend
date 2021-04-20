@@ -1,0 +1,272 @@
+<div class="section-title primary-text">Incident details</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("TripNoText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(workDetail$ | async)">
+            <b>{{(workDetail$  | async).work_item.trip_ref_no}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("WorkItemNotext")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(workDetail$ | async)">
+            <b>{{(workDetail$ | async).work_item.work_item_ref_no}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CustomerNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(workDetail$ | async)">
+            <b>{{(workDetail$  | async).work_item.first_name}} {{(workDetail$  | async).work_item.last_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("TripStatusText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(workDetail$ | async)">
+            <b>{{(workDetail$ | async).work_item.trip_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("VehicleNumberText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(workDetail$ | async)">
+            <b>{{(workDetail$  | async).work_item.vehicle_idnumber}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("StatusText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(workDetail$ | async)">
+            <b>{{(workDetail$ | async).work_item.problem_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("WorkTypeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(workDetail$ | async)">
+            <b>{{(workDetail$ | async).work_item.work_item_type_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("ReportTime")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(workDetail$ | async)">
+            <b>{{(workDetail$ | async).work_item.reported_timestamp | date : 'medium'}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("triprating")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(workDetail$ | async)">
+            <b>{{(workDetail$ | async).work_item.trip_rating}}</b></div>
+        </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block"
+        *ngIf="!!(workDetail$ | async) && (workDetail$ | async).work_item.work_item_type == 6">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("EmergencyContactText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center">
+            <b><span *ngFor="let contact of (workDetail$ | async).emergency_contact">{{contact.contact_name}}(
+                    {{contact.contact_phone}} )<br></span></b></div>
+    </div>
+</div>
+<div class="section-title primary-text">{{languageService.getText("TaskDetailText")}}</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+
+        <ng-component matColumnDef="task_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("TaskCodeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.task_code}} </td>
+        </ng-component>
+
+        <ng-component matColumnDef="task_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("TaskNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.task_name}} </td>
+        </ng-component>
+
+        <ng-component matColumnDef="create_at">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("CreateAtText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.create_at | date : 'medium'}} </td>
+        </ng-component>
+
+
+        <ng-component matColumnDef="priority">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("prrorityText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+        </ng-component>
+        <ng-component matColumnDef="task_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("StatusText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.task_status_name}} </td>
+        </ng-component>
+        <ng-component matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="View" color="accent" (click)="viewButton(element)"> <mat-icon>visibility</mat-icon> </button>
+            </td>
+        </ng-component>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+<div class="section-title primary-text">{{languageService.getText("assignmentDetailsText")}}</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource2" class="mat-elevation-z5 rounded-table">
+
+        <ng-component matColumnDef="fsq_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FsqNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}} </td>
+        </ng-component>
+
+        <ng-component matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("UserNmaeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+        </ng-component>
+
+        <ng-component matColumnDef="contact_phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("ContactText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.contact_phone}} </td>
+        </ng-component>
+
+
+        <ng-component matColumnDef="assigned_on">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("AssignedTimeText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.assigned_on | date: 'medium'}} </td>
+        </ng-component>
+        <ng-component matColumnDef="work_assignment_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("StatusText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.work_assignment_status_name}} </td>
+        </ng-component>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+    </table>
+</div>
+<div class="section-title primary-text">{{languageService.getText("locationsText")}}</div>
+<div>
+    <mat-card class="mapcard">
+        <mat-card-header [style.height.%]="10" class="remove-header-text">
+            <div fxLayout="row wrap" fxLayoutAlign="end center" [style.paddingBottom.px]="3" [style.width.%]="100"
+                [style.height.%]="100">
+                
+                <div fxFlex fxLayout="row" [style.height.%]="100" fxLayoutAlign="end center"
+                    class="lengend-item div-right-border">
+                    <div fxFlex="45" class="on-trip-marker" [style.height.%]="100"></div>
+                    <div fxFlex="55" [style.fontSize.%]="70">
+                        {{ languageService.getText("customerLoactionText") }}
+                    </div>
+                </div>
+                <div fxFlex fxLayout="row" [style.height.%]="100" fxLayoutAlign="end center"
+                    class="lengend-item div-right-border">
+                    <div fxFlex="45" class="fsq-using-marker" [style.height.%]="100"></div>
+                    <div fxFlex="55" [style.fontSize.%]="70">
+                        {{ languageService.getText("fsqLocationText") }}
+                    </div>
+                </div>
+                <div fxFlex fxLayout="row" [style.height.%]="100" fxLayoutAlign="end center"
+                    class="lengend-item div-right-border">
+                    <div fxFlex="45" class="maintenance-marker" [style.height.%]="100"></div>
+                    <div fxFlex="55" [style.fontSize.%]="70">
+                        {{ languageService.getText("acceptJobLocationText") }}
+                    </div>
+                </div>
+                <div fxFlex fxLayout="row" [style.height.%]="100" fxLayoutAlign="end center"
+                    class="lengend-item div-right-border">
+                    <div fxFlex="45" class="incident-pin-logo" [style.height.%]="100"></div>
+                    <div fxFlex="55" [style.fontSize.%]="70">
+                        {{ languageService.getText("reportLocationText") }}
+                    </div>
+                </div>
+                <div fxFlex="1 0" fxLayoutAlign="center center">
+                    <button mat-icon-button color="primary" type="button" (click)="RefreshData()">
+                        <mat-icon>refresh</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-card-header>
+        <mat-card-content [style.height.%]="90">
+            <aol-map #map [width]="'100%'" [height]="'100%'" (onSingleClick)="mapOnClick($event)">
+                <aol-interaction-default></aol-interaction-default>
+                <aol-control-defaults></aol-control-defaults>
+                <aol-view [zoom]="11">
+                    <aol-coordinate [x]="88.4386" [y]="22.625" [srid]="'EPSG:4326'"></aol-coordinate>
+                </aol-view>
+                <aol-layer-tile>
+                    <aol-source-osm></aol-source-osm>
+                </aol-layer-tile>
+                <aol-layer-vector>
+                    <aol-source-vector #onTripMarkersSource [wrapX]="false">
+                        <aol-style>
+                            <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'"
+                                [anchorYUnits]="'fraction'" [opacity]="1" [src]="'./assets/OnTrip.svg'">
+                            </aol-style-icon>
+                        </aol-style>
+                    </aol-source-vector>
+                </aol-layer-vector>
+                <aol-layer-vector>
+                    <aol-source-vector #fsqUsingMarkersSource [wrapX]="false">
+                        <aol-style>
+                            <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'"
+                                [anchorYUnits]="'fraction'" [opacity]="1" [src]="'./assets/FSQ.svg'">
+                            </aol-style-icon>
+                        </aol-style>
+                    </aol-source-vector>
+                </aol-layer-vector>
+                <aol-layer-vector>
+                    <aol-source-vector #problemHighMarkersSource [wrapX]="false">
+                        <aol-style>
+                            <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'" [opacity]="1"
+                                [src]="'./assets/Problem_High.svg'">
+                            </aol-style-icon>
+                        </aol-style>
+                    </aol-source-vector>
+                </aol-layer-vector>
+                <aol-layer-vector>
+                    <aol-source-vector #maintenanceMarkersSource [wrapX]="false">
+                        <aol-style>
+                            <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'" [opacity]="1"
+                                [src]="'./assets/Maintenance.svg'">
+                            </aol-style-icon>
+                        </aol-style>
+                    </aol-source-vector>
+                </aol-layer-vector>
+            </aol-map>
+        </mat-card-content>
+    </mat-card>
+</div>

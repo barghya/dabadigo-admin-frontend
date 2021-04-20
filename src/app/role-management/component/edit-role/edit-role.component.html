@@ -1,0 +1,54 @@
+<div class="form-container">
+    <form [formGroup]="RoleEditForm">
+        <div class="section-title primary-text">{{languageService.getText("editRoleText")}}</div>
+        <div class="mat-elevation-z5 rounded-div">
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("RolenameText")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <input matInput placeholder='{{languageService.getText("RolenameText")}}'
+                                formControlName="role_name" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("controlelementnameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("controlelementnameText")}}'
+                            formControlName="control_element_name" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div> -->
+
+            <!-- <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("controlelementtypenameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("controlelementtypenameText")}}'
+                            formControlName="control_element_type" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div> -->
+        </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <button mat-raised-button color="accent" class="button-margin" (click)="Cancel()"
+                    type="button">{{languageService.getText("cancelButtonText")}}</button>
+                <button mat-raised-button color="primary" class="button-margin"
+                    [disabled]="RoleEditForm.invalid" type="button"
+                    (click)="EditRole()">{{languageService.getText("editButtonText")}}</button>
+            </div>
+       
+    </form>
+</div>

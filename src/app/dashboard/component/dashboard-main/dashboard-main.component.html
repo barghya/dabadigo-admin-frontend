@@ -1,0 +1,687 @@
+<div fxLayout="column" fxLayoutGap="10px" [style.height.%]="100">
+  <div fxFlex="calc(15% - 10px)" fxLayout="row" fxLayoutGap="10px">
+    <div fxFlex>
+      <mat-card
+        class="mapcard"
+        [class.alert-card]="incident_count > 0"
+        (click)="onCardClick()"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutGap="3px"
+          [style.height.%]="100"
+          [style.width.%]="100"
+        >
+          <div fxFlex="0 1 calc(40% - 3px)" class="incident-pin-logo"></div>
+          <div
+            fxFlex="0 1 calc(60% - 3px)"
+            fxLayout="column"
+            fxLayoutGap="3px"
+            fxLayoutAlign="center center"
+          >
+            <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="85" fxLayoutAlign="center center">
+              {{ languageService.getText("TotalincidentText") }}
+            </div>
+            <div
+              fxFlex="0 1 calc(60%)"
+              [style.fontSize.%]="200"
+              fxLayoutAlign="center center"
+            >
+              <b>{{ incident_count }}</b>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex>
+      <mat-card
+        class="mapcard"
+        [class.alert-card]="geofenceViolations.size > 0"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutGap="3px"
+          [style.height.%]="100"
+          [style.width.%]="100"
+        >
+          <div fxFlex="0 1 calc(40% - 3px)" class="geofencing-pin-logo"></div>
+          <div
+            fxFlex="0 1 calc(60% - 3px)"
+            fxLayout="column"
+            fxLayoutGap="3px"
+            fxLayoutAlign="center center"
+          >
+            <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="85" fxLayoutAlign="center center">
+              {{ languageService.getText("TotalGeofenceViolation") }}
+            </div>
+            <div
+              fxFlex="0 1 calc(60%)"
+              [style.fontSize.%]="200"
+              fxLayoutAlign="center center"
+            >
+              <b>{{ geofenceViolations.size }}</b>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex *ngIf="fsq_count >= 0">
+      <mat-card
+        class="mapcard"
+        [class.alert-card]="fsq_count > 0"
+        (click)="onCardClickfsq()"
+        *ngIf="fsq_count != -1"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutGap="3px"
+          [style.height.%]="100"
+          [style.width.%]="100"
+        >
+          <div fxFlex="0 1 calc(40% - 3px)" class="fsq_man-logo"></div>
+          <div
+            fxFlex="0 1 calc(60% - 3px)"
+            fxLayout="column"
+            fxLayoutGap="3px"
+            fxLayoutAlign="center center"
+          >
+            <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="85" fxLayoutAlign="center center">
+              {{ languageService.getText("shiftStarting") }}
+            </div>
+            <div
+              fxFlex="0 1 calc(60%)"
+              [style.fontSize.%]="200"
+              fxLayoutAlign="center center"
+            >
+              <b>{{ fsq_count }}</b>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex>
+      <mat-card
+        class="mapcard"
+        [class.alert-card]="Emergency_Count > 0"
+        (click)="onCardClick()"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutGap="3px"
+          [style.height.%]="100"
+          [style.width.%]="100"
+        >
+          <div fxFlex="0 1 calc(40% - 3px)" class="Emergency-logo"></div>
+          <div
+            fxFlex="0 1 calc(60% - 3px)"
+            fxLayout="column"
+            fxLayoutGap="3px"
+            fxLayoutAlign="center center"
+          >
+            <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="85" fxLayoutAlign="center center">
+              {{ languageService.getText("Emergency") }}
+            </div>
+            <div
+              fxFlex="0 1 calc(60%)"
+              [style.fontSize.%]="200"
+              fxLayoutAlign="center center"
+            >
+              <b>{{ Emergency_Count }}</b>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex *ngIf="!!payment">
+      <mat-card
+        class="mapcard"
+        [class.alert-card]="payment.payment_due > 0"
+        (click)="onPaymentCardClick()"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutGap="3px"
+          [style.height.%]="100"
+          [style.width.%]="100"
+        >
+          <div fxFlex="0 1 calc(40% - 3px)" class="rate-card-logo"></div>
+          <div
+            fxFlex="0 1 calc(60% - 3px)"
+            fxLayout="column"
+            fxLayoutGap="3px"
+            fxLayoutAlign="center center"
+          >
+            <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="75" fxLayoutAlign="center center">
+              {{ languageService.getText("totalPaidText") }} {{ payment.payment_total | currency:"INR":"symbol" }}
+            </div>
+            <div
+              fxFlex="0 1 calc(60%)"
+              fxLayoutAlign="center center"
+              fxLayout="column"
+            >
+              <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="75" fxLayoutAlign="center center">
+                {{ languageService.getText("totalDueText") }}
+              </div>
+              <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="130" fxLayoutAlign="center center">
+                <b>{{ payment.payment_due | currency:"INR":"symbol" }}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex *ngIf="!!franchisee_payment">
+      <mat-card
+        class="mapcard"
+        [class.alert-card]="franchisee_payment.payment_due > 0"
+        (click)="onFranchiseeCardClick()"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutGap="3px"
+          [style.height.%]="100"
+          [style.width.%]="100"
+        >
+          <div fxFlex="0 1 calc(40% - 3px)" class="rate-card-logo"></div>
+          <div
+            fxFlex="0 1 calc(60% - 3px)"
+            fxLayout="column"
+            fxLayoutGap="3px"
+            fxLayoutAlign="center center"
+          >
+            <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="75" fxLayoutAlign="center center">
+              {{ languageService.getText("totalEarnedText") }} {{ franchisee_payment.payment_total | currency:"INR":"symbol" }}
+            </div>
+            <div
+              fxFlex="0 1 calc(60%)"
+              fxLayoutAlign="center center"
+              fxLayout="column"
+            >
+              <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="75" fxLayoutAlign="center center">
+                {{ languageService.getText("totalGeneratedText") }}
+              </div>
+              <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="130" fxLayoutAlign="center center">
+                <b>{{ franchisee_payment.payment_due | currency:"INR":"symbol" }}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex *ngIf="!!maintenance">
+      <mat-card
+        class="mapcard"
+        [class.alert-card]="maintenance.assigned > 0"
+        (click)="onMaintenanceCardClick()"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutGap="3px"
+          [style.height.%]="100"
+          [style.width.%]="100"
+        >
+          <div fxFlex="0 1 calc(40% - 3px)" class="maintenance-marker"></div>
+          <div
+            fxFlex="0 1 calc(60% - 3px)"
+            fxLayout="column"
+            fxLayoutGap="3px"
+            fxLayoutAlign="center center"
+          >
+            <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="75" fxLayoutAlign="center center">
+              {{ languageService.getText("loggedMaintenanceText") }} {{ maintenance.logged }}
+            </div>
+            <div
+              fxFlex="0 1 calc(60%)"
+              fxLayoutAlign="center center"
+              fxLayout="column"
+            >
+              <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="75" fxLayoutAlign="center center">
+                {{ languageService.getText("assignedMaintenanceText") }}
+              </div>
+              <div fxFlex="0 1 calc(40%)" [style.fontSize.%]="130" fxLayoutAlign="center center">
+                <b>{{ maintenance.assigned }}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <div fxFlex="calc(85% - 10px)">
+    <mat-card class="mapcard">
+      <mat-card-header [style.height.%]="15" class="remove-header-text">
+        <div
+          fxLayout="row wrap"
+          fxLayoutAlign="end center"
+          [style.paddingBottom.px]="10"
+          [style.width.%]="100"
+          [style.height.%]="100"
+        >
+          <div
+            fxFlex="10"
+            fxLayout="row"
+            [style.height.%]="50"
+            fxLayoutAlign="end center"
+            class="lengend-item div-right-border"
+          >
+            <div
+              fxFlex="45"
+              class="at-rental-point-marker"
+              [style.height.%]="100"
+            ></div>
+            <div fxFlex="55" [style.fontSize.%]="70">
+              {{ languageService.getText("atRentalPointText") }}
+            </div>
+          </div>
+          <div
+            fxFlex="10"
+            fxLayout="row"
+            [style.height.%]="50"
+            fxLayoutAlign="end center"
+            class="lengend-item div-right-border"
+          >
+            <div
+              fxFlex="45"
+              class="on-trip-marker"
+              [style.height.%]="100"
+            ></div>
+            <div fxFlex="55" [style.fontSize.%]="70">
+              {{ languageService.getText("onTripText") }}
+            </div>
+          </div>
+          <div
+            fxFlex="13"
+            fxLayout="row"
+            [style.height.%]="50"
+            fxLayoutAlign="end center"
+            class="lengend-item div-right-border"
+          >
+            <div
+              fxFlex="45"
+              class="maintenance-marker"
+              [style.height.%]="100"
+            ></div>
+            <div fxFlex="55" [style.fontSize.%]="70">
+              {{ languageService.getText("maintenanceText") }}
+            </div>
+          </div>
+          <div
+            fxFlex="10"
+            fxLayout="row"
+            [style.height.%]="50"
+            fxLayoutAlign="end center"
+            class="lengend-item div-right-border"
+          >
+            <div
+              fxFlex="45"
+              class="ready-to-deploy-marker"
+              [style.height.%]="100"
+            ></div>
+            <div fxFlex="55" [style.fontSize.%]="70">
+              {{ languageService.getText("readyToDeployText") }}
+            </div>
+          </div>
+          <div
+            fxFlex="17"
+            fxLayout="row"
+            [style.height.%]="50"
+            fxLayoutAlign="end center"
+            class="lengend-item div-right-border"
+          >
+            <div
+              fxFlex="20"
+              class="problem-low-marker"
+              [style.height.%]="100"
+            ></div>
+            <div
+              fxFlex="20"
+              class="problem-medium-marker"
+              [style.height.%]="100"
+            ></div>
+            <div
+              fxFlex="20"
+              class="incident-pin-logo"
+              [style.height.%]="100"
+            ></div>
+            <div fxFlex="40" [style.fontSize.%]="70">
+              {{ languageService.getText("incidentsText") }}
+            </div>
+          </div>
+          <div
+            fxFlex="10"
+            fxLayout="row"
+            [style.height.%]="50"
+            fxLayoutAlign="end center"
+            class="lengend-item div-right-border"
+          >
+            <div
+              fxFlex="45"
+              class="Emergency-logo"
+              [style.height.%]="100"
+            ></div>
+            <div fxFlex="55" [style.fontSize.%]="70">
+              {{ languageService.getText("Emergency") }}
+            </div>
+          </div>
+          <div
+            fxFlex="10"
+            fxLayout="row"
+            [style.height.%]="50"
+            fxLayoutAlign="end center"
+            class="lengend-item div-right-border"
+          >
+            <div
+              fxFlex="45"
+              class="fsq-using-marker"
+              [style.height.%]="100"
+            ></div>
+            <div fxFlex="55" [style.fontSize.%]="70">
+              {{ languageService.getText("fsqUsingText") }}
+            </div>
+          </div>
+          <div
+            fxFlex="10"
+            fxLayout="row"
+            [style.height.%]="50"
+            fxLayoutAlign="end center"
+            class="lengend-item div-right-border"
+          >
+            <div
+              fxFlex="45"
+              class="geofencing-pin-logo"
+              [style.height.%]="100"
+            ></div>
+            <div fxFlex="55" [style.fontSize.%]="70">
+              {{ languageService.getText("geofenceVoilationText") }}
+            </div>
+          </div>
+          <div
+            fxFlex="10"
+            fxLayout="row"
+            [style.height.%]="50"
+            fxLayoutAlign="end center"
+            class="lengend-item"
+          >
+            <div
+              fxFlex="45"
+              class="time-exceeded-marker"
+              [style.height.%]="100"
+            ></div>
+            <div fxFlex="55" [style.fontSize.%]="70">
+              {{ languageService.getText("timeExceededText") }}
+            </div>
+          </div>
+          <div
+            fxFlex="100"
+            [style.height.%]="50"
+            *ngIf="
+              !!(userDetail$ | async) &&
+              (userDetail$ | async).user_type == 1 &&
+              ((userDetail$ | async).role_id == 1 ||
+                (userDetail$ | async).role_id == 8)
+            "
+          >
+            <form
+              [formGroup]="regionSelectionForm"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+              [style.height.%]="100"
+              [style.width.%]="100"
+            >
+              <mat-form-field
+                appearance="outline"
+                class="button-margin"
+                [style.maxWidth.%]="30"
+              >
+                <mat-select
+                  placeholder="{{ languageService.getText('stateNameText') }}"
+                  formControlName="state_id"
+                  (selectionChange)="StateSelected($event.value)"
+                >
+                  <mat-option>{{
+                    languageService.getText("clearText")
+                  }}</mat-option>
+                  <mat-option
+                    *ngFor="let state of states$ | async"
+                    [value]="state.states_id"
+                  >
+                    {{ state.states_name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field
+                appearance="outline"
+                class="button-margin"
+                [style.maxWidth.%]="30"
+              >
+                <mat-select
+                  placeholder="{{ languageService.getText('cityNameHeader') }}"
+                  formControlName="city_id"
+                  (selectionChange)="CitySelected($event.value)"
+                >
+                  <mat-option>{{
+                    languageService.getText("clearText")
+                  }}</mat-option>
+                  <mat-option
+                    *ngFor="let city of cities$ | async"
+                    [value]="city.city_id"
+                  >
+                    {{ city.city_name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field
+                appearance="outline"
+                class="button-margin"
+                [style.maxWidth.%]="30"
+              >
+                <mat-select
+                  placeholder="{{ languageService.getText('regionText') }}"
+                  formControlName="region_id"
+                >
+                  <mat-option>{{
+                    languageService.getText("clearText")
+                  }}</mat-option>
+                  <mat-option
+                    *ngFor="let element of filteredRegions$ | async"
+                    [value]="element.region_id"
+                  >
+                    {{ element.region_name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button
+                mat-raised-button
+                color="primary"
+                type="button"
+                class="button-margin"
+                (click)="showRegion()"
+              >
+                {{ languageService.getText("showText") }}
+              </button>
+            </form>
+          </div>
+        </div>
+      </mat-card-header>
+      <mat-card-content [style.height.%]="85">
+        <aol-map
+          #map
+          [width]="'100%'"
+          [height]="'100%'"
+          (onSingleClick)="mapOnClick($event)"
+        >
+          <aol-interaction-default></aol-interaction-default>
+          <aol-control-defaults></aol-control-defaults>
+          <aol-view [zoom]="zoom">
+            <aol-coordinate
+              [x]="88.4386"
+              [y]="22.625"
+              [srid]="'EPSG:4326'"
+            ></aol-coordinate>
+          </aol-view>
+          <aol-layer-tile>
+            <aol-source-osm></aol-source-osm>
+          </aol-layer-tile>
+          <aol-layer-vector #markersLayer>
+            <aol-source-vector #availableMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/AtRentalPoint.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #onTripMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/OnTrip.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #accidentMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/Accident_op1.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #geofenceMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/GeoFenceViolation.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #problemLowMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/Problem_Low.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #problemMediumMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/Problem_Medium.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #problemHighMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/Problem_High.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #timeExceededMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/Iot-off.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #fsqUsingMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/FSQ.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #maintenanceMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/Maintenance.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+          <aol-layer-vector>
+            <aol-source-vector #readyToDeployMarkersSource [wrapX]="false">
+              <aol-style>
+                <aol-style-icon
+                  [anchor]="[0.5, 0.9]"
+                  [anchorXUnits]="'fraction'"
+                  [anchorYUnits]="'fraction'"
+                  [opacity]="1"
+                  [src]="'./assets/Deploy.svg'"
+                >
+                </aol-style-icon>
+              </aol-style>
+            </aol-source-vector>
+          </aol-layer-vector>
+        </aol-map>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div id="tooltip" class="tooltip-style">
+  <div class="tooltip-header"></div>
+  <div class="tooltip-body"></div>
+</div>

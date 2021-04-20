@@ -1,0 +1,51 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="header-container">
+    <div fxFlex="100">
+        <span class="primary-text"> {{languageService.getText("billsSetupText")}} </span>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container padding-bottom">
+    <div fxFlex="20">
+        <button mat-raised-button color="primary" (click)="addBillSetup()"> {{languageService.getText("setupBillButtonText")}} </button>
+    </div>
+    <div fxFlex="50" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input" placeholder='Search' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="30" fxLayoutAlign="center center" class="search-bar-container">
+        <button mat-raised-button color="accent" (click)="getAllBills()"> {{languageService.getText("AllBillButtonText")}} </button>
+    </div>
+</div>
+<div>
+    <table mat-table matSort class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSource">
+        <ng-container matColumnDef="corporate_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("CorporateNameTableHeaderText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.corporate_billing_name}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="legal_entity_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("LegalEntityTableHeaderText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.legal_entity_billing_name}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="bill_start_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("BillingStartDateTableHeaderText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.bill_start_date | date}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("ActionText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="View Bills" mat-icon-button color="accent" (click)="viewBills(element.corporate_id)"> <mat-icon> receipt </mat-icon> </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true" class="mat-elevation-z5"></mat-paginator>
+</div>

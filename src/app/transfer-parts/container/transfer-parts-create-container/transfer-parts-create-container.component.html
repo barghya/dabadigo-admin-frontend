@@ -1,0 +1,11 @@
+<app-transfer-parts-create [partsMasters$]="partsMasters$"
+[partsStatuses$]="partsStatuses$"
+[partsStocks$]="partsStocks$"
+[regions$]="regions$"
+[rentalPoints$]="rentalPoints$"
+[storeTypes$]="storeTypes$"
+[cities$]="cities$"
+(partMasterChanged)="PartSelection($event)"
+(cancel)="Cancel()"
+(addRequest)="AddRequest($event)"
+(regionSelected)="RegionSelected($event)"></app-transfer-parts-create>

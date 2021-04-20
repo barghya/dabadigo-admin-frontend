@@ -1,0 +1,146 @@
+<h3 class="primary-text">{{languageService.getText("AddDeployRequest")}}</h3>
+<div class="form-container">
+    <form [formGroup]="addDeployForm">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>Region</mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field novalidate  [style.width.%]="80" appearance="outline">
+                    <mat-select placeholder="Region" formControlName="region" (selectionChange)="regionSelection($event)">
+                      <mat-option  *ngFor="let data of FilterRegion" [value]="data.region_id">
+                       {{data.region_name}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>Rental Point</mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field novalidate  [style.width.%]="80" appearance="outline">
+                    <mat-select placeholder="Rental Point" formControlName="rentalpoint" (selectionChange)="rentalPointSelection($event)">
+                      <mat-option *ngFor="let data of FilterRentalPoint" [value]="data.rentalpoint_id" >
+                       {{data.rentalpoint_name}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>Assigned Person</mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field novalidate  [style.width.%]="80" appearance="outline">
+                    <mat-select placeholder="Assigned Person" formControlName="assigned_user">
+                      <mat-option [value]="data.admn_user_id" *ngFor="let data of (user$ | async)">
+                       {{data.username}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start" class="button-filter-container">
+        <div fxFlex="20">
+            <button mat-raised-button type="button" color="primary" (click)="selectVehicle()">{{languageService.getText("AddVehicleButton")}}</button>
+        </div>
+    </div>
+    <div>
+        <table mat-table matSort class="mat-elevation-z5 rounded-table" [dataSource]="dataSource" [style.width.%]="100">
+            <ng-container matColumnDef="vehicle_idnumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("VehicleIdText")}}</th>
+                <td mat-cell *matCellDef="let deployVehicleList">
+                    <span>{{deployVehicleList.vehicle_idnumber}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="manufacturer">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("ManufacturerText")}}</th>
+                <td mat-cell *matCellDef="let deployVehicleList">
+                    <span>{{deployVehicleList.manufacturer}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="model">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("modelText")}}</th>
+                <td mat-cell *matCellDef="let deployVehicleList">
+                    <span>{{deployVehicleList.model}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="manufacture_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("ManufacturedateText")}}
+                </th>
+                <td mat-cell *matCellDef="let deployVehicleList">
+                    <span>{{deployVehicleList.manufacture_date | date}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="warranty_expiry">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("WarrantyExpiryText")}}
+                </th>
+                <td mat-cell *matCellDef="let deployVehicleList">
+                    <span>{{deployVehicleList.warranty_expiry | date}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="warranty_terms">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("warrantyTermsText")}}</th>
+                <td mat-cell *matCellDef="let deployVehicleList">
+                    <span>{{deployVehicleList.warranty_terms}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="QRCode">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("qrCodeText")}}</th>
+                <td mat-cell *matCellDef="let deployVehicleList">
+                    <span>{{deployVehicleList.QRCode}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="vehicle_type_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("vehicleTypeNameText")}}</th>
+                <td mat-cell *matCellDef="let deployVehicleList">
+                    <span>{{deployVehicleList.vehicle_type_name}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="vehicle_current_status_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{languageService.getText("vehicleCurrentStatusNameText")}}</th>
+                <td mat-cell *matCellDef="let deployVehicleList">
+                    <span>{{deployVehicleList.vehicle_current_status_name}}</span>
+                </td>
+            </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true></mat-paginator>
+</div>
+<!-- <div fxLayout="row" fxLayoutAlign="end end" class="button-filter-container">
+    <div fxFlex="20" class="button-float-right">
+        <button mat-raised-button type="button" color="primary" (click)="AddRequestVehicle()" [disabled]="dataSource.data.length == 0">{{languageService.getText("requestButton")}}</button>
+    </div>
+</div> -->
+
+<!-- <div fxLayout="row" fxLayoutAlign="space-evenly end" class="button-row">
+    <button mat-raised-button color="accent" type="button" (click)="cancel()">{{languageService.getText("CancelText")}}</button>
+    <button mat-raised-button type="button" color="primary" (click)="AddRequestVehicle()" [disabled]="dataSource.data.length == 0">{{languageService.getText("requestButton")}}</button>
+</div> -->
+
+<div fxLayout="row" fxLayoutAlign="end center" class="button-filter-container">
+        <button mat-raised-button color="accent" class="button-margin" type="button" (click)="cancel()">{{languageService.getText("CancelText")}}</button>
+        <button mat-raised-button type="button" class="button-margin" color="primary" (click)="AddRequestVehicle()" [disabled]="(dataSource.data.length == 0) || (addDeployForm.invalid)">{{languageService.getText("requestButton")}}</button>
+</div>
+</form>
+</div>

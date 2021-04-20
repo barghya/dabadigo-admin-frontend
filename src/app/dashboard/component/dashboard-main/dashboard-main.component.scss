@@ -1,0 +1,36 @@
+.mapcard {
+    padding: 10px;
+    height: calc(100% - 20px);
+}
+.select-box-flex {
+    flex: calc(20 - 10px);
+}
+
+.alert-card {
+    background-color: rgb(156, 43, 58);
+    color: white !important;
+}
+
+.lengend-item {
+    padding: 2px 2px 2px 0px;
+}
+
+.div-right-border {
+    border-right: 0.5px solid lightgray;
+}
+
+.tooltip-style {
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #8FCF4B;
+    .tooltip-header {
+        background-color: #8FCF4B;
+        font-weight: bold;
+        font-size: 14px;
+        padding: 2px;
+    }
+    .tooltip-body {
+        color: black;
+        padding: 2px;
+    }
+}

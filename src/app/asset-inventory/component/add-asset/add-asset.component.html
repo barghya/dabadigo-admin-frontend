@@ -1,0 +1,441 @@
+<h3 class="primary-text">{{languageService.getText("AddAssetHeaderText")}}</h3>
+<div class="form-container">
+    <form [formGroup]="AssetForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="vehicle_type"
+                            placeholder='{{languageService.getText("VehicleTypeText")}}'>
+                            <mat-option *ngFor="let type of (vehicle_types$ | async)" [value]="type.domain_code">
+                                {{type.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleAssetCodeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("VehicleAssetCodeText")}}'
+                            formControlName="vehicle_assetcode" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div> -->
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleManufacturerText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("VehicleManufacturerText")}}'
+                            formControlName="manufacturer" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleModelText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("VehicleModelText")}}'
+                            formControlName="model" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleManufactureDateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="manufacture_picker"
+                            placeholder='{{languageService.getText("VehicleManufactureDateText")}}'
+                            formControlName="manufacture_date" autocomplete="off" (dateChange)="StartDateChange()">
+                        <mat-datepicker-toggle matSuffix [for]="manufacture_picker"></mat-datepicker-toggle>
+                        <mat-datepicker #manufacture_picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleWarrantyExpiryText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="warranty_picker"
+                            placeholder='{{languageService.getText("VehicleWarrantyExpiryText")}}'
+                            formControlName="warranty_expiry" autocomplete="off" [min]="minDate">
+                        <mat-datepicker-toggle matSuffix [for]="warranty_picker"></mat-datepicker-toggle>
+                        <mat-datepicker #warranty_picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleWarrantyTermsText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("VehicleWarrantyTermsText")}}'
+                            formControlName="warranty_terms" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleQrCodeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("VehicleQrCodeText")}}'
+                            formControlName="qrcode" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleImeiText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("VehicleImeiText")}}'
+                            formControlName="imei_number" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div> -->
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleIdNumberText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("VehicleIdNumberText")}}'
+                            formControlName="vehicle_idnumber" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("ChassisNumberText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("ChassisNumberText")}}'
+                            formControlName="chassis_number" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("insurance_no")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("insurance_no")}}'
+                            formControlName="insurance_no" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("insurance_career")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("insurance_career")}}'
+                            formControlName="insurance_career" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("insurance_upto")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="insurance_upto_picker"
+                            placeholder='{{languageService.getText("insurance_upto")}}'
+                            formControlName="insurance_upto" autocomplete="off" [min]="minDate">
+                        <mat-datepicker-toggle matSuffix [for]="insurance_upto_picker"></mat-datepicker-toggle>
+                        <mat-datepicker #insurance_upto_picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("OwnershipType")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="ownership_type"
+                            placeholder='{{languageService.getText("OwnershipType")}}' (selectionChange)="OnChange($event.value)">
+                            <mat-option *ngFor="let type of (ownership_types$ | async)" [value]="type.domain_code">
+                                {{type.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="Franchise">
+            <form [formGroup]="assetFranchiseForm">
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                    <div fxFlex="25" fxLayoutAlign="end center">
+                        <mat-label>{{languageService.getText("rpFranchiseName")}}</mat-label>
+                    </div>
+                    <div fxFlex="75" fxLayoutAlign="center center">
+                        <mat-form-field [style.width.%]="80" appearance="outline">
+                            <mat-select placeholder='{{languageService.getText("placeholderassetName")}}'
+                                formControlName="franchise_id">
+                                <mat-option  *ngFor="let franchise of (franchise$ | async)"
+                                [value]="franchise.admn_partner_id">
+                                {{franchise.franchise_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            </form>
+            </div>
+    
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("countryText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="country_id"
+                            placeholder='{{languageService.getText("countryText")}}'>
+                            <mat-option *ngFor="let countries of (countries$ | async)" [value]="countries.countries_id">{{countries.countries_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("tableHeaderStateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select placeholder='{{languageService.getText("tableHeaderStateText")}}'
+                            formControlName="state_id">
+                            <mat-option *ngFor="let statesName of (statesName$ | async)"
+                                [value]="statesName.states_id">
+                                {{statesName.states_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("cityNameHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="city_id"
+                            placeholder='{{languageService.getText("cityNameHeader")}}'>
+                            <mat-option *ngFor="let element of (cities$ | async)"
+                                [value]="element.city_id">
+                                {{element.city_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("regionText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="region_id"
+                            placeholder='{{languageService.getText("regionText")}}'>
+                            <mat-option *ngFor="let element of ( availableRegions$ | async)"
+                                [value]="element.region_id">
+                                {{element.region_name}} - {{element.region_code}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleStatusText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="vehicle_status"
+                            placeholder='{{languageService.getText("VehicleStatusText")}}'>
+                            <mat-option *ngFor="let type of (vehicle_status$ | async)" [value]="type.domain_code">
+                                {{type.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleBatteryText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='Choose {{languageService.getText("VehicleBatteryText")}}'
+                            [matAutocomplete]="autoBattery" formControlName="battery">
+                        <mat-autocomplete #autoBattery="matAutocomplete" [displayWith]="displayFnBattery.bind(this)"
+                            (optionSelected)="BatterySelected($event)">
+                            <mat-option *ngFor="let battery of filteredBattery$ | async"
+                                [value]="battery.vehicle_battery_id">
+                                {{battery.battery_tag}} - {{battery.battery_make}} - {{battery.battery_model}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehicleDeviceText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='Choose {{languageService.getText("VehicleDeviceText")}}'
+                            [matAutocomplete]="autoDevice" formControlName="device">
+                        <mat-autocomplete #autoDevice="matAutocomplete" [displayWith]="displayFnDevice.bind(this)"
+                            (optionSelected)="DeviceSelected($event)">
+                            <mat-option *ngFor="let device of filteredDevices$ | async" [value]="device.device_id">
+                                {{device.device_name}} - {{device.device_code}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("SelectedDevicesText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline" novalidate>
+                        <mat-chip-list #chipList aria-label="Device List">
+                            <mat-chip *ngFor="let device of deviceList" [selectable]="selectable" [removable]="removable"
+                                (removed)="removeDevice(device)">
+                                {{showDevice(device.device_id).device_name}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("VehiclePartsText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='Choose {{languageService.getText("VehiclePartsText")}}'
+                            [matAutocomplete]="autoParts" formControlName="parts">
+                        <mat-autocomplete #autoParts="matAutocomplete" [displayWith]="displayFnParts.bind(this)"
+                            (optionSelected)="showParts($event)">
+                            <mat-option *ngFor="let parts of filteredParts$ | async" [value]="parts.vehicle_part_id">
+                                {{parts.part_name}} - {{parts.part_code}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div> -->
+
+<!-- 
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("SelectedPartsText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline" novalidate>
+                        <mat-chip-list #chipList aria-label="Parts List">
+                            <mat-chip *ngFor="let parts of partsList" [selectable]="selectable" [removable]="removable"
+                                (removed)="removeParts(parts)">
+                                {{showPart(parts.vehicle_part_id).part_name}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div> -->
+    </form>
+    <div fxLayout="row" [style.width.%]="100">
+        <div fxFlex="25" fxLayoutAlign="center center"></div>
+        <div fxFlex="75" fxLayoutAlign="center center">
+            <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" (click)="Cancel()"  class="button-margin"
+                        type="button">{{languageService.getText("cancelButtonText")}}</button>
+                    <!-- <button mat-raised-button color="primary" (click)="AddAnotherAsset()"
+                        [disabled]="(this.partsList.length < 1 ) || this.AssetForm.invalid"
+                        type="button">{{languageService.getText("addAnotherText")}}</button> -->
+                    <button mat-raised-button color="primary"
+                        [disabled]="this.AssetForm.invalid" type="button"  class="button-margin" (click)="AddAsset()"
+                        class="button-margin">{{languageService.getText("addButtonText")}}</button>
+                </div>
+            </div>
+        </div>
+    
+</div>

@@ -1,0 +1,466 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./theme/dabadigo-theme.scss";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+html,
+body {
+    height: 100vh !important;
+    margin: 0;
+}
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.view-container {
+    display: flex !important;
+    flex-direction: column;
+    height: 100%;
+}
+
+.main-content {
+    flex: 1 0 auto;
+}
+
+.main-flex {
+    height: 100%;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+//Sidenav Style
+.ng-trigger-sidenavState {
+    margin-right: 0px !important;
+}
+
+.sidenav-container .mat-list-item {
+    color: white;
+    font-weight: lighter;
+    .mat-list-item-content {
+        font-size: 14px;
+    }
+}
+
+.sidenav-container .mat-expansion-panel {
+    background-color: mat-color($md-dabadigoaccent, 500);
+    border-radius: 0px;
+    color: white;
+
+    .mat-expansion-panel-body {
+        padding: 0px;
+        padding-left: 10px;
+
+        .mat-list-item-content {
+            flex-basis: 0;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+    }
+}
+
+.sidenav-container .mat-expansion-panel-header.mat-expanded {
+    background-color: mat-color($md-dabadigoaccent, 800) !important;
+    font-weight: 600;
+    border-left: 5px solid mat-color($md-dabadigoprimary, 500);
+    padding-left: 11px !important;
+}
+
+
+.sidenav-container .mat-expansion-panel-header-title,
+.sidenav-container .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.sidenav-container .mat-expansion-panel-header-title {
+    color: white;
+    align-items: center;
+}
+
+.sidenav-container .mat-expansion-panel-header-description {
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+    .mat-icon {
+        font-size: 14px !important;
+        height: unset;
+        width: unset;
+    }
+}
+
+.sidenav-container .mat-expansion-panel-header {
+    padding: 0 8px 0 16px;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+
+.sidenav-container {
+    padding: 0px !important;
+}
+
+//End
+
+//Spacer
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+//Scrollbar styles
+::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2a2e33;
+}
+//End
+
+
+//SVG adn PNG Classes
+.dabadigo-background-rider {
+    position: relative;
+    top: 20%;
+    height: 60%;
+    background-image: url("./assets/login_background_rider.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;    
+}
+.login-background {
+    background-image: url("./assets/login-background.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;    
+}
+.dabadigo-logo {
+    position: relative;
+    top: 20%;
+    height: 70%;
+    background-image: url("./assets/dabadigo-logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;    
+}
+.title-icon {
+    background-image: url("./assets/dabadigo-logo.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+}
+
+.dashboard-icon {
+    background-image: url("./assets/Dashboard_Icon.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    margin-right: 20px;
+}
+
+.administration-icon {
+    background-image: url("./assets/Admin_Icon.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    margin-right: 20px;
+}
+
+.partner-management-icon {
+    background-image: url("./assets/Partner_Icon.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    margin-right: 20px;
+}
+
+.business-administration-icon {
+    background-image: url("./assets/Business_Admin.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    margin-right: 20px;
+}
+
+.delete-hover-icon {
+    background-image: url("./assets/Delete_Hover.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.edit-hover-icon {
+    background-image: url("./assets/Edit_Hover.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.dashboard-pin-logo {
+    background-image: url("./assets/Dashboard_OnTrip.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.incident-pin-logo {
+    background-image: url("./assets/Problem_High.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.geofencing-pin-logo {
+    background-image: url("./assets/GeoFenceViolation.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.fsq_man-logo {
+    background-image: url("./assets/fsq_man.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.Emergency-logo {
+    background-image: url("./assets/Accident_op1.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.rate-card-logo {
+    background-image: url("./assets/rate_card_logo.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+//Marker Legends
+.on-trip-marker {
+    background-image: url("./assets/OnTrip.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.at-rental-point-marker {
+    background-image: url("./assets/AtRentalPoint.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.problem-low-marker {
+    background-image: url("./assets/Problem_Low.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.problem-medium-marker {
+    background-image: url("./assets/Problem_Medium.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.time-exceeded-marker {
+    background-image: url("./assets/Iot-off.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.fsq-using-marker {
+    background-image: url("./assets/FSQ.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.maintenance-marker {
+    background-image: url("./assets/Maintenance.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.ready-to-deploy-marker {
+    background-image: url("./assets/Deploy.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.reset-password {
+    background-image: url("./assets/password-reset.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+
+//Text Styles
+.primary-text {
+    color: mat-color($md-dabadigoprimary, 500);
+}
+
+.accent-text {
+    color: mat-color($md-dabadigoaccent, 300);
+}
+
+//Table Style
+table tbody tr:nth-child(odd){
+    background-color: mat-color($md-dabadigoprimary, 50);
+}
+
+table.mat-table.rounded-table { 
+    border-collapse: separate; 
+    border-radius: 15px; 
+    tr:first-child th:first-child { border-top-left-radius: 15px; padding: 5px 0 5px 15px; }
+    tr:first-child th:last-child { border-top-right-radius: 15px; padding: 5px 15px 5px 0; }
+    tr:last-child td:first-child { border-bottom-left-radius: 15px; }
+    tr:last-child td:last-child { border-bottom-right-radius: 15px; }
+    tr td:first-child { padding: 5px 0 5px 15px; }
+    tr td:last-child { padding: 5px 15px 5px 0; }
+    tr{
+        height: 30px; 
+        td{ 
+            padding: 5px 0 5px 0;
+            .mat-raised-button {
+                height: 20px;
+                margin-right: 5px;
+                line-height: normal;
+            }
+            .mat-icon-button {
+                height: 20px;
+                width: 25px;
+                margin-right: 5px;
+                line-height: normal;
+            }
+        }
+    }
+}
+
+//Filter/Search Box Style
+.button-filter-container {
+    padding: 5px;
+}
+
+.search-bar-container {
+    mat-form-field {
+        width: 80%;
+    }
+}
+
+
+//Mat From Field Styles
+.mat-form-field-wrapper {
+    padding: 0px;
+    .mat-form-field-outline-thick{
+        background-color: white;
+        border-radius: 5px;
+    }
+    .mat-form-field-outline{
+        background-color: white;
+        border-radius: 5px;
+    }
+    .mat-form-field-infix{
+        border-top: 5px solid transparent;
+        padding: 8px;
+    }
+}
+
+//Mat Paginator Styles
+.mat-paginator {
+    margin-top: 10px;
+    border-radius: 10px;
+    .mat-paginator-container {
+        height: unset;
+        min-height: unset !important;
+        .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+            padding-bottom: 0.7em;
+        }
+    }
+}
+
+
+//Tab styles
+.mat-tab-links > .mat-tab-link {
+    height: 35px;
+}
+
+.mat-tab-nav-bar.mat-tab-header {
+    border-radius: 10px;
+}
+
+//Mat Error
+ms3-mat-error {
+    display: block;
+}
+
+
+//Snackbar Styles
+.error-snackbar {
+    background-color: lightcoral;
+    color: black;
+}
+
+.warning-snackbar {
+    background-color: rgb(233, 205, 154);
+    color: black;
+}
+
+.info-snackbar {
+    background-color: rgb(186, 238, 229);
+    color: black;
+}
+
+.success-snackbar {
+    background-color: #8FCF4B;
+    color: black;
+}
+
+//Button Margin Style
+.button-margin {
+    margin-left: 8px !important;
+    margin-top: 10px !important;
+}
+
+//Rounded Div Style
+.rounded-div {
+    margin: 10px 0px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.section-title {
+    margin: 10px 0px;
+    
+}
+
+// Text Color Styles
+.primary-text {
+    color: mat-color($md-dabadigoprimary, 500);
+}
+
+.accent-text {
+    color: mat-color($md-dabadigoaccent, 400);
+}
+
+//Map Card Style
+.remove-header-text {
+    .mat-card-header-text {
+        margin: 0px !important;
+    }
+}

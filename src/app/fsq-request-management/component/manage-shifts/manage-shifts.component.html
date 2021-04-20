@@ -1,0 +1,365 @@
+
+<div class="section-title primary-text">Shift Management</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <form [formGroup]="SiftManagement" [style.width.%]="100">
+        <div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100">
+            <div fxFlex="70">
+                <mat-label class="primary-text">Add Shift</mat-label>
+            </div>
+            <div fxFlex="30" >
+                <mat-checkbox (change)="ShowHideUnchecked($event.source.checked)"checked>As Rentalpoint Manager</mat-checkbox>
+               
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100">
+            <!-- <div fxFlex="50" fxLayoutGap="5px">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>FSQ</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='Choose Fsq' [matAutocomplete]="activeFsq"
+                            formControlName="fsq_name">
+                        <mat-autocomplete #activeFsq="matAutocomplete" [displayWith]="displayFsq.bind(this)">
+                            <span *ngFor="let fsq of fsqDetail$ | async">
+                                <mat-option *ngIf="fsq.user_status == 3" (click)="getRegion(fsq.admn_user_id)" [value]="fsq.admn_user_id">
+                                    {{fsq.username}} ({{fsq.contact_phone}})
+                                </mat-option>
+                            </span>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div> -->
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("FSQText")}}</mat-label>
+            </div>
+            <div fxFlex="36" fxLayoutAlign="end center">
+                <mat-form-field [style.width.%]="82" appearance="outline">
+                    <input matInput placeholder='{{languageService.getText("FSQText")}}' formControlName="fsq_id"
+                        autocomplete="off">
+                </mat-form-field>
+            </div>
+            <div fxFlex="4" fxLayoutAlign="start center">
+                <button type="button" mat-icon-button (click)="Search()">
+                    <mat-icon color="primary">search</mat-icon>
+                </button>
+            </div>
+
+            <div fxFlex="50" fxLayoutGap="5px">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>Start Date</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input [min]="start_min" matInput [owlDateTimeTrigger]="startDate" [owlDateTime]="startDate"
+                            placeholder='Shift Start Time' formControlName="start_date" autocomplete="off"
+                            (ngModelChange)="DateAdjustment()">
+                        <owl-date-time #startDate></owl-date-time>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100">
+            <div fxFlex="50" fxLayoutGap="5px">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>End Date</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input [min]="end_min" matInput [owlDateTimeTrigger]="EndDate"
+                            (ngModelChange)="DateAdjustment()" [owlDateTime]="EndDate" placeholder='Shift End Time'
+                            formControlName="end_date" autocomplete="off">
+                        <owl-date-time #EndDate></owl-date-time>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxFlex="50" fxLayoutGap="5px">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>Region</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='Choose Region' formControlName="region"
+                            [matAutocomplete]="activeRegion">
+                        <mat-autocomplete #activeRegion="matAutocomplete" [displayWith]="displayRegion.bind(this)">
+                            <mat-option *ngFor="let region of (fsqRegion$ | async)" [value]="region.region_id" (click)="RegionSelection(region.region_id)">
+                                {{region.region_name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+           
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100">
+          
+            <div fxFlex="50" fxLayoutGap="5px" *ngIf="show">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("RentalpointText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("RentalpointText")}}'formControlName="rentalpoint_id" [matAutocomplete]="activeRentalpoint">
+                        <mat-autocomplete #activeRentalpoint="matAutocomplete" [displayWith]="displayRentalPoint.bind(this)">
+                            <mat-option *ngFor="let rentalpoint of (rentalPointList$ | async)" [value]="rentalpoint.rentalpoint_id">
+                                {{rentalpoint.rentalpoint_name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                </div>
+
+            <div fxFlex="50" fxLayoutGap="5px">
+            <div fxFlex="27" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("breaktimeText")}}</mat-label>
+            </div>
+            
+            <div fxFlex="52" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <input  matInput placeholder='{{languageService.getText("breaktimeText")}}'
+                        formControlName="break_time"  autocomplete="off">
+                    </mat-form-field>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("minutesText")}}</mat-label>
+            </div>
+           
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end end" [style.width.%]="100">
+            <div fxFlex="20" fxLayoutGap="5px">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" type="button" class="button-margin" (click)="AddShift()"
+                        [disabled]="SiftManagement.invalid">Add</button>
+                    <button mat-raised-button color="primary" type="button" class="button-margin"
+                        (click)="ClearButton()">Clear</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div fxLayout="row" fxLayoutAlign="end center" class="button-filter-container">
+    <div fxFlex="20" fxLayoutAlign="start center" class="section-title primary-text">FSQ Current Next Shift</div>
+    <div fxFlex="80" fxLayoutAlign="center center" fxLayoutGap="5px" class="search-bar-container">
+        <form [formGroup]="dateFilter" [style.width.%]="100">
+            <mat-form-field appearance="outline" novalidate class="right-padding">
+                <input matInput class="search-input" (keyup)="applyFilter($event.target.value)" placeholder='Search'
+                    autocomplete="off">
+                <mat-icon matPrefix color="primary">search</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate class="right-padding">
+                <input matInput [owlDateTimeTrigger]="filterstarttime" [owlDateTime]="filterstarttime"
+                    placeholder='Filter Start date' formControlName="filterStartTime" autocomplete="off"
+                    (ngModelChange)="filterDate()" (dateChange)="filterDate()">
+                <owl-date-time #filterstarttime></owl-date-time>
+            </mat-form-field>
+            <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+                <input matInput [owlDateTimeTrigger]="filterendtime" [owlDateTime]="filterendtime"
+                    placeholder='Filter End Date' formControlName="filterEndTime" autocomplete="off"
+                    (ngModelChange)="filterDate()">
+                <owl-date-time #filterendtime></owl-date-time>
+            </mat-form-field>
+        </form>
+    </div>
+</div>
+<div>
+    <table mat-table matSort #sort="matSort" [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="fsq_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.fsq_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="shift_as_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+             {{languageService.getText("ShiftAsText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.shift_as_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="region_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FsqRegionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.region_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="rentalpoint_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FsqRentalpointText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.rentalpoint_name}} </td>
+        </ng-container>
+       
+        <ng-container matColumnDef="fsq_phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQphonenumberText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.fsq_phone}}</td>
+        </ng-container>
+        <ng-container matColumnDef="shift_start_datetime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQShiftstarttimetext")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.shift_start_datetime | date: 'medium'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="shift_end_datetime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQShiftendtimetext")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.shift_end_datetime | date: 'medium'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fsq_level_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQlevelNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.fsq_level_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="created_by_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQcreatedByText")}} 
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.created_by_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="shift_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQstatusNameText")}} 
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.shift_status_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("ActyionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button type="button"  color="accent"
+                    (click)="shiftEdit(element.fsq_shift_management_id)"> <mat-icon> edit </mat-icon> </button>
+                <button matTooltip="Delete" mat-icon-button type="button"  color="warn"
+                    (click)="shiftDelete(element.fsq_shift_management_id)"> <mat-icon> delete </mat-icon> </button>
+                <button matTooltip="Detail" mat-icon-button type="button"  color="accent"
+                    (click)="AssignVehicle(element.fsq_shift_management_id, 0)"> <mat-icon> info </mat-icon> </button>
+                <button matTooltip="Start Shift" mat-icon-button type="button" *ngIf="element.shift_status==1"  color="primary"
+                    (click)="StartShift(element)"> <mat-icon>work</mat-icon> </button>
+                <button matTooltip="Pause Shift" mat-icon-button type="button" *ngIf="element.shift_status==2"  color="accent"
+                    (click)="PauseShift(element)"><mat-icon>pause_circle_filled</mat-icon></button>
+                <button matTooltip="Resume Shift" mat-icon-button type="button" *ngIf="element.shift_status==3"  color="accent"
+                    (click)="ResumeShift(element)"> <mat-icon>next_week</mat-icon> </button>
+                <button matTooltip="End Shift" mat-icon-button type="button"  color="warn"
+                    *ngIf="element.shift_status==2 || element.shift_status==3" (click)="EndShift(element)">
+                    <mat-icon>exit_to_app</mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" #paginator [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true
+        class="mat-elevation-z5"></mat-paginator>
+</div>
+<div fxLayout="row" fxLayoutAlign="end center" class="button-filter-container margin-top">
+    <div fxFlex="20" fxLayoutAlign="start center" class="section-title primary-text">Past Shift History</div>
+    <div fxFlex="80" fxLayoutAlign="center center" fxLayoutGap="5px" class="search-bar-container">
+        <form [formGroup]="pastdateFilter" [style.width.%]="100">
+            <mat-form-field appearance="outline" novalidate class="right-padding">
+                <input matInput class="search-input" (keyup)="PastapplyFilter($event.target.value)" placeholder='Search'
+                    autocomplete="off">
+                <mat-icon matPrefix color="primary">search</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate class="right-padding">
+                <input matInput [owlDateTimeTrigger]="Pastfilterstarttime" [owlDateTime]="Pastfilterstarttime"
+                    placeholder='Filter Start date' formControlName="PastfilterStarttime" autocomplete="off"
+                    (ngModelChange)="PastfilterDate()" (dateChange)="filterDate()">
+                <owl-date-time #Pastfilterstarttime></owl-date-time>
+            </mat-form-field>
+            <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+                <input matInput [owlDateTimeTrigger]="pastfilterendtime" [owlDateTime]="pastfilterendtime"
+                    placeholder='Filter End Date' formControlName="PastfilterEndTime" autocomplete="off"
+                    (ngModelChange)="PastfilterDate()">
+                <owl-date-time #pastfilterendtime></owl-date-time>
+            </mat-form-field>
+        </form>
+    </div>
+</div>
+<div>
+    <table mat-table matSort #pastsort="matSort" [dataSource]="dataSource2" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="fsq_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.fsq_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="shift_as_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("ShiftAsText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.shift_as_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="region_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FsqRegionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.region_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="rentalpoint_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FsqRentalpointText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.rentalpoint_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fsq_phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQphonenumberText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.fsq_phone}}</td>
+        </ng-container>
+        <ng-container matColumnDef="shift_start_datetime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQShiftstarttimetext")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.shift_start_datetime | date: 'medium'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="shift_end_datetime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQShiftendtimetext")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.shift_end_datetime | date: 'medium'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="duration">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQShiftDurationtext")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.duration}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fsq_level_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQlevelNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.fsq_level_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="created_by_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQcreatedByText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.created_by_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="shift_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQstatusNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.shift_status_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Detail" mat-icon-button color="accent" *ngIf="element.shift_status != 0"
+                    (click)="AssignVehicle(element.fsq_shift_management_id, 1)"> <mat-icon> info </mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="PastdisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: PastdisplayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" #Pastpaginator [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true
+        class="mat-elevation-z5"></mat-paginator>
+</div>

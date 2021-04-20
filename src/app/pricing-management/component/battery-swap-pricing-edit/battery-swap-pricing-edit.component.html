@@ -1,0 +1,147 @@
+<div class="form-container">
+    <form [formGroup]="BatterySwapPricingForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("batteryswappricingNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("batteryswappricingNameText")}}'
+                            formControlName="display_name" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("noofinitialswapText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("noofinitialswapText")}}'
+                            formControlName="no_of_initial_swap" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rateforinitialswapText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rateforinitialswapText")}}'
+                            formControlName="initial_swap_price" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rateforconsicutiveswapText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("rateforconsicutiveswapText")}}'
+                            formControlName="consecutive_swap_price" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+       
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingVehicleTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="vehicle_type"
+                            placeholder='{{languageService.getText("pricingVehicleTypeText")}}'>
+                            <mat-option *ngFor="let type of (vehicleTypes$ | async)" [value]="type.domain_code">
+                                {{type.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingRegionNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="region"
+                            placeholder='{{languageService.getText("pricingRegionNameText")}}'>
+                            <mat-option>{{languageService.getText("clearText")}}</mat-option>
+                            <mat-option *ngFor="let region of (regions$ | async)" [value]="region.region_id">
+                                {{region.region_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("pricingtypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="price_table_type"
+                            placeholder='{{languageService.getText("pricingtypeText")}}'
+                            (selectionChange)="priceTypeSelection($event.value)">
+                            <mat-option *ngFor="let priceTabletype of (priceTabletype$ | async)"
+                                [value]="priceTabletype.domain_code">
+                                {{priceTabletype.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="adminPartner">
+            <form [formGroup]="UserCorporateForm">
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("priceTablePartnerName")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <mat-select formControlName="admn_partner_id"
+                                    placeholder='{{languageService.getText("selectPartnerText")}}'>
+                                    <mat-option *ngFor="let Corporate of (corporate$ | async)"
+                                        [value]="Corporate.admn_partner_id">{{Corporate.company_name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="center center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" (click)="Cancel()" class="button-margin"
+                        type="button">{{languageService.getText("cancelButtonText")}}</button>
+                    <button mat-raised-button color="primary" [disabled]="BatterySwapPricingForm.invalid  || (adminPartner && UserCorporateForm.invalid)" type="button"
+                        class="button-margin" (click)="Update()">{{languageService.getText("SaveText")}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

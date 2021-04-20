@@ -1,0 +1,79 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+    </div>
+    <div fxFlex="60" fxLayoutGap="5px" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)" placeholder='{{languageService.getText("corporateRequestSearchPlaceholderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20">
+        <mat-checkbox (change)="ShowHidePastData($event.source.checked)">{{languageService.getText("includePastText")}}</mat-checkbox>
+    </div>
+</div>
+
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">   
+        <ng-container matColumnDef="first_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("corporateCustomerfirstNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="last_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("corporateCustomerlastNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="phone_no">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("corporaterequestphoneNoText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.phone_no}} </td>
+        </ng-container>
+        <ng-container matColumnDef="status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("statusNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.status_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="requested_on">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("requestedOnText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.requested_on | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="updated_by">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("updatedByText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.updated_by_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="updated_on">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("UpdatedOnText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.updated_on | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="company_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("adminCompanyNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.company_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("actionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button matTooltip="View" mat-icon-button color="primary" type="button" *ngIf="element.status == 1" (click)="viewCorporate(element.corporate_customer_id)"><mat-icon>visibility</mat-icon></button>
+            </td>
+        </ng-container>
+
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator>
+</div>

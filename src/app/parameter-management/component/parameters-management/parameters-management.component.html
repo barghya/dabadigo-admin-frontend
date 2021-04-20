@@ -1,0 +1,43 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="30">
+            <button mat-raised-button color="primary" (click)="addParameters()">{{languageService.getText("addParameter")}}</button>
+    </div>
+    <div fxFlex="70" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)" placeholder='{{languageService.getText("SearchParameterPlaceholderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">   
+        <ng-container matColumnDef="parameter_key">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("parameterKeyHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.parameter_key}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="parameter_value">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("prarameterValueHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.parameter_value}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("parameterActionHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button color="primary" (click)="EditParameter(element.admn_parameters_id)" type="button"> <mat-icon>edit</mat-icon> </button>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator>
+</div>

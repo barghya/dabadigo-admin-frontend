@@ -1,0 +1,123 @@
+<!-- <h3 class="primary-text">{{languageService.getText("updateFSQManagementHeaderText")}}</h3> -->
+
+<div class="form-container">
+    <form [formGroup]="ShiftEditForm">
+        <div fxLayout="row" fxLayoutAlign="start center" [style.width.%]="100">
+            <div fxFlex="70">
+                <mat-label class="primary-text">{{languageService.getText("updateFSQManagementHeaderText")}}</mat-label>
+            </div>
+            <!-- <div fxFlex="30" >
+                <mat-checkbox [checked]="this.Rentalpointmanager == 2" (change)="ShowHideUnchecked($event.source.checked)"checked>As Rentalpoint Manager</mat-checkbox>
+               
+            </div> -->
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("FSQNameHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("FSQNameHeader")}}'
+                            formControlName="fsq_name" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("RegionNameHeader")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <input matInput placeholder='{{languageService.getText("RegionNameHeader")}}' formControlName="region" [matAutocomplete]="activeRegion">
+                                <mat-autocomplete #activeRegion="matAutocomplete" [displayWith]="displayRegion.bind(this)">
+                                    <mat-option *ngFor="let region of fsqRegion$ | async" [value]="region.region_id"  (click)="RegionSelection(region.region_id)">
+                                        {{region.region_name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="center center" *ngIf="show">
+                    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                        <div fxFlex="25" fxLayoutAlign="end center">
+                            <mat-label>{{languageService.getText("RentalpointText")}}</mat-label>
+                        </div>
+                        <div fxFlex="75" fxLayoutAlign="center center">
+                            <mat-form-field [style.width.%]="80" appearance="outline">
+                                <input matInput placeholder='{{languageService.getText("RentalpointText")}}'formControlName="rentalpoint_id" [matAutocomplete]="activeRentalpoint">
+                                <mat-autocomplete #activeRentalpoint="matAutocomplete" [displayWith]="displayRentalPoint.bind(this)">
+                                    <mat-option *ngFor="let rentalpoint of (rentalPointList$ | async)" [value]="rentalpoint.rentalpoint_id">
+                                        {{rentalpoint.rentalpoint_name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("fsqStartTime")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [owlDateTimeTrigger]="startDate" [owlDateTime]="startDate" placeholder='Shift Start Time'
+                        formControlName="shift_start_datetime" autocomplete="off" (ngModelChange)="DateAdjustment()">
+                        <owl-date-time #startDate></owl-date-time>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("fsqEndTime")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input [min]="end_min" matInput [owlDateTimeTrigger]="EndDate" (ngModelChange)="DateAdjustment()" 
+                        [owlDateTime]="EndDate" placeholder='Shift End Time' formControlName="shift_end_datetime"
+                        autocomplete="off">
+                        <owl-date-time #EndDate></owl-date-time>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="8" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("breaktimeText")}}</mat-label>
+            </div>
+            
+            <div fxFlex="59" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="68" appearance="outline">
+                    <input  matInput placeholder='{{languageService.getText("breaktimeText")}}'
+                        formControlName="break_time"  autocomplete="off">
+                    </mat-form-field>
+            </div>
+            <div fxFlex="3" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("minutesText")}}</mat-label>
+            </div>
+        </div>
+            </div>
+        <div fxLayout="row" fxLayoutAlign="end center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                <button mat-raised-button color="accent" type="button" class="button-margin"
+                    (click)="cancelShift()">{{languageService.getText("CancelText")}}</button>
+                <button mat-raised-button color="primary" type="button" class="button-margin" (click)="saveShift()"
+                    [disabled]="ShiftEditForm.invalid">{{languageService.getText("SaveText")}}</button>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    </form>
+    </div>

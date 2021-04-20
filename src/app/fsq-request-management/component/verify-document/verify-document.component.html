@@ -1,0 +1,272 @@
+<div class="section-title primary-text">FSQ Details</div>
+<div *ngIf= "!!(verifiedDetail$ | async)">
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("firstNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).firstname}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("lastNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).lastname}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("userNametext")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+        <b>{{(verifiedDetail$  | async).username}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("phoneNoText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).contact_phone}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("emailIDText")}}
+            </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).email_id}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("DevicestatusnameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf= "(verifiedDetail$ | async).user_status == 3">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("fsqrating")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).fsq_average_rating}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("fsqGender")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).gender}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("updateOnText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).updated_on | date: 'medium'}}</b></div>
+    </div>
+</div>
+</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <form [formGroup]="EditHubLevelForm"  [style.width.%]="100">
+    <div fxFlex="0 1 calc(40% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="25" fxLayoutAlign="end center">
+            <mat-label>Hub</mat-label>  
+        </div>
+        <div fxFlex="75" fxLayoutAlign="center center">
+            <mat-form-field [style.width.%]="80" appearance="outline">
+                <input matInput placeholder='Choose hub' formControlName="hub" [matAutocomplete]="activeHub">
+                <mat-autocomplete #activeHub="matAutocomplete" [displayWith]="displayHub.bind(this)">
+                    <mat-option *ngFor="let hub of AllFsqHub$ | async" [value]="hub.hub_id">
+                        {{hub.hub_name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxFlex="0 1 calc(40% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="25" fxLayoutAlign="end center">
+            <mat-label>FSQ Level</mat-label>  
+        </div>
+        <div fxFlex="75" fxLayoutAlign="center center">
+            <mat-form-field [style.width.%]="80" appearance="outline">
+                <input matInput placeholder='Choose Level' formControlName="level" [matAutocomplete]="activeLevel">
+                <mat-autocomplete #activeLevel="matAutocomplete" [displayWith]="displayLevel.bind(this)">
+                    <mat-option *ngFor="let Level of AllfsqLevel$ | async" [value]="Level.domain_code">
+                        {{Level.domain_text}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxFlex="0 1 calc(20% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="80" fxLayoutAlign="end center">
+            <button mat-raised-button color="accent" type="button" class="button-margin"
+            (click)="Edit()" *ngIf="!EditButtonToggle">Edit</button>
+            <button mat-raised-button color="accent" type="button" class="button-margin"
+            (click)="save()" *ngIf="EditButtonToggle" [disabled]="EditHubLevelForm.invalid">Save</button>
+            <button mat-raised-button color="accent" type="button" class="button-margin"
+            (click)="UpdateCancel()" *ngIf="EditButtonToggle">Cancel</button>
+        </div>
+    </div>
+    </form>
+</div>
+<div class="section-title primary-text">{{languageService.getText("currentAddressText")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("addressLine1Text")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).currentaddressline1}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("addressLine2Text")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).currentaddressline2}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("countryNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).currentcountryname}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("stateNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+        <b>{{(verifiedDetail$  | async).currentstatename}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("tableHeaderCity")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).currentcityname}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("pintext")}}
+            </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).currentpin}}</b></div>
+    </div>
+</div>
+<div class="section-title primary-text">{{languageService.getText("permanentAddressText")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("addressLine1Text")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).permanentaddressline1}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("addressLine2Text")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).permanentaddressline2}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("countryNameText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).permanentcountryname}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("stateNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+        <b>{{(verifiedDetail$  | async).permanentstatename}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("tableHeaderCity")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+        <b>{{(verifiedDetail$  | async).permanentcityname}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("pintext")}}
+            </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)">
+            <b>{{(verifiedDetail$ | async).permanentpin}}</b></div>
+    </div>
+</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="40" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">Pan ID</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)"><a
+            href="{{(verifiedDetail$ | async).pan_url}}"><b>Link</b></a>
+        </div>
+    </div>
+</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="40" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">Adhar Card</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)"><a
+            href="{{(verifiedDetail$ | async).adhaar_voter_url}}">  <b>Link</b></a>
+        </div>
+    </div>
+</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px" *ngIf="!!(verifiedDetail$ | async) && !!(verifiedDetail$ | async).resume_url">
+    <div fxFlex="40" fxLayout="row" class="text-block ">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">Resume</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)"><a
+            href="{{(verifiedDetail$ | async).resume_url}}"> <b>Link</b></a></div>
+    </div>
+</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="40" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">Selfie</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(verifiedDetail$ | async)"><a
+            href="{{(verifiedDetail$ | async).photo_url}}">  <b>Link</b></a></div>
+    </div>
+
+</div>
+
+<div class="form-container">
+    <div fxLayout="row" [style.width.%]="100">
+
+        <div fxFlex="100" fxLayoutAlign="end center">
+            <div fxFlex="80" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" type="button" *ngIf="!!(verifiedDetail$ | async) && (verifiedDetail$ | async).user_status==4" class="button-margin"
+                    (click)="approve()" >{{languageService.getText("approveButtonText")}}</button>
+                <button mat-raised-button color="accent" type="button" *ngIf="!!(verifiedDetail$ | async) && (verifiedDetail$ | async).user_status==4" class="button-margin"
+                    (click)="cancel()">{{languageService.getText("CancelText")}}</button>
+                <button mat-raised-button color="accent" type="button" *ngIf="!!(verifiedDetail$ | async) && (verifiedDetail$ | async).user_status!=4" class="button-margin"
+                (click)="cancel()">Back</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

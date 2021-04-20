@@ -1,0 +1,66 @@
+<!-- <h3 class="primary-text"> {{ languageService.getText("EditCorporateCodeText") }}</h3> -->
+
+<div class="form-container">
+    <form [formGroup]="editCorporateCodeForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("AddCodeTypeText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="code_type" [placeholder]="languageService.getText('AddCodeTypeText')">
+                        <mat-option *ngFor="let CorporateCodeType of (codeTypes$ | async)" [value]="CorporateCodeType.domain_code">{{CorporateCodeType.domain_value}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("AddCorporateCodeText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <input matInput placeholder='{{languageService.getText("AddCorporateCodeText")}}'
+                        formControlName="corporate_code" required autocomplete="off">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("AddCodeStatusText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="status" [placeholder]="languageService.getText('AddCodeStatusText')">
+                        <mat-option *ngFor="let CorporateCodeStatus of (codeStatus$ | async)" [value]="CorporateCodeStatus.domain_code">{{CorporateCodeStatus.domain_value}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("AddPartnerNameText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="admn_partner_id" [placeholder]="languageService.getText('AddPartnerNameText')">
+                        <mat-option *ngFor="let Corporate of (corporates$ | async)" [value]="Corporate.admn_partner_id">{{Corporate.company_name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("updatedOnText")}}: </mat-label>
+                <span>{{updatedOn | date }}</span>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button [disabled]="editCorporateCodeForm.invalid" color="primary" type="button" class="button-margin"
+                        (click)="editCode()">{{languageService.getText("SaveText")}}</button>
+                    <button mat-raised-button color="accent" type="button" (click)="canceleditCode()" class="button-margin">{{languageService.getText("CancelText")}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

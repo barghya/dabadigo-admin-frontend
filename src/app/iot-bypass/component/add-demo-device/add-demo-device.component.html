@@ -1,0 +1,187 @@
+<h3 class="primary-text">{{languageService.getText("AddDemoDeviceText")}}</h3>
+
+<div class="form-container">
+    <form [formGroup]="demodeviceForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("DeviceNameText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("DeviceNameText")}}' autocomplete="off"
+                            formControlName="device_name">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("DeviceMakeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("DeviceMakeText")}}' autocomplete="off"
+                            formControlName="device_make" >
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("DeviceTagText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("DeviceTagText")}}' autocomplete="off"
+                            formControlName="device_code">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("ManufacturingdateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="startPicker" placeholder='{{languageService.getText("ManufacturingdateText")}}' formControlName="manufacturing_date" autocomplete="off" (dateChange)="StartDateChanged()">
+                            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("CommissioningdateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput [matDatepicker]="endPicker" placeholder='{{languageService.getText("CommissioningdateText")}}' formControlName="commissioning_date" autocomplete="off" [min]="minDate">
+                            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("DeviceModelText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("DeviceModelText")}}' autocomplete="off"
+                            formControlName="device_model">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("CountryOriginText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="country_of_origin"
+                            placeholder='{{languageService.getText("CountryOriginText")}}'>
+                            <mat-option *ngFor="let countriesName of (countriesName$ | async)"
+                                [value]="countriesName.countries_code">
+                                {{countriesName.countries_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("DeviceImeiText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <!-- <div [style.width.%]="10" appearance="outline"> -->
+                        <mat-form-field [style.width.%]="20" appearance="outline">
+                        <input matInput placeholder='' formControlName="device_imei_pre">
+                    </mat-form-field>
+                    <!-- </div> -->
+                    <!-- <div [style.width.%]="65"> -->
+                    <mat-form-field [style.width.%]="60" appearance="outline">
+                        <!-- <span matPrefix>000</span> -->
+                        <input matInput placeholder='' autocomplete="off"
+                            formControlName="device_imei" maxlength=13>
+                            <!-- <span matPrefix>000</span> -->
+                    </mat-form-field>
+                <!-- </div>  -->
+                </div>
+            </div>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("AddDeviceStatus")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="device_status"
+                            placeholder='{{languageService.getText("AddDeviceStatus")}}'>
+                            <mat-option *ngFor="let deviceType of (deviceStatus$ | async)"
+                                [value]="deviceType.domain_code">
+                                {{deviceType.domain_text}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div> -->
+
+        
+      
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="80">
+                <div fxFlex="20" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("OutputText")}}</mat-label>
+                </div>
+                <div fxFlex="70" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="77" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("OutputText")}}' autocomplete="off"
+                            formControlName="device_data">
+                    </mat-form-field>
+                </div>
+                
+                <div fxFlex="10" fxLayoutAlign="center center">
+                    <button mat-raised-button color="accent" type="button" class="button-margin"
+                    (click)="calculateDemoDevice()">{{languageService.getText("CalculateText")}}
+                    </button>
+                </div>
+            </div>
+        </div>
+       
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" type="button" class="button-margin"
+                    (click)="cancelDemoDevice()">{{languageService.getText("CancelText")}}</button>
+                    <!-- <button mat-raised-button color="accent" type="button" class="button-margin"
+                    (click)="calculateDemoDevice()">{{languageService.getText("CalculateText")}}</button> -->
+                    <button mat-raised-button color="primary" type="button" [disabled]="demodeviceForm.invalid"
+                    [class.blank-panel]="demodeviceForm.invalid" class="button-margin"
+                    (click)="add()">{{languageService.getText("AddText")}}</button> 
+                </div>
+            </div>
+        </div>
+
+        </form>
+</div>

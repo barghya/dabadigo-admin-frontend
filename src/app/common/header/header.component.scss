@@ -1,0 +1,13 @@
+.header-toolbar {
+    height: 40px;
+    min-height: 40px;
+    background-color: white;
+    color: black;
+    mat-toolbar-row {
+        height: 60px;
+    }
+}
+
+.title-icon{
+    margin-top: 5px;
+}

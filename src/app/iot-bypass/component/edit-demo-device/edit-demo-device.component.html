@@ -1,0 +1,55 @@
+<h3 class="primary-text">{{languageService.getText("EditDeviceHeaderText")}}</h3>
+
+<div class="form-container">
+    <form [formGroup]="demodeviceeditForm">
+       
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("DeviceImeiText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("DeviceImeiText")}}' autocomplete="off"
+                            formControlName="device_imei"  autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="80">
+                <div fxFlex="20" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("OutputText")}}</mat-label>
+                </div>
+                <div fxFlex="70" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="77" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("OutputText")}}' autocomplete="off"
+                            formControlName="device_data">
+                    </mat-form-field>
+                </div>
+                <div fxFlex="10" fxLayoutAlign="center center">
+                    <button mat-raised-button color="accent" type="button" class="button-margin"
+                    (click)="calculateDemoDevice()">{{languageService.getText("CalculateText")}}</button>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center"></div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                    <button mat-raised-button color="accent" type="button" class="button-margin"
+                    (click)="cancelDemoDevice()">{{languageService.getText("CancelText")}}</button>
+                  
+                    <button mat-raised-button color="primary" type="button" [disabled]="demodeviceeditForm.invalid"
+                    [class.blank-panel]="demodeviceeditForm.invalid" class="button-margin"
+                    (click)="edit()">{{languageService.getText("EditText")}}</button> 
+                </div>
+            </div>
+        </div>
+
+        </form>
+</div>

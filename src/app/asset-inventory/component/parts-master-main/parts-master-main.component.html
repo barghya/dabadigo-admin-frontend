@@ -1,0 +1,96 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="primary" (click)="AddPartsMaster()">{{languageService.getText("AddPartsTypeButton")}}</button>
+    </div>
+    <div fxFlex="60" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input"
+                placeholder='{{languageService.getText("SearchPartsTypesText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20">
+        <button mat-raised-button color="accent" (click)="PartsInventory()">{{languageService.getText("inventoryText")}}</button>
+    </div>
+</div>
+
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+        
+        <ng-container matColumnDef="part_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partNameText")}}</th>
+            <td mat-cell *matCellDef="let partList">
+                <span>{{partList.part_name}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="part_short_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partCodeText")}}</th>
+            <td mat-cell *matCellDef="let partList">
+                <span>{{partList.part_short_code}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="part_tag">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partTagText")}}
+            </th>
+            <td mat-cell *matCellDef="let partList">
+                <span>{{partList.part_tag}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="part_manufacturer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partManufacturerText")}}
+            </th>
+            <td mat-cell *matCellDef="let partList">
+                <span>{{partList.part_manufacturer}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="part_source_country">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("partSourceCountryNameText")}}</th>
+            <td mat-cell *matCellDef="let partList">
+                <span>{{partList.part_source_country_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="part_price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("partPriceText")}}</th>
+            <td mat-cell *matCellDef="let partList">
+                <span>{{partList.part_price | currency:"INR":"symbol" }}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="in_stock">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("inStockText")}}</th>
+            <td mat-cell *matCellDef="let partList">
+                <span>{{partList.in_stock}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="damaged">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("damagedText")}}</th>
+            <td mat-cell *matCellDef="let partList">
+                <span>{{partList.damaged}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="in_use">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("inUseText")}}</th>
+            <td mat-cell *matCellDef="let partList">
+                <span>{{partList.in_use}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let partList">
+                <button  *ngIf="(partList.part_short_code != 'Battery') && (partList.part_short_code != 'Device')"  matTooltip="Edit" mat-icon-button type="button" (click)="EditPartsMaster(partList.parts_master_id)"><mat-icon> edit </mat-icon></button>
+                <button *ngIf="(partList.part_short_code != 'Battery') && (partList.part_short_code != 'Device')"  matTooltip="Delete" mat-icon-button type="button" (click)="DeletePartsMaster(partList.parts_master_id)"><mat-icon color="warn"> delete </mat-icon></button>
+                <button *ngIf="(partList.part_short_code != 'Battery') && (partList.part_short_code != 'Device')"  matTooltip="Inventory"  mat-icon-button (click)="PartsInventory(partList.parts_master_id)"> <mat-icon> storefront </mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>

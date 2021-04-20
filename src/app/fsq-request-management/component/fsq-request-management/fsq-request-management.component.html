@@ -1,0 +1,80 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+    <button mat-raised-button color="primary" (click)="ManageShift()">{{languageService.getText("manageShift")}}</button>
+    </div>
+    <div fxFlex="80" fxLayoutGap="5px" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)" placeholder='{{languageService.getText("FsqRequestSearchPlaceHolderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">   
+        <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQfirstNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+        </ng-container>
+        <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("FSQlastNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+        </ng-container>
+        <ng-container matColumnDef="contact_phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("contactPhoneText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.contact_phone}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("emailIDText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.email_id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="hub_city">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("cityText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.hub_city}} </td>
+        </ng-container>
+        <ng-container matColumnDef="updated_on">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("createdOnHeader")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.updated_on | date: 'medium'}}  </td>
+        </ng-container>
+        <ng-container matColumnDef="hub_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("fsqHubName")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.hub_name}} </td>
+        </ng-container>
+         <ng-container matColumnDef="user_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("fsqStatusNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.user_status_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("actionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button matTooltip="Verify Document" mat-icon-button color="primary" type="button" (click)="verifyDocument(element.admn_user_id)" *ngIf="element.user_status == 4"> <mat-icon>assignment_turned_in</mat-icon> </button>
+                <button matTooltip="View" mat-icon-button color="accent" type="button" (click)="verifyDocument(element.admn_user_id)" *ngIf="element.user_status != 4"> <mat-icon>visibility</mat-icon> </button>
+                <button matTooltip="Deactivate" mat-icon-button color="warn" type="button" *ngIf="element.user_status == 3" (click)="Inactive(element.admn_user_id)"> <mat-icon>person_remove_alt_1</mat-icon> </button>
+                <button matTooltip="Activate" mat-icon-button color="primary" type="button" *ngIf="element.user_status == 2" (click)="Active(element.admn_user_id)"> <mat-icon>how_to_reg</mat-icon> </button>
+            </td>
+        </ng-container>
+
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator>
+</div>

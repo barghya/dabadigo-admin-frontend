@@ -1,0 +1,127 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="30">
+        <button mat-raised-button color="primary"
+            (click)="openAddCorporate()">{{languageService.getText("CmAddButtonText")}}</button>
+    </div>
+    <div fxFlex="50" class="search-bar-container" fxLayoutGap="5px">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)"
+                placeholder='{{languageService.getText("searchPlaceHolderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20" fxLayoutGap="5px">
+        <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+            <mat-select placeholder='{{languageService.getText("partnerTypeText")}}' (selectionChange)="partnerTypeChange($event.value)">
+                <mat-option value=0>{{languageService.getText("allPartnerType")}}</mat-option>
+                <mat-option *ngFor="let partnertype of (partnerType$ | async)" [value]="partnertype.domain_code"> {{partnertype.domain_text}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<div>
+    <table mat-table matSort [dataSource]="datasource" class="mat-elevation-z5 rounded-table">
+
+        <ng-container matColumnDef="addressline1">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("rptableHeaderAddress")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.addressline1}}, {{cmList.addressline2}}, {{cmList.pin}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="states_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("rptableHeaderState")}}</th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.states_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="country_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("rptableHeaderCountryCode")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.country_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="city_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("CityText")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.city_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="partner_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("CmTableHeaderPartnerCode")}}</th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.partner_code}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="partner_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("CmTableHeaderPartnerName")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.partner_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="contact_phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("CmTableHeaderContactPhone")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.contact_phone}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="company_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("CmTableHeaderCompanyName")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.company_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="partner_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("CmTableHeaderPartnerType")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.partner_type_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="partner_category_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("CmTableHeaderPartnerCategoryName")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.partner_category_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="updated_by">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("CmTableHeaderUpdatedBy")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <span>{{cmList.updated_by_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let cmList">
+                <button matTooltip="Edit" mat-icon-button color="accent" (click)="editCorporate(cmList.admn_partner_id)"> <mat-icon>edit</mat-icon> </button>
+                <!-- <button mat-raised-button color="warn" type="button" (click)="deleteCorporate(cmList.admn_partner_id)">{{languageService.getText("DeleteText")}}</button> -->
+                <button matTooltip="Add user" mat-icon-button color="primary" *ngIf="cmList.partner_type == 2 || cmList.partner_type == 1" (click)="addCorporateUser(cmList.admn_partner_id, cmList.partner_type)"><mat-icon>group_add</mat-icon></button>
+                <button matTooltip="View Bills" mat-icon-button color="accent" *ngIf="cmList.partner_type == 2" (click)="bills(cmList.admn_partner_id)"> <mat-icon> local_atm </mat-icon> </button>
+                <button matTooltip="View Vehicles" mat-icon-button color="accent" *ngIf="cmList.partner_type == 2" (click)="vehicle(cmList.admn_partner_id)"> <mat-icon>electric_moped</mat-icon> </button>
+                <button matTooltip="View Rental Point" mat-icon-button color="accent" *ngIf="cmList.partner_type == 2" (click)="rentalPoint(cmList.admn_partner_id)"> <mat-icon> ev_station </mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5"
+        [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>

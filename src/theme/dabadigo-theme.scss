@@ -1,0 +1,73 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$md-dabadigoprimary: (
+    50 : #f2f9e9,
+    100 : #ddf1c9,
+    200 : #c7e7a5,
+    300 : #b1dd81,
+    400 : #a0d666,
+    500 : #8fcf4b,
+    600 : #87ca44,
+    700 : #7cc33b,
+    800 : #72bd33,
+    900 : #60b223,
+    A100 : #e5f4d5,
+    A200 : #d6ffbb,
+    A400 : #b7ff88,
+    A700 : #a8ff6e,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-dabadigoaccent: (
+    50 : #e5e6e7,
+    100 : #bfc0c2,
+    200 : #959799,
+    300 : #6a6d70,
+    400 : #4a4d52,
+    500 : #2a2e33,
+    600 : #25292e,
+    700 : #1f2327,
+    800 : #191d20,
+    900 : #0f1214,
+    A100 : #5aadff,
+    A200 : #2793ff,
+    A400 : #007af3,
+    A700 : #006dda,
+    contrast: (
+        50 : #8fcf4b,
+        100 : #8fcf4b,
+        200 : #8fcf4b,
+        300 : #8fcf4b,
+        400 : #8fcf4b,
+        500 : #8fcf4b,
+        600 : #8fcf4b,
+        700 : #8fcf4b,
+        800 : #8fcf4b,
+        900 : #8fcf4b,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$dabadigo-theme-primary: mat-palette($md-dabadigoprimary);
+$dabadigo-theme-accent: mat-palette($md-dabadigoaccent);
+$dabadigo-theme: mat-light-theme($dabadigo-theme-primary, $dabadigo-theme-accent);
+@include angular-material-theme($dabadigo-theme);

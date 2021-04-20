@@ -1,0 +1,61 @@
+<div class="form-container mat-elevation-z5 rounded-div">
+    <form [formGroup]="VehicleTypeForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("vehicletypeText")}}</mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="vehicle_type"
+                        placeholder='{{languageService.getText("vehicletypeText")}}'
+                        (selectionChange)="VehicleTypeChange($event.value)">
+                        <mat-option *ngFor="let vehicle_type of (vehicleTypes$ | async)"
+                            [value]="vehicle_type.domain_code">
+                            {{vehicle_type.domain_value}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="section-title primary-text" *ngIf="!!(maintenanceSchedules$ | async) && (maintenanceSchedules$ | async).length > 0">{{languageService.getText("updateScheduleText")}}</div>
+<div class="form-container mat-elevation-z5 rounded-div" *ngIf="!!(maintenanceSchedules$ | async) && (maintenanceSchedules$ | async).length > 0">
+    <div fxLayout="row" [style.width.%]="100">
+        <div fxFlex="30" fxLayoutAlign="center center">
+            <mat-label class="primary-text">{{languageService.getText("vehicleAgeText")}}</mat-label>
+        </div>
+        <div fxFlex="35" fxLayoutAlign="center center">
+            <mat-label class="primary-text">{{languageService.getText("distanceSinceLastMaintenanceText")}}</mat-label>
+        </div>
+        <div fxFlex="35" fxLayoutAlign="center center">
+            <mat-label class="primary-text">{{languageService.getText("dyasSinceLastMaintenanceText")}}</mat-label>
+        </div>
+    </div>
+    <form [formGroup]="ScheduleFormGroup">
+        <div formArrayName="schedules" *ngFor="let schedule of schedules.controls; let i=index">
+            <div [formGroupName]="i" fxLayout="row wrap" [style.width.%]="100">
+                <div fxFlex="30" fxLayoutAlign="center center">
+                    <mat-label>{{schedules.controls[i].get('vehicle_age_name').value}}</mat-label>
+                </div>
+                <div fxFlex="35" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="90" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("distanceSinceLastMaintenanceText")}}' formControlName="distance_limit"
+                            autocomplete="off">
+                    </mat-form-field>
+                </div>
+                <div fxFlex="35" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="90" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("dyasSinceLastMaintenanceText")}}' formControlName="days_limit"
+                            autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="100" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" type="button" class="button-margin" (click)="SchedulesSubmit()"
+                    [disabled]="ScheduleFormGroup.invalid">{{languageService.getText("SaveText")}}</button>
+            </div>
+        </div>
+    </form>
+</div>

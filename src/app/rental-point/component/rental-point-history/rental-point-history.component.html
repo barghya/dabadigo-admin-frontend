@@ -1,0 +1,531 @@
+<div class="section-title primary-text">{{languageService.getText("rentalPointDetails")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px" *ngIf= "!!rentalpoint">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rpNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!rentalpoint">
+            <b>{{rentalpoint.rentalpoint_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rpCodeText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!rentalpoint">
+            <b>{{rentalpoint.rentalpoint_shortcode}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rentalPointTypeName")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!rentalpoint">
+            <b>{{rentalpoint.rentalpoint_type_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rptableHeaderAddress")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(rentalpoint_history$ | async)">
+            <b>{{(rentalpoint_history$ | async).rentalpoint_det[0].addressline1}},
+                {{(rentalpoint_history$ | async).rentalpoint_det[0].addressline2}}, {{(rentalpoint_history$ | async).rentalpoint_det[0].pin}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rptableHeaderCountryCode")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(rentalpoint_history$ | async)">
+            <b>{{(rentalpoint_history$ | async).rentalpoint_det[0].countries_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rptableHeaderState")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(rentalpoint_history$ | async)">
+            <b>{{(rentalpoint_history$ | async).rentalpoint_det[0].states_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CityText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(rentalpoint_history$ | async)">
+            <b>{{(rentalpoint_history$ | async).rentalpoint_det[0].city_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rptableHeaderCommissioningDate")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(rentalpoint_history$ | async)">
+            <b>{{(rentalpoint_history$ | async).rentalpoint_det[0].commissioning_date | date}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rptableHeaderTerminationDate")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(rentalpoint_history$ | async)">
+            <b>{{(rentalpoint_history$ | async).rentalpoint_det[0].termination_date | date}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("batteryswappingpoint")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(rentalpoint_history$ | async)">
+            <b>{{(rentalpoint_history$ | async).rentalpoint_det[0].battery_swapping_point ? "Yes" : "No"}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rentalPointManagerName")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(rentalpoint_history$ | async)">
+            <b>{{(rentalpoint_history$ | async).rentalpoint_det[0].manager_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rptableHeaderrentalTableStatusName")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!rentalpoint">
+            <b>{{rentalpoint.status_name}}</b></div>
+    </div>
+        <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+            <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+                {{languageService.getText("ownership")}}</div>
+            <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+            <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!rentalpoint">
+                <b>{{rentalpoint.ownership_code_name}}</b></div>
+        </div>
+        <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border" *ngIf="rentalpoint.ownership_code == 2">
+            <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+                {{languageService.getText("frachiseName")}}</div>
+            <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+            <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!rentalpoint">
+                <b>{{rentalpoint.franchise_name}}</b></div>
+        </div>
+</div>
+<!-- <div class="section-title primary-text" *ngIf="!!(rentalpoint_history$ | async) && !!(rentalpoint_history$ | async).rentalpoint_det[0].battery_swapping_point">{{languageService.getText("addBatteryTitleText")}}</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="mat-elevation-z5 rounded-div" *ngIf="!!(rentalpoint_history$ | async) && !!(rentalpoint_history$ | async).rentalpoint_det[0].battery_swapping_point">
+    <form [formGroup]="AddBatteryForm"  [style.width.%]="100">
+    <div fxFlex="90" fxLayoutGap="5px">
+        <div fxFlex="25" fxLayoutAlign="end center">
+            <mat-label>{{languageService.getText("VehicleBatteryText")}}</mat-label>
+        </div>
+        <div fxFlex="75" fxLayoutAlign="center center">
+            <mat-form-field [style.width.%]="80" appearance="outline">
+                <input matInput placeholder='Choose Battery' [matAutocomplete]="battery"
+                formControlName="vehicle_battery_id">
+                <mat-autocomplete #battery="matAutocomplete" [displayWith]="displayBattery.bind(this)">
+                    <span *ngFor="let battery of available_battery$  | async">
+                        <mat-option  [value]="battery.vehicle_battery_id">
+                            {{battery.battery_make}} ({{battery.battery_model}})
+                        </mat-option>
+                    </span>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxFlex="10" fxLayoutGap="5px">
+        <div fxFlex="100" fxLayoutAlign="center center">
+            <button mat-raised-button color="primary" type="button"
+            (click)="addBattery()" [disabled]="AddBatteryForm.invalid">{{languageService.getText("addButtonText")}}</button>
+        </div>
+    </div>
+    </form>
+</div> -->
+<div class="section-title primary-text"   *ngIf="!!(rentalpoint_history$ | async) && !!(rentalpoint_history$ | async).rentalpoint_det[0].battery_swapping_point">{{languageService.getText("batteryDetailText")}}</div>
+<div  *ngIf="!!(rentalpoint_history$ | async) && !!(rentalpoint_history$ | async).rentalpoint_det[0].battery_swapping_point">
+    <table mat-table matSort [dataSource]="batterydatasource" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="battery_tag">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryTagText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.battery_tag}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="battery_model">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryModelNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.battery_model}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="battery_make">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryManufacturerText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.battery_make}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="battery_manufacturing_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("BatteryManufacturingDateText")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.battery_manufacturing_date | date}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="effective_start_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("rptableHeaderCommissioningDate")}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.effective_start_date | date}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="battery_power">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryPowerText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.battery_power}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="battery_state_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("AddBatteryStatus")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.battery_state_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="stock_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("stockStatustext")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.stock_status_name}}</span>
+            </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="warn" type="button" *ngIf="element.status != 2 && element.status != 0"
+                    (click)="removeBattery(element.stock_id)">{{languageService.getText("DeleteText")}}</button>
+            </td>
+        </ng-container> -->
+        <tr mat-header-row *matHeaderRowDef="batterydisplayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: batterydisplayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="5" #batteryDetailspaginator [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>
+
+
+<div class="section-title primary-text">{{languageService.getText("VehicleInOutText")}}</div>
+
+
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="80" class="primary-text">
+    </div>
+    <div fxFlex="40">
+        <form [formGroup]="dateFilter" [style.width.%]="100">
+            <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate class="right-padding">
+                <input matInput [owlDateTimeTrigger]="filterstarttime" [owlDateTime]="filterstarttime"
+                    placeholder='Filter Start date' formControlName="filterStartTime" autocomplete="off"
+                    (ngModelChange)="filterDate()" (dateChange)="filterDate()">
+                <owl-date-time #filterstarttime></owl-date-time>
+            </mat-form-field>
+            <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+                <input matInput [owlDateTimeTrigger]="filterendtime" [owlDateTime]="filterendtime"
+                    placeholder='Filter End Date' formControlName="filterEndTime" autocomplete="off"
+                    (ngModelChange)="filterDate()">
+                <owl-date-time #filterendtime></owl-date-time>
+            </mat-form-field>
+        </form>
+    </div>
+    
+</div>
+
+<div>
+    <table mat-table matSort [dataSource]="vehicleinoutdatasource" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="trip_ref_no">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("tripreferencenumberText")}}</th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.trip_ref_no}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="vehicle_idnumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("vehiclenumber")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.vehicle_idnumber}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="vehicle_in_out">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("vehicleinoutText")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.vehicle_in_out}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="model">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("ModelText")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.model}}</span>
+            </td>
+        </ng-container>
+       
+        <ng-container matColumnDef="in_out_time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("inouttimeText")}}</th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.in_out_time | date : 'medium'}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="franchise_shared_amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("FranchisesharedAmount")}}</th>
+            <td mat-cell *matCellDef="let rpList">
+                 <span>{{rpList.franchise_shared_amount | currency:'INR':'symbol' }}</span> 
+             </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="vehicle_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("VehicleTypeNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.vehicle_type_name}}</span>
+            </td>
+        </ng-container>
+       
+        
+        
+        <tr mat-header-row *matHeaderRowDef="VehicleInOutdisplayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: VehicleInOutdisplayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="5" #vehicleInOutpaginator [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>
+
+
+
+
+<div class="section-title primary-text">{{languageService.getText("rpHistoryText")}}</div>
+<!-- <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="35" class="primary-text">
+        {{languageService.getText("rpHistoryText")}}
+        <h3 class="primary-text">{{languageService.getText("AddAssetHeaderText")}}</h3>
+    </div>
+    <div fxFlex="55" class="search-bar-container">
+    </div>
+</div> -->
+<!-- <div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rpNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center">
+            <b>{{rentalpoint.rentalpoint_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rpCodeText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center">
+            <b>{{rentalpoint.rentalpoint_shortcode}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rentalPointTypeName")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center">
+            <b>{{rentalpoint.rentalpoint_type_name}}</b></div>
+    </div>
+</div> -->
+<!-- <div>
+    <div class="main-content" fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center"
+        style="padding-left: 2%; padding-top: 2%;">
+        <div fxFlex="100%" style="font-size:85%;">
+            <span fxFlex='50' [style.fontSize.px]="20">{{languageService.getText("rpNameText")}}</span>
+            <span fxFlex='2' [style.fontSize.px]="20">:</span>
+            <span fxFlex='48' [style.fontSize.px]="20"><b>{{rentalpoint.rentalpoint_name}}</b></span>
+        </div>
+    </div>
+    <div class="main-content" fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center"
+        style="padding-left: 2%; padding-top: 2%;">
+        <div fxFlex="100%" style="font-size:85%;">
+            <span fxFlex='50' [style.fontSize.px]="20">{{languageService.getText("rpCodeText")}}</span>
+            <span fxFlex='2' [style.fontSize.px]="20">:</span>
+            <span fxFlex='48' [style.fontSize.px]="20"><b>{{rentalpoint.rentalpoint_shortcode}}</b></span>
+        </div>
+    </div>
+</div> -->
+<!-- <br> -->
+<!-- <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="35">
+    <button mat-raised-button color="primary" (click)="openBottomSheet()">{{languageService.getText("rpAddButtonText")}}</button>
+    <span>{{languageService.getText("rpNameText")}} {{rentalpoint.rentalpoint_name}}</span><br>
+    <span>{{languageService.getText("rpCodeText")}} {{rentalpoint.rentalpoint_shortcode}}</span>
+    </div>
+    <div fxFlex="65" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)" placeholder='{{languageService.getText("rpHistoryPlaceholderText")}}'  autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+</div> -->
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="35" class="primary-text">
+    </div>
+    <!-- <div fxFlex="55" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)"
+                placeholder='{{languageService.getText("rpHistoryPlaceholderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div> -->
+</div>
+<div>
+    <table mat-table matSort [dataSource]="rentalpointdatasource" class="mat-elevation-z5 rounded-table">
+
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("rptableHeaderAddress")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.addressline1}}, {{rpList.addressline2}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="countries_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("rptableHeaderCountryCode")}}</th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.countries_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="states_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("rptableHeaderState")}}</th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.states_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="city_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tableHeaderCity")}}</th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.city_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="pin">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("pintext")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.pin}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="commissioning_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("rptableHeaderCommissioningDate")}}</th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.commissioning_date | date}}</span>
+            </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="rentalpoint_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("rptaleHeaderType")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.rentalpoint_type_name}}</span>
+            </td>
+        </ng-container> -->
+        <ng-container matColumnDef="max_capacity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("rptableHeaderMaximumCapacity")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.max_capacity}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="available_capacity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("rptableHeaderAvailableCapacity")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <span>{{rpList.available_capacity}}</span>
+            </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("ActionText")}}
+            </th>
+            <td mat-cell *matCellDef="let rpList">
+                <button mat-raised-button color="accent" type="button" (click)="editRentalPoint(rpList.rentalpoint_id)">{{languageService.getText("EditText")}}</button>
+                <button mat-raised-button color="warn" type="button" (click)="deleteRentalPoint(rpList.rentalpoint_id)">{{languageService.getText("DeleteText")}}</button>
+                <button mat-raised-button color="accent" type="button" (click)="rentalPointHistory(rpList.rentalpoint_id)">{{languageService.getText("historyText")}}</button>
+                <button *ngIf="rpList.rentalpoint_type == 2" mat-raised-button color="warn" type="button" (click)="moveRentalPoint(rpList.rentalpoint_id)">{{languageService.getText("moveText")}}</button>
+            </td>
+        </ng-container> -->
+        <tr mat-header-row *matHeaderRowDef="historydisplayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: historydisplayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="5" #rentalPointHistorypaginator [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>
+
+<div class="section-title primary-text">{{languageService.getText("currentParkedVehicleDetails")}}</div>
+<div class="section-title">
+    <span class="accent-text"><b>{{languageService.getText("currentParkedVehicle")}}: </b></span>
+    <span *ngIf="!!rentalpoint"><b>{{rentalpoint.parked_vehicle_count}}</b></span>
+</div>
+<div class="section-title">
+    <span class="accent-text"><b>{{languageService.getText("availableSlot")}}: </b></span>
+    <span *ngIf="!!rentalpoint"><b>{{rentalpoint.available_slot}}</b></span>
+</div>
+<table mat-table matSort [dataSource]="rentalPointParkedVehicleDetailsdatasource" class="mat-elevation-z5 rounded-table" #txnSort="matSort">
+    <ng-container matColumnDef="vehicle_idnumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("vehiclenumber")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.vehicle_idnumber}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="vehicle_type_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("vehicleTypeName")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.vehicle_type_name}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="manufacturer">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("manufacturer")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.manufacturer}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("model")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.model}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="QRCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("qrcode")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.QRCode}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="manufacture_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("manufacturerDate")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.manufacture_date | date}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="warranty_expiry">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("warrantyExpiry")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.warranty_expiry | date}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="warranty_terms">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("warrantyTerms")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.warranty_terms}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="vehicle_status_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("vehicleStatusName")}}</th>
+        <td mat-cell *matCellDef="let element">
+            <span>{{element.vehicle_status_name}}</span>
+        </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="parkedVehicledisplayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: parkedVehicledisplayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="5" #rentalPointParkedVehicleDetailspaginator [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5" [showFirstLastButtons]=true>
+</mat-paginator>
+<div fxLayout="row" fxLayoutAlign="end center" class="button-margin">
+    <button mat-raised-button color="accent" type="button"
+        (click)="cancelHistory()">{{languageService.getText("CancelText")}}</button>
+</div>

@@ -1,0 +1,70 @@
+<div class="form-container mat-elevation-z5 rounded-div">
+    <form [formGroup]="ProblemNameForm">
+        <div fxflex="25" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("problemNameText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="problem_name" placeholder='{{languageService.getText("problemNameText")}}'
+                        (selectionChange)="ProblemNameChange($event.value)">
+                        <mat-option *ngFor="let problems of (Problemname$ | async)" [value]="problems.problem_code"> {{problems.display_desc}} - {{problems.severity_name}} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+
+
+    <table mat-table matSort [dataSource]="dataSource" [style.marginTop.px]="10" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="part_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("partNameTableHeadertText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.part_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("ActionText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Delete" mat-icon-button color="warn" (click)="DeletePart(element.parts_master_id)"> <mat-icon> delete </mat-icon> </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+        <div fxFlex="100" fxLayoutAlign="end center">
+            <!-- <button mat-raised-button color="accent" type="button" class="button-margin">
+                {{languageService.getText("CancelText")}}</button> -->
+            <button mat-raised-button color="primary" type="button" class="button-margin" 
+            (click)="Save()">{{languageService.getText("SaveText")}}</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="ProblemNameForm.controls.problem_name.value > 0" class="section-title primary-text"> 
+    {{languageService.getText("addPartText")}} </div>
+
+<div *ngIf="ProblemNameForm.controls.problem_name.value > 0" class="form-container mat-elevation-z5 rounded-div">
+    <form [formGroup]="AddPartsForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("addPartText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="parts_details" placeholder='{{languageService.getText("selectPartPlaceHolderText")}}'>
+                        <mat-option *ngFor="let part of (filteredPartsList$ | async)" [value]="part.parts_master_id"> {{part.part_name}}  </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="100" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" type="button" class="button-margin" [disabled]="AddPartsForm.invalid" (click)="AddPart()"> {{languageService.getText("AddText")}} </button>
+            </div>
+        </div>
+    </form>
+</div>

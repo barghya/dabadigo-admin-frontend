@@ -1,0 +1,8 @@
+<app-search-select 
+[dataset$]="fsqList$"
+[displayedColumns]="displayedColumns"
+[headers]="headers"
+(search)="Search($event)"
+(cancel)="Cancel()"
+(selected)="FsqSelected($event)"
+></app-search-select>

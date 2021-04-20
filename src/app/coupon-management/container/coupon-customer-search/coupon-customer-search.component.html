@@ -1,0 +1,8 @@
+<app-search-select 
+[dataset$]="customers$"
+[displayedColumns]="displayedColumns"
+[headers]="headers"
+(search)="Search($event)"
+(cancel)="Cancel()"
+(selected)="CustomerSelected($event)"
+></app-search-select>

@@ -1,0 +1,24 @@
+<div fxFlex="100" fxLayout="column">
+    <div fxFlex="100" fxLayoutAlign="start center" class="accent-text sectionwise-margin">
+        <b>{{data.title}}</b>
+    </div>
+
+    <div fxFlex="100" fxLayoutAlign="start center" class="sectionwise-margin"> {{data.message}} </div>
+
+    <!-- <div fxFlex="40" fxLayoutAlign="end center">
+        <button mat-raised-button padding-right color="warn" (click)="onDismiss()"> No </button>
+        <button mat-raised-button color="primary" (click)="onConfirm()"> Yes </button>
+    </div> -->
+
+    <div fxLayout="row" [style.width.%]="100">
+        <div fxFlex="25" fxLayoutAlign="end center"></div>
+        <div fxFlex="75" fxLayoutAlign="center center">
+            <div fxFlex="60" fxLayoutAlign="end center">
+                <button mat-raised-button padding-right color="warn" (click)="onDismiss()"> No </button>
+            </div>
+            <div fxFlex="20" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" (click)="onConfirm()"> Yes </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,191 @@
+<h3 class="primary-text">{{languageService.getText("editBatteryTitleText")}}</h3>
+
+<div class="form-container">
+    <form [formGroup]="editBatteryForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("BatteryTagText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center" [formGroup]="editBatteryForm">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("BatteryTagText")}}'
+                            formControlName="battery_tag" required autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("AddManufacturerText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center" [formGroup]="editBatteryForm">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("AddManufacturerText")}}'
+                            formControlName="battery_make" required autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("AddBatteryModelText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("AddBatteryModelText")}}'
+                            formControlName="battery_model" required autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("AddCountryofOriginText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="country_of_origin"
+                            [placeholder]="languageService.getText('AddCountryofOriginText')">
+                            <mat-option *ngFor="let countries of (countryName$ | async)"
+                                [value]="countries.countries_id">{{countries.countries_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("cityNameHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="city"
+                            placeholder='{{languageService.getText("cityNameHeader")}}'>
+                            <mat-option *ngFor="let element of (cities$ | async)"
+                                [value]="element.city_id">
+                                {{element.city_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("regionText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="region"
+                            placeholder='{{languageService.getText("regionText")}}'>
+                            <mat-option *ngFor="let element of ( availableRegions$ | async)"
+                                [value]="element.region_id">
+                                {{element.region_name}} - {{element.region_code}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("BatteryManufacturingDateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("BatteryManufacturingDateText")}}'
+                            formControlName="battery_manufacturing_date" required autocomplete="off"
+                            [matDatepicker]="picker" (dateChange)="StartDateChange()">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("BatteryCommissioningDateText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("BatteryCommissioningDateText")}}'
+                            formControlName="commissioning_date" autocomplete="off" [matDatepicker]="pickerTo"
+                            [min]="minDate">
+                        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerTo></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("WarrantyPeriodText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("WarrantyPeriodText")}}'
+                            formControlName="warranty_period" required autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("AddBatteryWattageText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("AddBatteryWattageText")}}'
+                            formControlName="battery_power" required autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("AddBatteryStatus")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="battery_status"
+                            [placeholder]="languageService.getText('AddBatteryStatus')">
+                            <mat-option *ngFor="let BatteryState of (BatteryState$ | async)"
+                                [value]="BatteryState.domain_code">{{BatteryState.domain_value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="row" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label>{{languageService.getText("updatedOnText")}}: </mat-label>
+                <span>{{updatedOn | date }}</span>
+            </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <div fxFlex="80" fxLayoutAlign="end center">
+                        <button mat-raised-button color="accent" type="button" class="button-margin"
+                            (click)="cancelSaveBattery()">{{languageService.getText("CancelText")}}</button>
+                        <button mat-raised-button [disabled]="editBatteryForm.invalid" color="primary" type="button" class="button-margin"
+                            (click)="saveBattery()">{{languageService.getText("SaveText")}}</button>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>

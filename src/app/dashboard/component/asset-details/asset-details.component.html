@@ -1,0 +1,751 @@
+<div class="section-title primary-text">{{languageService.getText("VehicledetailsText")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("VehicleidText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).vehicle_idnumber}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("ChassisNumberText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).chassis_number}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("ManufacturerText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).manufacturer}}</b></div>
+    </div> 
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("insurance_no")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).insurance_no}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row"
+        class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("insurance_career")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).insurance_career}}</b></div>
+    </div>
+        <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("insurance_upto")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).insurance_upto | date: 'medium'}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("ownershipTypeName")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).ownership_type_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("ModelText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).model}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("VehicleTypeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).vehicle_type_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("ManufacturedateText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).manufacture_date | date}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("WarrantyExpiryText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).warranty_expiry | date}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rptableHeaderCountryCode")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).countries_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rptableHeaderState")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).states_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("rptableHeaderCity")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).city_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("regionText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).region_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("CurrentstatusText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).vehicle_current_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("VehicleStatusText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).vehicle_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">
+            {{languageService.getText("VehicleWarrantyTermsText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).warranty_terms}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)"
+        *ngIf="!!(assetDetail$ | async) && (assetDetail$ | async).vehicle_current_status == 3" fxLayout="row"
+        class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("RentalpointText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).rentalpoint_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)"
+        *ngIf="!!(assetDetail$ | async) && (assetDetail$ | async).vehicle_current_status == 3" fxLayout="row"
+        class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("LocktimeText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).locked_at | date}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)"
+        *ngIf="!!(assetDetail$ | async) && !!(assetDetail$ | async).franchise_name" fxLayout="row"
+        class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("franchise_name")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).franchise_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)"
+        *ngIf="!!(assetDetail$ | async)" fxLayout="row"
+        class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("deployedOnText")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).deployed_on | date: 'medium'}}</b></div>
+    </div>
+</div>
+<div class="section-title primary-text">{{languageService.getText("VehicledevicesText")}}</div>
+<table mat-table *ngIf="!!(assetDetail$ | async)" [dataSource]="(assetDetail$ | async).devicedetails"
+    class="mat-elevation-z5 rounded-table">
+
+    <ng-container matColumnDef="device_make">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("DeviceMakeText")}}
+        </th>
+        <td mat-cell *matCellDef="let aiDevice"> {{aiDevice.device_make}} </td>
+    </ng-container>
+    <ng-container matColumnDef="device_model">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("DeviceModelText")}}
+        </th>
+        <td mat-cell *matCellDef="let aiDevice"> {{aiDevice.device_model_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="device_code">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("DeviceTagText")}}
+        </th>
+        <td mat-cell *matCellDef="let aiDevice"> {{aiDevice.device_code}} </td>
+    </ng-container>
+    <ng-container matColumnDef="country_of_origin">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("CountryOriginText")}}
+        </th>
+        <td mat-cell *matCellDef="let aiDevice"> {{aiDevice.country_of_origin_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="device_imei">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("DeviceImeiText")}}
+        </th>
+        <td mat-cell *matCellDef="let aiDevice"> {{aiDevice.device_imei}} </td>
+    </ng-container>
+    <ng-container matColumnDef="device_name">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("DeviceNameText")}}
+        </th>
+        <td mat-cell *matCellDef="let aiDevice"> {{aiDevice.device_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="manufacturing_date">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("ManufacturingdateText")}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.manufacturing_date | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="commissioning_date">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("CommissioningdateText")}}
+        </th>
+        <td mat-cell *matCellDef="let aiDevice"> {{aiDevice.commissioning_date | date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="device_status_name">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("DevicestatusnameText")}}
+        </th>
+        <td mat-cell *matCellDef="let aiDevice"> {{aiDevice.device_status_name}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="deviceDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: deviceDisplayedColumns;"></tr>
+</table>
+<div class="section-title primary-text">{{languageService.getText("VehiclebatteryText")}}</div>
+<table mat-table *ngIf="!!(assetDetail$ | async)" [dataSource]="(assetDetail$ | async).batterydetails"
+    class="mat-elevation-z5 rounded-table">
+
+    <ng-container matColumnDef="battery_tag">
+        <th mat-header-cell *matHeaderCellDef> {{languageService.getText("BatteryTagText")}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_tag}} </td>
+    </ng-container>
+    <ng-container matColumnDef="battery_make">
+        <th mat-header-cell *matHeaderCellDef> {{languageService.getText("BatteryManufacturerText")}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_make}} </td>
+    </ng-container>
+    <ng-container matColumnDef="battery_model">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("BatteryModelNameText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_model}} </td>
+    </ng-container>
+    <ng-container matColumnDef="country_of_origin_name">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("BatteryOriginBatteryText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.country_of_origin_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="battery_manufacturing_date">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("BatteryManufacturingDateText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_manufacturing_date | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="battery_power">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("BatteryPowerText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_power}} </td>
+    </ng-container>
+    <ng-container matColumnDef="warranty_period">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("WarrantyPeriodText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.warranty_period}} </td>
+    </ng-container>
+    <ng-container matColumnDef="battery_state">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("BatteryStatusText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_status_name}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="batteryDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: batteryDisplayedColumns;"></tr>
+</table>
+<div>
+    <!-- <div class="section-title primary-text">{{languageService.getText("vehicleTripInfo")}}</div> -->
+    <div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+        <div fxFlex="20" class="section-title primary-text">
+                {{languageService.getText("vehicleTripInfo")}}
+        </div>
+        <div fxFlex="80" class="search-bar-container">
+            <form [formGroup]="dateFilter" [style.width.%]="100">
+                <mat-form-field appearance="outline" novalidate>
+                    <input matInput (keyup)="tripFilter($event.target.value)" class="search-input"
+                        placeholder='{{languageService.getText("searchTripDetails")}}' autocomplete="off">
+                    <mat-icon matPrefix color="primary">search</mat-icon>
+                </mat-form-field>
+                <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate class="right-padding">
+                    <input matInput [owlDateTimeTrigger]="filterstarttime" [owlDateTime]="filterstarttime"
+                        placeholder='Filter Start date' formControlName="filterStartTime"  autocomplete="off" (ngModelChange)="filterDate()"
+                        (dateChange)="filterDate()">
+                    <owl-date-time #filterstarttime></owl-date-time>
+                </mat-form-field>
+                <mat-form-field fxFlex="calc(20% - 5px)" appearance="outline" novalidate>
+                    <input matInput [min]="end_min" [owlDateTimeTrigger]="filterendtime" [owlDateTime]="filterendtime" placeholder='Filter End Date'
+                        formControlName="filterEndTime" autocomplete="off" (ngModelChange)="filterDate()">
+                    <owl-date-time #filterendtime></owl-date-time>
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
+    <div class="section-title" *ngIf="!!(assetDetail$ | async)">
+            <span class="accent-text"><b>{{languageService.getText("totalDistanceTravelled")}}: </b></span>
+            <span><b>{{(assetDetail$ | async).vehicle_distance_travelled | number:"1.2-2"}}
+                <span *ngIf="!!(assetDetail$ | async)">{{languageService.getText("kmText")}}</span>
+            </b></span>
+        </div>
+    <table mat-table matSort #tripInfosort="matSort" [dataSource]="trip_info" class="mat-elevation-z5 rounded-table">
+
+        <ng-container matColumnDef="trip_ref_no">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tripRefNo")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.trip_ref_no}} </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="vehicle_idnumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("vehicleNumber")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.vehicle_idnumber}} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="distance_travelled">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tripDistanceTravelled")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.distance_travelled | number:"1.2-2"}}
+                <span *ngIf="!!element.distance_travelled">{{languageService.getText("kmText")}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="total_trip_time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("totalTripTime")}} </th>
+            <td mat-cell *matCellDef="let element"><span>{{element.total_trip_time | dayHourMinute}}</span></td>
+        </ng-container>
+        <ng-container matColumnDef="paid_amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("paidAmount")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.paid_amount | currency:'INR':'symbol' }} </td>
+        </ng-container>
+        <ng-container matColumnDef="franchise_shared_amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("FranchisesharedAmount")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.franchise_shared_amount | currency:'INR':'symbol' }} </td>
+        </ng-container>
+        <ng-container matColumnDef="coupon_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("couponcode")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.coupon_code}} </td>
+        </ng-container>
+        <ng-container matColumnDef="corporate_enabled"  *ngIf="(userType$ | async)!=3">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("corporateEnabled")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.corporate_enabled ? "Yes" : "No"}} </td>
+        </ng-container>
+        <ng-container matColumnDef="trip_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tripStatusNametext")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.trip_status_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="start_location_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tripStartLocationName")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.start_location_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="end_location_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("TripEndLoactionName")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.end_location_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="customer_name"  *ngIf="(userType$ | async)!=3">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("customerName")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="riding_time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("ridingTime")}}</th>
+            <td mat-cell *matCellDef="let element"> <span>{{element.riding_time | dayHourMinute}} </span></td>
+        </ng-container>
+        <ng-container matColumnDef="pause_time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("pauseTime")}}</th>
+            <td mat-cell *matCellDef="let element"> <span>{{element.pause_time | dayHourMinute}}</span></td>
+        </ng-container>
+        <ng-container matColumnDef="booking_time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("bookingTime")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.booking_time | date:"dd/MM/yyyy HH:mm:ss"}} </td>
+        </ng-container>
+        <ng-container matColumnDef="ontrip_start_time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tripStartTime")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.ontrip_start_time | date:"dd/MM/yyyy HH:mm:ss"}} </td>
+        </ng-container>
+        <ng-container matColumnDef="end_time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("tripEndTime")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.end_time | date:"dd/MM/yyyy HH:mm:ss"}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+            <td mat-cell *matCellDef="let element"> 
+                <button matTooltip="View" mat-icon-button color="accent" (click)="view(element.customer_trip_association_id)"> <mat-icon>visibility</mat-icon> </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="tripInfoDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: tripInfoDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="5" #tripInfopaginator [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5"
+        [showFirstLastButtons]=true>
+    </mat-paginator>
+</div>
+<!-- <div class="section-title primary-text">{{languageService.getText("incidentHistory")}}</div> -->
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20" class="section-title primary-text">
+            {{languageService.getText("incidentHistory")}}
+    </div>
+    <div fxFlex="60" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="incidenthistoryFilter($event.target.value)" class="search-input"
+                placeholder='{{languageService.getText("searchIncidentHistory")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20">
+    </div>
+</div>
+<div>
+<table mat-table matSort #incidentHistorysort="matSort" [dataSource]="work_item_details" class="mat-elevation-z5 rounded-table">
+
+    <ng-container matColumnDef="raised_by_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("raisedByName")}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.raised_by_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="reported_timestamp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("reportedTime")}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.reported_timestamp | date:"dd/MM/yyyy HH:mm:ss"}} </td>
+    </ng-container>
+    <ng-container matColumnDef="problem_description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("problemDescription")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.problem_description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="vehicle_currentstate_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("vehicleCurrentState")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.vehicle_currentstate_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="work_item_ref_no">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("workItemRefNo")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.work_item_ref_no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="assigned_to_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("assignedTo")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.assigned_to_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="assigned_on">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("assignedOn")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.assigned_on | date:"dd/MM/yyyy HH:mm:ss"}} </td>
+    </ng-container>
+    <ng-container matColumnDef="reported_location_longitude">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("reportedLocationLongitude")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.reported_location_longitude}} </td>
+    </ng-container>
+    <ng-container matColumnDef="reported_location_latitude">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("reportedLocationLatitude")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.reported_location_latitude}} </td>
+    </ng-container>
+    <ng-container matColumnDef="queue_type_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("queueType")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.queue_type_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action_type_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("actionType")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.action_type_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="problem_status_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("problemStatus")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.problem_status_name}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="incidentHistoryDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: incidentHistoryDisplayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="5" #incidentDetailspaginator [pageSizeOptions]="[5, 10, 20, 50]" class="mat-elevation-z5"
+    [showFirstLastButtons]=true>
+</mat-paginator>
+</div>
+<!-- <div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("raisedByName")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.raised_by_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("reportedTime")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.reported_timestamp | date : 'medium'}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("tripuuid")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.trip_uuid}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("problemDescription")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.problem_description}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("vehicleCurrentState")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.vehicle_currentstate_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("workItemRefNo")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.work_item_ref_no}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("assignedTo")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.assigned_to_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("assignedOn")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.assigned_on | date : 'medium'}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("reportedLocationLongitude")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.reported_location_longitude}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("reportedLocationLatitude")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.reported_location_latitude}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("queueType")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.queue_type_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("actionType")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.action_type_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("problemStatus")}}
+        </div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(assetDetail$ | async)">
+            <b>{{(assetDetail$ | async).work_item_details.problem_status_name}}</b></div>
+    </div>
+</div> -->
+<!-- <div class="section-title primary-text">{{languageService.getText("VehiclepartsText")}}</div>
+<table mat-table matSort *ngIf="!!(assetDetail$ | async)" [dataSource]="(assetDetail$ | async).partsdetails" class="mat-elevation-z5 rounded-table">
+        
+    <ng-container matColumnDef="part_name">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("partNameText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.part_name}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="part_code">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("partCodeText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.part_code}}</span>
+        </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="part_manufacturer">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("partManufacturerText")}}
+        </th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.part_manufacturer}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="part_source_country">
+        <th mat-header-cell *matHeaderCellDef>
+            {{languageService.getText("partSourceCountryNameText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.part_source_country_name}}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="part_price">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("partPriceText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.part_price | currency:'INR':'symbol' }}</span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="vehicle_part_state">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("vehiclePartStateText")}}
+        </th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.status_name}}</span>
+        </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="partsDisplayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: partsDisplayedColumns;"></tr>
+</table> -->
+<div class="section-title primary-text">{{languageService.getText("VehicleproblemsText")}}</div>
+<table mat-table matSort *ngIf="!!(assetDetail$ | async)" [dataSource]="(assetDetail$ | async).vehicle_problem_body"
+    class="mat-elevation-z5 rounded-table">
+
+    <ng-container matColumnDef="problem_code">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("problemCodeText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.problem_code}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="display_desc">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("problemAreaText")}}</th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.display_desc}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="severity">
+        <th mat-header-cell *matHeaderCellDef>{{languageService.getText("problemSeverityText")}}
+        </th>
+        <td mat-cell *matCellDef="let partList">
+            <span>{{partList.severity_name}}</span>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="problemsDisplayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: problemsDisplayedColumns;"></tr>
+</table>
+<div class="section-title primary-text">{{languageService.getText("LastlocationsText")}}</div>
+<mat-card class="mapcard">
+    <mat-card-content [style.height.%]="100">
+        <aol-map #map [width]="'100%'" [height]="'100%'">
+            <aol-interaction-default></aol-interaction-default>
+            <aol-control-defaults></aol-control-defaults>
+            <aol-view [zoom]="zoom">
+                <aol-coordinate [x]="88.4386" [y]="22.6250" [srid]="'EPSG:4326'"></aol-coordinate>
+            </aol-view>
+            <aol-layer-tile>
+                <aol-source-osm></aol-source-osm>
+            </aol-layer-tile>
+            <aol-layer-vector>
+                <aol-source-vector #pastMarkersSource [wrapX]="false">
+                    <!-- <aol-style>
+                        <aol-style-stroke [color]="'green'" [width]="1"></aol-style-stroke>
+                        <aol-style-fill [color]="'rgba(0, 255, 0, 0.05)'"></aol-style-fill>
+                    </aol-style> -->
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector #markersLayer>
+                <aol-source-vector #availableMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/AtRentalPoint.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #onTripMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/OnTrip.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #accidentMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/Accident_op1.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #geofenceMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/GeoFenceViolation.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #problemLowMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/Problem_Low.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #problemMediumMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/Problem_Medium.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+            <aol-layer-vector>
+                <aol-source-vector #problemHighMarkersSource [wrapX]="false">
+                    <aol-style>
+                        <aol-style-icon [anchor]="[0.5, 0.9]" [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                            [opacity]=1 [src]="'./assets/Problem_High.svg'">
+                        </aol-style-icon>
+                    </aol-style>
+                </aol-source-vector>
+            </aol-layer-vector>
+        </aol-map>
+    </mat-card-content>
+</mat-card>

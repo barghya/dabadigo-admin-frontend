@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="92" height="33" viewBox="0 0 92 33">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e13f3f;
+      }
+
+      .cls-2, .cls-7 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 1.5px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #f6f6f6;
+        stroke: #e3e3e3;
+      }
+
+      .cls-5 {
+        fill: #404040;
+        font-size: 14px;
+        font-family: Poppins-Regular, Poppins;
+      }
+
+      .cls-6 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Delete_Hover" transform="translate(-280 -422)">
+    <path id="Path_1385" data-name="Path 1385" class="cls-1" d="M7,0H84a7,7,0,0,1,7,7V24a7,7,0,0,1-7,7H7a7,7,0,0,1-7-7V7A7,7,0,0,1,7,0Z" transform="translate(281 423)"/>
+    <g id="Group_1096" data-name="Group 1096" transform="translate(349 428)">
+      <path id="Path_1265" data-name="Path 1265" class="cls-2" d="M454.194,305.406h14.745c.013.27.035.518.036.765q0,6.811,0,13.623a2.515,2.515,0,0,1-2.849,2.829q-4.579,0-9.159,0a2.489,2.489,0,0,1-2.773-2.749q-.005-6.888,0-13.776Z" transform="translate(-453.457 -301.748)"/>
+      <path id="Path_1266" data-name="Path 1266" class="cls-2" d="M449.413,284.8V283.41a.511.511,0,0,1,.506-.511c.917-.007,1.815-.027,2.71.017a1.431,1.431,0,0,0,1.391-.607,1.514,1.514,0,0,1,1.445-.656c1.431.051,2.865.039,4.3,0a1.244,1.244,0,0,1,1.2.542,1.647,1.647,0,0,0,1.64.715c.847-.045,1.7-.024,2.566-.016a.511.511,0,0,1,.506.511V284.8a.511.511,0,0,1-.511.511H449.924A.511.511,0,0,1,449.413,284.8Z" transform="translate(-449.413 -281.651)"/>
+      <rect id="Rectangle_1620" data-name="Rectangle 1620" class="cls-3" width="2.049" height="12.518" rx="1.024" transform="translate(4.876 18.527) rotate(-180)"/>
+      <rect id="Rectangle_1621" data-name="Rectangle 1621" class="cls-3" width="2.049" height="12.518" rx="1.024" transform="translate(9.237 18.527) rotate(180)"/>
+      <rect id="Rectangle_1622" data-name="Rectangle 1622" class="cls-3" width="2.049" height="12.518" rx="1.024" transform="translate(13.597 18.527) rotate(-180)"/>
+    </g>
+    <g id="Rectangle_1623" data-name="Rectangle 1623" class="cls-4" transform="translate(281 423)">
+      <rect class="cls-6" width="62" height="31" rx="7"/>
+      <rect class="cls-7" x="-0.5" y="-0.5" width="63" height="32" rx="7.5"/>
+    </g>
+    <text id="Delete" class="cls-5" transform="translate(288 442)"><tspan x="0" y="0">Delete</tspan></text>
+  </g>
+</svg>

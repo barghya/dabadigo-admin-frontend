@@ -1,0 +1,58 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="95"  class="section-title primary-text">Return Vehicle</div>
+    <div fxFlex="5">
+        <button mat-icon-button type="button" (click)="CancelOperation()" color="primary">
+            <mat-icon>clear</mat-icon>
+          </button>
+    </div>
+</div>
+<div class="form-container">
+    <form [formGroup]="vehicleReturnForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("RegionNameHeader")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("RegionNameHeader")}}'
+                            formControlName="region" [matAutocomplete]="activeRegion">
+                        <mat-autocomplete #activeRegion="matAutocomplete" [displayWith]="displayRegion.bind(this)">
+                            <mat-option *ngFor="let region of Region$ | async" [value]="region.region_id"   (click)="getRP(region.region_id)">
+                                {{region.region_name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("rpText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <input matInput placeholder='{{languageService.getText("addRentalPointNameText")}}'
+                            formControlName="rental_point" [matAutocomplete]="activeRp">
+                        <mat-autocomplete #activeRp="matAutocomplete" [displayWith]="displayRP.bind(this)">
+                            <mat-option *ngFor="let rp of RentalPoint$ | async" [value]="rp.rentalpoint_id">
+                                {{rp.rentalpoint_name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="80" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" type="button" class="button-margin" (click)="returnVehicle()"
+                    [disabled]="vehicleReturnForm.invalid">{{languageService.getText("submitText")}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

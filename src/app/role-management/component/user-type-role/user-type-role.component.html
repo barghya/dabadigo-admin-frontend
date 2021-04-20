@@ -1,0 +1,78 @@
+<div class="form-container mat-elevation-z5 rounded-div">
+    <form [formGroup]="UserTypeForm">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <mat-label>{{languageService.getText("userTypeText")}}</mat-label>
+                </div>
+                <div fxFlex="75" fxLayoutAlign="center center">
+                    <mat-form-field [style.width.%]="80" appearance="outline">
+                        <mat-select formControlName="user_type_name"
+                            placeholder='{{languageService.getText("userTypeText")}}'
+                            (selectionChange)="UserTypeChange($event.value)">
+                            <mat-option *ngFor="let usertype of (Usertypename$ | async)" [value]="usertype.domain_code">
+                                {{usertype.domain_text}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <table mat-table matSort [dataSource]="dataSource" [style.marginTop.px]="10" class="mat-elevation-z5 rounded-table">
+        <ng-container matColumnDef="role_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("RolenameText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.role_name}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("ActionText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Delete" mat-icon-button color="warn"
+                    (click)="DeletePart(element.admn_role_id)"> <mat-icon> delete </mat-icon> </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+        <div fxFlex="100" fxLayoutAlign="end center">
+            <!-- <button mat-raised-button color="accent" type="button" class="button-margin">
+                {{languageService.getText("CancelText")}}</button> -->
+            <button mat-raised-button color="primary" type="button" class="button-margin"
+                (click)="Save()">{{languageService.getText("SaveText")}}</button>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="UserTypeForm.controls.user_type_name.value > 0" class="form-container mat-elevation-z5 rounded-div">
+    <form [formGroup]="AddPartsForm">
+       
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="25" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("unusedRolesText")}} </mat-label>
+            </div>
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select formControlName="unused_roles"
+                        placeholder='{{languageService.getText("selectRolePlaceHolderText")}}'>
+                        <mat-option *ngFor="let userRole of unusedrolesDetailList"
+                            [value]="userRole.admn_role_id"> {{userRole.role_name}} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="100" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" type="button" class="button-margin"
+                    [disabled]="AddPartsForm.invalid" (click)="AddPart()"> {{languageService.getText("AddText")}}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

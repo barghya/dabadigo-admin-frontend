@@ -1,0 +1,50 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="35">
+        <button mat-raised-button color="primary" (click)="addCode()">{{languageService.getText("addCodeText")}}</button>
+    </div>
+    <div fxFlex="65" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput  (keyup)="applyFilter($event.target.value)"  class="search-input" placeholder='{{languageService.getText("searchCodeText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+<div>
+    <table mat-table matSort class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSource">
+        <ng-container matColumnDef="code_type_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("codeTypeText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.code_type_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="corporate_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("corporateCodeText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.corporate_code}} </td>
+        </ng-container>
+        <ng-container matColumnDef="code_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("statusText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.code_status_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="created_on">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("createOnText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.created_on | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="updated_on">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("updateOnText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.updated_on | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="partner_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("partnerNameText")}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.partner_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> {{languageService.getText("ActionText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="Edit" mat-icon-button color="accent" (click)="editCode(element.admn_corporatecode_id)"> <mat-icon> edit </mat-icon> </button>
+                <button matTooltip="Delete" mat-icon-button color="warn" (click)="deleteCode(element.admn_corporatecode_id)"> <mat-icon> delete </mat-icon> </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator class="mat-elevation-z5" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true"></mat-paginator>
+</div>

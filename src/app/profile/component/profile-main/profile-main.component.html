@@ -1,0 +1,49 @@
+<div class="section-title primary-text">{{languageService.getText("profileDetails")}}</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("userNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singleprofile$ | async)"><b>{{(singleprofile$ | async).username}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("firstNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singleprofile$ | async)"><b>{{(singleprofile$ | async).firstname}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("lastNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singleprofile$ | async)"><b>{{(singleprofile$ | async).lastname}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("phoneNumberText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singleprofile$ | async)"><b>{{(singleprofile$ | async).contact_phone}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("roleNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singleprofile$ | async)"><b>{{(singleprofile$ | async).role_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("userStatusNameText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singleprofile$ | async)"><b>{{(singleprofile$ | async).user_status_name}}</b></div>
+    </div>
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("emailIDText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">:</div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(singleprofile$ | async)"><b>{{(singleprofile$ | async).email_id}}</b></div>
+    </div>
+</div>
+<div fxLayout="row" [style.width.%]="100">
+    <div fxFlex="25" fxLayoutAlign="center center"></div>
+    <div fxFlex="75" fxLayoutAlign="end center">
+        <div fxFlex="80" fxLayoutAlign="end center">
+            <button mat-raised-button color="accent" class="button-margin"
+                type="button" (click)="changePassword()">{{languageService.getText("changePasswordButtonText")}}</button>
+            <button mat-raised-button color="accent" class="button-margin"
+                type="button" (click)="changeMobileNumber()">{{languageService.getText("changeMobileNumberText")}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+    </div>
+    <div fxFlex="60" fxLayoutGap="5px" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput class="search-input" (keyup)="applyFilter($event.target.value)" placeholder='{{languageService.getText("customerRequestSearchPlaceHolderText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20">
+        <mat-checkbox (change)="Includeinactive($event.source.checked)">{{languageService.getText("IncludeinactiveCustomerText")}}</mat-checkbox>
+    </div>
+</div>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">   
+        <ng-container matColumnDef="first_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("corporateCustomerfirstNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="last_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("corporateCustomerlastNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="phone_no">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("contactPhoneText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.phone_no}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("emailIDText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.email_id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email_verify_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("emailVerficationText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.email_verify_status_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="corporate_enabled_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("corporateProfileText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.corporate_enabled_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="dpin_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("dpinStatusText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.dpin_status_name}} </td>
+        </ng-container>
+         <ng-container matColumnDef="kyc_status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("kycStatusText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.kyc_status_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("statusNameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.status_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="current_state">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("customerCurrentStateText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.action_code_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+                {{languageService.getText("actionText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> 
+                <!-- <button matTooltip="Activate" mat-icon-button (click)="active(element.customer_id)"> <mat-icon>check</mat-icon> </button>
+                <button matTooltip="Deactivate" mat-icon-button (click)="inactive(element.customer_id)"> <mat-icon>clear</mat-icon> </button> -->
+                <button matTooltip="View" mat-icon-button (click)="viewDetail(element.customer_id)"> <mat-icon>visibility</mat-icon> </button>
+            </td>
+        </ng-container>
+
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]=true class="mat-elevation-z5"></mat-paginator>
+</div>

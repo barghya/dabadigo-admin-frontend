@@ -1,0 +1,209 @@
+<div fxLayout="row" class="header-container" fxLayoutAlign="center center">
+    <div fxFlex="100">
+        <span class="primary-text"> {{languageService.getText("AllBillButtonText")}} </span>
+    </div>
+</div>
+<div class="mat-elevation-z5 rounded-div form-container">
+    <form [formGroup]="FilterForm">
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("startDateText")}} </mat-label>
+            </div>
+            <div fxFlex="40" fxLayoutAlign="center center" class="div-right-border">
+                <mat-form-field [style.width.%]="80" appearance="outline"> 
+                    <input matInput [matDatepicker]="startPicker" placeholder='{{languageService.getText("startDateText")}}'
+                        formControlName="start_date" autocomplete="off" (dateChange)="billingStartDate()">
+                    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startPicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("endDateText")}} </mat-label>
+            </div>
+            <div fxFlex="40" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline"> 
+                    <input matInput [matDatepicker]="endPicker" placeholder='{{languageService.getText("endDateText")}}'
+                        formControlName="end_date" autocomplete="off" (dateChange)="billingStartDate()" [min]="minDate">
+                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endPicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">    
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("CountryFormText")}} </mat-label>
+            </div>
+            <div fxFlex="40" fxLayoutAlign="center center" class="div-right-border">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select placeholder='{{languageService.getText("CountryText")}}' formControlName="country">
+                        <mat-option >{{languageService.getText("allText")}}</mat-option>
+                        <mat-option *ngFor="let element of (countries$ | async)" [value]="element.countries_id">
+                            {{element.countries_name}}
+                        </mat-option> 
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("stateNameHeader")}} </mat-label>
+            </div>
+            <div fxFlex="40" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select placeholder='{{languageService.getText("stateNameHeader")}}' formControlName="state">
+                        <mat-option >{{languageService.getText("allText")}}</mat-option>
+                        <mat-option *ngFor="let element of (states$ | async)" [value]="element.states_id">
+                            {{element.states_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("cityNameHeader")}} </mat-label>
+            </div>
+            <div fxFlex="40" fxLayoutAlign="center center" class="div-right-border">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select placeholder='{{languageService.getText("cityNameHeader")}}' formControlName="city">
+                        <mat-option >{{languageService.getText("allText")}}</mat-option>
+                        <mat-option *ngFor="let element of (cities$ | async)" [value]="element.city_id">
+                            {{element.city_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("CorporateText")}} </mat-label>
+            </div>
+            <div fxFlex="40" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select placeholder='{{languageService.getText("CorporateText")}}' formControlName="corporate_id">
+                        <mat-option *ngFor="let element of (corporatesSetup$ |async)" [value]="element.corporate_id">
+                            {{element.corporate_billing_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label> {{languageService.getText("StatusText")}} </mat-label>
+            </div>
+            <div fxFlex="40" fxLayoutAlign="center center" class="div-right-border">
+                <mat-form-field [style.width.%]="80" appearance="outline">
+                    <mat-select placeholder='{{languageService.getText("StatusText")}}' formControlName="status" (selectionChange)="StatusFilterChange($event.value)">
+                        <mat-option >{{languageService.getText("allText")}}</mat-option>
+                        <mat-option *ngFor="let element of (billStatusList$ | async)" [value]="element.domain_code">
+                            {{element.domain_value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="10" fxLayoutAlign="end center">
+                <mat-label *ngIf="status != 4 && status != 3 && status != 0"> {{languageService.getText("DaysPendingText")}} </mat-label>
+            </div>
+            <div fxFlex="40" fxLayoutAlign="center center">
+                <mat-form-field [style.width.%]="80" appearance="outline" *ngIf="status != 4 && status != 3 && status != 0">
+                    <input matInput placeholder='{{languageService.getText("DaysPendingText")}}' autocomplete="off" formControlName="days_pending">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" [style.width.%]="100">
+            <div fxFlex="75" fxLayoutAlign="center center">
+                <div fxFlex="90" fxLayoutAlign="end center">
+                    <button mat-stroked-button color="primary" type="button" class="button-margin" (click)="ClearFilter()">
+                        {{languageService.getText("clearFilterText")}}</button>
+                    <button mat-raised-button color="primary" type="button" class="button-margin" (click)="FilterBills()">
+                        {{languageService.getText("searchGenericText")}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20"></div>
+    <div fxFlex="60" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input" placeholder='Search' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+
+<div>
+    <table mat-table matSort class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSource"> 
+        <ng-container matColumnDef="corporate_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("CorporateText")}}</th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.corporate_name}} 
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="invoice_number">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("InvoiceNoText")}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.invoice_number}} 
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="last_bill_amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("LastBillAmountText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.last_bill_amount | currency:"INR":"symbol"}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="last_payment_received">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("LastPaymentReceivedText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.last_payment_received | currency:"INR":"symbol"}}
+            </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="amount_due">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("AmountDueText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.amount_due | currency:"INR":"symbol"}}
+            </td>
+        </ng-container> -->
+        <ng-container matColumnDef="total_adjusted_amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Net Payable </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.total_adjusted_amount | currency:"INR":"symbol"}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="due_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("DueDateText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.due_date | date}}
+            </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="unbilled_amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("UnbilledAmountText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.unbilled_amount | currency:"INR":"symbol"}}
+            </td>
+        </ng-container> -->
+        <ng-container matColumnDef="job_run_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("JobRunDateText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.job_run_date | date}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="status_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("StatusText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.status_name}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("ActionText")}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button matTooltip="View" mat-icon-button color="accent" *ngIf="element.status != 5 && element.status != 0" (click)="viewBillsDetails(element.corporate_billing_id)"> <mat-icon> visibility </mat-icon> </button>
+                <button matTooltip="Generate PDF" mat-icon-button color="accent" *ngIf="element.status != 5 && element.status != 0 && element.status != 6" (click)="GeneratePDF(element.corporate_billing_id)"> <mat-icon>picture_as_pdf</mat-icon> </button>
+                <button matTooltip="Generate Bill" mat-icon-button color="accent" *ngIf="element.status != 5 && element.status != 0 && element.status == 6" (click)="GeneratePDF(element.corporate_billing_id)"> <mat-icon>assignment</mat-icon> </button>
+                <button matTooltip="Generate Excel" mat-icon-button color="accent" *ngIf="element.status != 5 && element.status != 0 && element.status != 6" (click)="GenerateExcel(element.corporate_billing_id)"> <mat-icon>insert_chart_outlined</mat-icon> </button>
+                <button matTooltip="Send Email" mat-icon-button color="primary" *ngIf="element.status != 5 && element.status != 0 && element.status != 6" (click)="SendEmail(element.corporate_billing_id)"> <mat-icon>email</mat-icon> </button>
+            </td>
+        </ng-container>
+            
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true" class="mat-elevation-z5"></mat-paginator>
+</div>

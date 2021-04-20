@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutAlign="end center" class="button-filter-container">
+    <div fxFlex="5">
+        <span class="accent-text">
+            <mat-slide-toggle (change)="changed($event.checked)" [checked]="true" color="primary"></mat-slide-toggle>
+        </span>
+    </div>
+    <div fxFlex="5">{{languageService.getText("rpMapViewText")}}</div>
+</div>
+<div id="map" class="map"></div>
+<div id="tooltip" class="tooltip-style"></div>

@@ -1,0 +1,64 @@
+<div class="section-title primary-text">Vehicle Details</div>
+<div class="mat-elevation-z5 rounded-div" fxLayout="row wrap" fxLayoutGap="10px">
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("DeviceImeiText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(bypasslist$ | async)">
+        <b>{{(bypasslist$  | async).device_imei}}</b></div>
+    </div>
+
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block div-right-border">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("VehiclenumberText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(bypasslist$ | async)">
+        <b>{{(bypasslist$  | async).vehicle_number}}</b></div>
+    </div>
+
+    <div fxFlex="0 1 calc(33.3% - 10px)" fxLayout="row" class="text-block">
+        <div fxFlex="30" fxLayoutAlign="start center" class="accent-text">{{languageService.getText("vehicleTypeText")}}</div>
+        <div fxFlex="10" fxLayoutAlign="center center" class="accent-text">{{languageService.getText("colonText")}}
+        </div>
+        <div fxFlex="60" fxLayoutAlign="start center" *ngIf="!!(bypasslist$ | async)">
+        <b>{{(bypasslist$  | async).vehicle_type_name}}</b></div>
+    </div>
+
+</div>
+<h3 class="primary-text">{{languageService.getText("addBypassText")}}</h3>
+<div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z5 rounded-table">
+
+        <ng-container matColumnDef="bypass_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("BypassnameText")}}
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.bypass_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{languageService.getText("BypassstatusText")}}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-checkbox [checked]="element.bypass_status == 1" (change)="BypassCheck($event.source.checked, element.bypass_id)"></mat-checkbox>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <div fxLayout="row" fxLayoutAlign="center center" [style.width.%]="100">
+        <div fxFlex="100" fxLayoutAlign="end center">
+            <button mat-raised-button color="accent" type="button" class="button-margin" (click)="Cancel()">
+                {{languageService.getText("CancelText")}}</button>
+            <button mat-raised-button color="primary" type="button" class="button-margin" 
+            (click)="Save()">{{languageService.getText("SaveText")}}</button>
+        </div>
+    </div>
+    
+</div>

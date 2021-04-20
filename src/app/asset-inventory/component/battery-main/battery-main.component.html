@@ -1,0 +1,90 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="button-filter-container">
+    <div fxFlex="20">
+        <button mat-raised-button color="primary" (click)="addBattery()">{{languageService.getText("addBatteryText")}}</button>
+    </div>
+    <div fxFlex="60" class="search-bar-container">
+        <mat-form-field appearance="outline" novalidate>
+            <input matInput (keyup)="applyFilter($event.target.value)" class="search-input" placeholder='{{languageService.getText("placeholderSearchbatteryText")}}' autocomplete="off">
+            <mat-icon matPrefix color="primary">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div fxFlex="20">
+        <mat-checkbox (change)="ShowHideInactive($event.source.checked)">{{languageService.getText("ShowInactiveBatteryText")}}</mat-checkbox>
+    </div>
+</div>
+<div>
+<table mat-table matSort class="main-content mat-elevation-z5 rounded-table" [dataSource]="dataSource">
+    <ng-container matColumnDef="battery_tag">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("BatteryTagText")}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_tag}} </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="battery_make">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("BatteryManufacturerText")}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_make}} </td>
+    </ng-container> -->
+    <ng-container matColumnDef="battery_model">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryModelNameText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_model}} </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="country_of_origin_name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryOriginBatteryText")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.country_of_origin_name}} </td>
+    </ng-container> -->
+    <ng-container matColumnDef="city_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("cityNameHeader")}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.city_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="region_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("regionText")}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.region_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="battery_manufacturing_date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryManufacturingDateText")}}</th>
+             <td mat-cell *matCellDef="let element"> {{element.battery_manufacturing_date | date}} </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="commissioning_date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryCommissioningDateText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.commissioning_date | date}} </td>
+    </ng-container> -->
+    <ng-container matColumnDef="battery_power">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryPowerText")}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.battery_power}} </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="warranty_period">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("WarrantyPeriodText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.warranty_period}} </td>
+    </ng-container> -->
+    <ng-container matColumnDef="battery_state">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{languageService.getText("BatteryStatusText")}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.battery_state}} </td>
+    </ng-container>
+    <ng-container matColumnDef="assignment_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("assignmentStatus")}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.assignment_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="store_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("AssigneeTypeText")}} </th>
+        <td mat-cell *matCellDef="let element"> 
+            {{element.store_type}} 
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="store_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{languageService.getText("AssignedToText")}} </th>
+        <td mat-cell *matCellDef="let element"> 
+            {{element.store_name}} 
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef >{{languageService.getText("ActionText")}}</th>
+            <td mat-cell *matCellDef="let element"> 
+                <button matTooltip="Edit" mat-icon-button color="accent" (click)="editBattery(element.vehicle_battery_id)"> <mat-icon> edit </mat-icon> </button>
+                <button matTooltip="Delete" mat-icon-button color="warn" (click)="deleteBattery(element.vehicle_battery_id)"> <mat-icon> delete </mat-icon> </button>
+                <button matTooltip="Transactions" mat-icon-button color="primary" (click)="viewTransactions(element.vehicle_battery_id)"> <mat-icon> toc </mat-icon> </button>
+            </td>
+    </ng-container>
+        
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator class="mat-elevation-z5" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true"></mat-paginator>
+</div>
